@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 4.0//EN"
+   "http://www.tuckey.org/res/dtds/urlrewrite4.0.dtd">
+<urlrewrite>
+   <!-- EJEMPLOS -->
+
+   <!-- Redirección una URL -->
+   <rule>
+      <from>/some/old/page.html</from>
+      <to type="redirect">/very/new/page.html</to>
+   </rule>
+
+   <!-- Redireccionar un directorio -->
+   <rule>
+      <from>/some/olddir/(.*)</from>
+      <to type="redirect">/very/newdir/$1</to>
+   </rule>
+
+   <!-- Limpiar una URL -->
+   <rule>
+      <from>/products/([0-9]+)</from>
+      <to>/products/index.jsp?product_id=$1</to>
+   </rule>
+   <!-- Mediante esta regla la URL “/products/1234” será filtrada como “/products/index.jsp?product_id=1234” -->
+
+</urlrewrite>

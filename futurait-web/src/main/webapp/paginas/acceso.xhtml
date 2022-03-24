@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+           <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <link type="text/css" rel="stylesheet" href="#{request.contextPath}/resources/theme.css" />
+        <link type="text/css" rel="stylesheet" href="#{request.contextPath}/resources/primeicons/primeicons.css" />
+        <link type="text/css" rel="stylesheet" href="#{request.contextPath}/resources/components.css" />
+        <script type="text/javascript" src="#{request.contextPath}/resources/jquery/jquery.js"></script>
+        <script type="text/javascript" src="#{request.contextPath}/resources/core.js"></script>
+        <script type="text/javascript" src="#{request.contextPath}/resources/components.js"></script>
+        <script type="text/javascript" src="#{request.contextPath}/resources/jquery/jquery-plugins.js"></script>
+        <link type="text/css" rel="stylesheet" href="#{request.contextPath}/resources/css/layout-yana.css" />
+
+        <title>Inicio de sesión</title>
+    </h:head>
+    
+      <h:body class="login-body">
+
+        <div class="login-wrapper">
+
+            <a href="#" class="logo-wrapper"><img id="j_idt7"
+                                                  src="#{request.contextPath}/resources/images/logo-siberia-white.png" alt="" class="logo" />
+            </a>
+
+             
+                  <h:form id="fLogin" class="login-wrapper" prependId="false"
+                                    onsubmit="this.action = 'j_security_check';" 
+                              >
+                <div class="login-content">
+                    <div class="content-text">
+                        <p:commandButton process="@this" actionListener="#{usuarioControlador.nuevo()}"/>
+                        
+                                        
+                         
+                        <h1>FUTURA</h1>
+                        <span>Bienvenido, utilice el formulario para iniciar sesión</span>
+                        
+                          
+                        
+                        <div class="login-input">
+                       <p:inputText id="j_username" 
+                                             placeholder="Usuario"
+                                             required="true"
+                                             >
+                 
+                                </p:inputText>
+                            
+                            <script id="j_idt9_s"
+                                    type="text/javascript">$(function () {
+                                            PrimeFaces.cw("InputText", "widget_j_idt9", {id: "j_idt9"});
+                                        });</script>
+                            <i class="pi pi-envelope"></i>
+                        </div>
+                        <div class="login-input">
+                            
+                             <p:password id="j_password"  
+                                            placeholder="Contraseña"
+                                            required="true"  
+                                            >
+                                </p:password>
+                           
+                            <script id="j_idt11_s"
+                                    type="text/javascript">$(function () {
+                                            PrimeFaces.cw("Password", "widget_j_idt11", {id: "j_idt11"});
+                                        });</script>
+                            <i class="pi pi-lock lock"></i>
+                        </div>
+                        <a href="#">Olvidó la Contraseña?</a>
+                        
+                       
+                          <p:commandButton  value="Ingresar" style="width: 100%"
+                                                      ajax="false"/>
+                                
+                        <script id="j_idt13_s"
+                                type="text/javascript">$(function () {
+                                        PrimeFaces.cw("CommandButton", "widget_j_idt13", {id: "j_idt13"});
+                                    });</script>
+                    
+                    </div><img id="j_idt15" src="#{request.contextPath}/resources/images/exceptions/asset-login.png"
+                               alt="" />
+
+                </div>
+                           </h:form>
+            </div>
+    </h:body>
+    
+
+ 
+</html>

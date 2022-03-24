@@ -1,0 +1,162 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+    </h:head>
+    <f:metadata>
+        <f:viewAction action="#{usuarioControlador.inicio()}" />
+    </f:metadata>
+    <h:body>
+       
+          <ui:composition template="/WEB-INF/template.xhtml">
+            
+               <ui:define name="content">
+             
+                                <div class="card"><span id="form:messages"></span>
+                                    <script id="form:messages_s"
+                                    type="text/javascript">$(function () { PrimeFaces.cw("Growl", "widget_form_messages", { id: "form:messages", sticky: false, life: 6000, escape: true, keepAlive: false, msgs: [] }); });</script>
+                                    <div id="form:j_idt120"
+                                         class="ui-toolbar ui-widget ui-widget-header ui-corner-all p-mb-4" role="toolbar">
+                                        <div class="ui-toolbar-group-left"> 
+                                           Usuaios  </div>
+                                        <div class="ui-toolbar-group-right"><span id="form:j_idt124"
+                                                                                  class="ui-fileupload-simple ui-widget"><span
+                                                    class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left"><span
+                                                        class="ui-button-icon-left ui-icon ui-c pi pi-download"></span><span
+                                                        id="form:j_idt124_label"
+                                                        class="ui-button-text ui-c">Import</span><input type="file"
+                                                                                                    id="form:j_idt124_input" name="form:j_idt124_input"
+                                                                                                    aria-hidden="true" /></span><span
+                                                    class="ui-fileupload-filename"></span></span>
+                                            <script id="form:j_idt124_s"
+                                            type="text/javascript">$(function () { PrimeFaces.cw("SimpleFileUpload", "widget_form_j_idt124", { id: "form:j_idt124", skinSimple: true, mode: "simple" }); });</script>
+                                            <button id="form:j_idt125" name="form:j_idt125"
+                                                    class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left ui-button-help"
+                                                    onclick="" type="submit"><span
+                                                    class="ui-button-icon-left ui-icon ui-c pi pi-upload"></span><span
+                                                    class="ui-button-text ui-c">Export</span></button>
+                                            <script id="form:j_idt125_s"
+                                            type="text/javascript">$(function () { PrimeFaces.cw("CommandButton", "widget_form_j_idt125", { id: "form:j_idt125" }); });</script>
+                                        </div>
+                                    </div>
+                                    <div id="form:dt-products"
+                                         class="ui-datatable ui-widget products-table ui-datatable-reflow"
+                                         >
+                               
+                                        <p:dataTable var="usuario" value="#{usuarioAD.listaUsuarios}">
+                                            <p:column headerText="Nombre">
+                                                <h:outputText value="#{usuario.nombre}" />
+                                            </p:column>
+
+                                             <p:column headerText="Clave">
+                                                 <h:outputText value="#{usuario.clave}" />
+                                            </p:column>
+                                        </p:dataTable>
+                                    </div>
+                                    <script id="form:dt-products_s"
+                                    type="text/javascript">$(function () { PrimeFaces.cw("DataTable", "dtProducts", { id: "form:dt-products", paginator: { id: ['form:dt-products_paginator_bottom'], rows: 10, rowCount: 30, page: 0, currentPageTemplate: '({currentPage} of {totalPages})' }, selectionMode: "checkbox", rowSelectMode: "add", filter: true, expansion: true, rowExpandMode: "multiple", sorting: true, multiSort: true, sortMetaOrder: [''], reflow: true, groupColumnIndexes: [], disableContextMenuIfEmpty: false, behaviors: { rowUnselect: function (ext, event) { PrimeFaces.ab({ s: "form:dt-products", e: "rowUnselect", f: "form", p: "form:dt-products", u: "form:delete-products-button" }, ext); }, rowUnselectCheckbox: function (ext, event) { PrimeFaces.ab({ s: "form:dt-products", e: "rowUnselectCheckbox", f: "form", p: "form:dt-products", u: "form:delete-products-button" }, ext); }, rowToggle: function (ext, event) { PrimeFaces.ab({ s: "form:dt-products", e: "rowToggle", f: "form", p: "form:dt-products" }, ext); }, rowSelect: function (ext, event) { PrimeFaces.ab({ s: "form:dt-products", e: "rowSelect", f: "form", p: "form:dt-products", u: "form:delete-products-button" }, ext); }, rowSelectCheckbox: function (ext, event) { PrimeFaces.ab({ s: "form:dt-products", e: "rowSelectCheckbox", f: "form", p: "form:dt-products", u: "form:delete-products-button" }, ext); }, toggleSelect: function (ext, event) { PrimeFaces.ab({ s: "form:dt-products", e: "toggleSelect", f: "form", p: "form:dt-products", u: "form:delete-products-button" }, ext); } } }); });</script>
+                                    <div id="form:j_idt164"
+                                         class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-shadow ui-hidden-container">
+                                        <div class="ui-dialog-titlebar ui-widget-header ui-helper-clearfix ui-corner-top">
+                                            <span id="form:j_idt164_title" class="ui-dialog-title">Product Details</span><a
+                                                href="#"
+                                                class="ui-dialog-titlebar-icon ui-dialog-titlebar-close ui-corner-all"
+                                                aria-label="Close"><span class="ui-icon ui-icon-closethick"></span></a>
+                                        </div>
+                                        <div class="ui-dialog-content ui-widget-content" id="form:j_idt164_content">
+                                            <div id="form:manage-product-content" class="ui-outputpanel ui-widget ui-fluid">
+                                            </div>
+                                        </div>
+                                        <div class="ui-dialog-footer ui-widget-content"><span><button id="form:j_idt187"
+                                                                                                      name="form:j_idt187"
+                                                                                                      class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left"
+                                                                                                      onclick="PrimeFaces.ab({s: &amp; form:j_idt187 &amp; , f: &amp; form &amp; , p: &amp; form:manage - product - content form:j_idt187 &amp; , u: &amp; form:manage - product - content &amp; }); return false;"
+                                                                                                      type="submit"><span
+                                                        class="ui-button-icon-left ui-icon ui-c pi pi-check"></span><span
+                                                        class="ui-button-text ui-c">Save</span></button>
+                                                <script id="form:j_idt187_s"
+                                                type="text/javascript">$(function () { PrimeFaces.cw("CommandButton", "widget_form_j_idt187", { id: "form:j_idt187" }); });</script>
+                                                <button id="form:j_idt188" name="form:j_idt188"
+                                                        class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left ui-button-secondary"
+                                                        onclick="PrimeFaces.bcn(this, event, [function(event){PF('manageProductDialog').hide()}, function(event){PrimeFaces.ab({s: &amp; form:j_idt188 &amp; , f: &amp; form &amp; }); return false; }]);"
+                                                        type="submit"><span
+                                                        class="ui-button-icon-left ui-icon ui-c pi pi-times"></span><span
+                                                        class="ui-button-text ui-c">Cancel</span></button>
+                                                <script id="form:j_idt188_s"
+                                                type="text/javascript">$(function () { PrimeFaces.cw("CommandButton", "widget_form_j_idt188", { id: "form:j_idt188" }); });</script>
+                                            </span></div>
+                                    </div>
+                                    <script id="form:j_idt164_s"
+                                    type="text/javascript">$(function () { PrimeFaces.cw("Dialog", "manageProductDialog", { id: "form:j_idt164", modal: true, showEffect: "fade" }); });</script>
+                                    <div id="form:j_idt189"
+                                         class="ui-confirm-dialog ui-dialog ui-widget ui-widget-content ui-corner-all ui-shadow ui-hidden-container">
+                                        <div class="ui-dialog-titlebar ui-widget-header ui-helper-clearfix ui-corner-top">
+                                            <span id="form:j_idt189_title" class="ui-dialog-title">Confirm</span><a href="#"
+                                                                                                                    class="ui-dialog-titlebar-icon ui-dialog-titlebar-close ui-corner-all"
+                                                                                                                    aria-label="Close"><span class="ui-icon ui-icon-closethick"></span></a>
+                                        </div>
+                                        <div class="ui-dialog-content ui-widget-content" id="form:j_idt189_content"><span
+                                                class="ui-icon ui-icon-warn ui-confirm-dialog-severity"></span><span
+                                                class="ui-confirm-dialog-message">Delete the product?</span></div>
+                                        <div
+                                            class="ui-dialog-buttonpane ui-dialog-footer ui-widget-content ui-helper-clearfix">
+                                            <button id="form:j_idt190" name="form:j_idt190"
+                                                    class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left"
+                                                    onclick="PrimeFaces.ab({s: &amp; form:j_idt190 &amp; , f: &amp; form &amp; , p: &amp; form:j_idt190 &amp; , onco:function(xhr, status, args, data){PF('deleteProductDialog').hide(); }}); return false;"
+                                                    type="submit"><span
+                                                    class="ui-button-icon-left ui-icon ui-c pi pi-check"></span><span
+                                                    class="ui-button-text ui-c">Yes</span></button>
+                                            <script id="form:j_idt190_s"
+                                            type="text/javascript">$(function () { PrimeFaces.cw("CommandButton", "widget_form_j_idt190", { id: "form:j_idt190" }); });</script>
+                                            <button id="form:j_idt191" name="form:j_idt191"
+                                                    class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left ui-button-secondary"
+                                                    onclick="PF('deleteProductDialog').hide()" type="button"><span
+                                                    class="ui-button-icon-left ui-icon ui-c pi pi-times"></span><span
+                                                    class="ui-button-text ui-c">No</span></button>
+                                            <script id="form:j_idt191_s"
+                                            type="text/javascript">$(function () { PrimeFaces.cw("CommandButton", "widget_form_j_idt191", { id: "form:j_idt191" }); });</script>
+                                        </div>
+                                    </div>
+                                    <script id="form:j_idt189_s"
+                                    type="text/javascript">$(function () { PrimeFaces.cw("ConfirmDialog", "deleteProductDialog", { id: "form:j_idt189", width: "300", showEffect: "fade" }); });</script>
+                                    <div id="form:j_idt192"
+                                         class="ui-confirm-dialog ui-dialog ui-widget ui-widget-content ui-corner-all ui-shadow ui-hidden-container">
+                                        <div class="ui-dialog-titlebar ui-widget-header ui-helper-clearfix ui-corner-top">
+                                            <span id="form:j_idt192_title" class="ui-dialog-title"></span><a href="#"
+                                                                                                             class="ui-dialog-titlebar-icon ui-dialog-titlebar-close ui-corner-all"
+                                                                                                             aria-label="Close"><span class="ui-icon ui-icon-closethick"></span></a>
+                                        </div>
+                                        <div class="ui-dialog-content ui-widget-content" id="form:j_idt192_content"><span
+                                                class="ui-icon ui-confirm-dialog-severity"></span><span
+                                                class="ui-confirm-dialog-message"></span></div>
+                                        <div
+                                            class="ui-dialog-buttonpane ui-dialog-footer ui-widget-content ui-helper-clearfix">
+                                            <button id="form:j_idt193" name="form:j_idt193"
+                                                    class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left ui-confirmdialog-yes"
+                                                    type="button"><span
+                                                    class="ui-button-icon-left ui-icon ui-c pi pi-check"></span><span
+                                                    class="ui-button-text ui-c">Yes</span></button>
+                                            <script id="form:j_idt193_s"
+                                            type="text/javascript">$(function () { PrimeFaces.cw("CommandButton", "widget_form_j_idt193", { id: "form:j_idt193" }); });</script>
+                                            <button id="form:j_idt194" name="form:j_idt194"
+                                                    class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left ui-confirmdialog-no ui-button-secondary"
+                                                    type="button"><span
+                                                    class="ui-button-icon-left ui-icon ui-c pi pi-times"></span><span
+                                                    class="ui-button-text ui-c">No</span></button>
+                                            <script id="form:j_idt194_s"
+                                            type="text/javascript">$(function () { PrimeFaces.cw("CommandButton", "widget_form_j_idt194", { id: "form:j_idt194" }); });</script>
+                                        </div>
+                                    </div>
+                                    <script id="form:j_idt192_s"
+                                    type="text/javascript">$(function () { PrimeFaces.cw("ConfirmDialog", "widget_form_j_idt192", { id: "form:j_idt192", width: "300", showEffect: "fade", global: true }); });</script>
+                                </div>
+                         
+            </ui:define>
+        </ui:composition>
+
+       
+    </h:body>
+</html>
