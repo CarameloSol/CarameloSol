@@ -1,6 +1,5 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
@@ -34,7 +33,7 @@
     </h:head>
 
     <h:body >
-
+ <p:growl id="mensaje" showDetail="true" globalOnly="true" />
         <div class="layout-wrapper layout-overlay layout-yana         ">
 
             <div class="layout-topbar">
@@ -56,16 +55,16 @@
 
                                 <p:panelMenu >
                                     <p:submenu label="Acceso">
-                                        <p:menuitem value="Usuarios" url="#{usuarioControlador.redireccionarUrl('/paginas/protegidas/acceso/usuario.fut')}"  icon="pi pi-user"/>
+                                        <p:menuitem value="Usuarios" url="#{usuarioControlador.redireccionarUrl('/paginas/protegidas/acceso/usuario/inicio.fut')}"  icon="pi pi-user"/>
                                         <p:menuitem value="Roles" url="#{usuarioControlador.redireccionarUrl('/paginas/protegidas/acceso/rol.fut')}"  icon="pi pi-external-link"/>
-                                    </p:submenu>
+                                   </p:submenu>
 
                                 </p:panelMenu>
 
                                 <script id="menuform:j_idt16_s"
                                         type="text/javascript">$(function () {
-                                        PrimeFaces.cw("Siberia", "SiberiaMenuWidget", {id: "menuform:j_idt16"});
-                                    });</script>
+                                                PrimeFaces.cw("Siberia", "SiberiaMenuWidget", {id: "menuform:j_idt16"});
+                                            });</script>
                                 <input type="hidden" name="javax.faces.ViewState" id="j_id1:javax.faces.ViewState:0"
                                        value="2760772013023674898:3950389129672628877" autocomplete="off" />
                             </form>
@@ -138,17 +137,16 @@
 
             <div class="layout-main">
                 <div class="layout-content">
-                    <form id="form" name="form" method="post" action="https://www.primefaces.org/siberia/crud.xhtml"
-                          enctype="application/x-www-form-urlencoded">
-                        <input type="hidden" name="form" value="form" />
 
-                        <div class="p-grid crud-demo">
-                            <div class="p-col-12">
+                    <input type="hidden" name="form" value="form" />
 
-                                <ui:insert name="content"/>
+                    <div class="p-grid crud-demo">
+                        <div class="p-col-12">
 
-                            </div>
-                        </div>   </form>
+                            <ui:insert name="content"/>
+
+                        </div>
+                    </div>    
                 </div>
 
                 <div class="layout-footer" >
@@ -180,8 +178,8 @@
             </div>
             <script id="j_idt201_s"
                     type="text/javascript">$(function () {
-                    PrimeFaces.cw("AjaxStatus", "widget_j_idt201", {id: "j_idt201", delay: 0});
-                });</script>
+                            PrimeFaces.cw("AjaxStatus", "widget_j_idt201", {id: "j_idt201", delay: 0});
+                        });</script>
         </div>
     </h:body>
 

@@ -5,13 +5,11 @@
  */
 package com.futurait.controladorAcceso;
 
-import com.acceso.modelo.AccUsuario;
 import com.acceso.servicioImp.IUsuarioServicio;
-import com.futura.acceso.variables.AccesoAD;
 import java.io.Serializable;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -24,8 +22,7 @@ public abstract class BaseControlador implements Serializable {
 
     @EJB
     IUsuarioServicio usuarioServicio;
-    @Inject
-    AccesoAD accesoAD;
+
 
     public void validarAcceso() {
 
@@ -78,4 +75,61 @@ public abstract class BaseControlador implements Serializable {
     protected static FacesContext getFacesContext() {
         return FacesContext.getCurrentInstance();
     }
+    
+    
+     /**
+     * @param resumen
+     */
+    protected void addErrorMessage(final String resumen) {
+        FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia", resumen);
+        FacesContext.getCurrentInstance().addMessage(null, facesMsg);
+    }
+
+    /**
+     * @param resumen
+     * @param detalle
+     */
+    protected void addErrorMessage(final String resumen, final String detalle) {
+        FacesMessage message = new FacesMessage(resumen, detalle);
+        message.setSeverity(FacesMessage.SEVERITY_ERROR);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+
+    /**
+     * @param resumen
+     */
+    protected void addInfoMessage(final String resumen) {
+        FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Información", resumen);
+        FacesContext.getCurrentInstance().addMessage(null, facesMsg);
+    }
+
+    /**
+     * @param resumen
+     * @param detalle
+     */
+    protected void addInfoMessage(final String resumen, final String detalle) {
+        FacesMessage message = new FacesMessage(resumen, detalle);
+        message.setSeverity(FacesMessage.SEVERITY_INFO);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+
+    /**
+     * @param resumen
+     */
+    protected void addWarnMessage(final String resumen) {
+        FacesMessage message = new FacesMessage(resumen);
+        message.setSeverity(FacesMessage.SEVERITY_WARN);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+
+    /**
+     * @param resumen
+     * @param detalle
+     */
+    protected void addWarnMessage(final String resumen, final String detalle) {
+        FacesMessage message = new FacesMessage(resumen, detalle);
+        message.setSeverity(FacesMessage.SEVERITY_WARN);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+    
 }

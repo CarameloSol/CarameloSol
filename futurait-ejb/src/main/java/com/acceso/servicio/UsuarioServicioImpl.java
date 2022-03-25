@@ -48,8 +48,18 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
         usuarioDao.eliminar(usuarioEliminar);
     }
 
+    private void validacionUsuario(AccUsuario usuario) throws RegistroNoGuardado {
+        if (!usuario.getNombre().equals(usuario.getValidacionNombre())) {
+            AccUsuario usuarioEncontrado = usuarioDao.obtenerValidacionNombre(usuario.getNombre());
+            if (usuarioEncontrado != null) {
+                throw new RegistroNoGuardado("El usuario ingresado ya existe");
+            }
+        }
+    }
+
     @Override
     public void guardar(AccUsuario usuario) throws RegistroNoGuardado {
+        validacionUsuario(usuario);
         if (usuario == null) {
             usuarioDao.crear(usuario);
         } else {

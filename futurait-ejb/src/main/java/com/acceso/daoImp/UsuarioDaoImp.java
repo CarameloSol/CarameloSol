@@ -47,9 +47,26 @@ public class UsuarioDaoImp extends GenericDaoImp<AccUsuario, Long>
         StringBuilder sql = new StringBuilder();
         HashMap<Object, Object> parametros = new HashMap();
         sql.append("Select t from AccUsuario t where t.empresa=:empresa and t.nombre=:usuario");
-        System.err.println("empre--  "+empresa);
         parametros.put("empresa", empresa);
         parametros.put("usuario", usuario);
+
+        Query q = this.em.createQuery(sql.toString());
+        parametros.keySet().forEach((key) -> {
+            q.setParameter((String) key, parametros.get(key));
+        });
+        try {
+            return (AccUsuario) q.getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    @Override
+    public AccUsuario obtenerValidacionNombre(String nombre) {
+  StringBuilder sql = new StringBuilder();
+        HashMap<Object, Object> parametros = new HashMap();
+        sql.append("Select t from AccUsuario t where t.nombre=:nombre");
+        parametros.put("nombre", nombre);
 
         Query q = this.em.createQuery(sql.toString());
         parametros.keySet().forEach((key) -> {

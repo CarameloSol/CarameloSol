@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  *
@@ -38,6 +39,9 @@ public class AccUsuario implements Serializable {
     @Column(name = "empresa", nullable = false)
     private Long empresa;
 
+    @Transient
+    private String validacionNombre;
+
     public Long getEmpresa() {
         return empresa;
     }
@@ -45,9 +49,6 @@ public class AccUsuario implements Serializable {
     public void setEmpresa(Long empresa) {
         this.empresa = empresa;
     }
-    
-    
-    
 
     public AccUsuario(Long id) {
         this.id = id;
@@ -78,6 +79,14 @@ public class AccUsuario implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getValidacionNombre() {
+        return validacionNombre;
+    }
+
+    public void setValidacionNombre(String validacionNombre) {
+        this.validacionNombre = validacionNombre;
     }
 
     @Override

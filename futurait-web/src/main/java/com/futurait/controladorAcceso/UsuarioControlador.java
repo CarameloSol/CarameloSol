@@ -11,8 +11,6 @@ import com.excepciones.registos.RegistroNoGuardado;
 import com.excepciones.registos.RegistroNoLocalizado;
 import com.futura.acceso.variables.UsuarioAD;
 import java.io.Serializable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -25,55 +23,64 @@ import org.primefaces.PrimeFaces;
 @Named(value = "usuarioControlador")
 @ViewScoped
 public class UsuarioControlador extends BaseControlador implements Serializable {
-    
+
     @Inject
     UsuarioAD usuarioAD;
-    
+
     public void inicio() {
         validarAcceso();
         usuarioAD.setListaUsuarios(usuarioServicio.buscar(new AccUsuario()));
-        
+
     }
-    
+
     public void nuevo() {
         usuarioAD.setUsuario(new AccUsuario());
+        usuarioAD.getUsuario().setValidacionNombre("");
     }
-    
+
     public void seleccionarUsuario(AccUsuario usuario) {
         usuarioAD.setUsuario(usuario);
+        usuarioAD.getUsuario().setValidacionNombre(usuario.getNombre());
     }
-    
+
     public void guardar() {
         try {
-            usuarioServicio.guardar(accesoAD.getUsuario());
+            usuarioAD.getUsuario().setEmpresa(1L);
+            usuarioServicio.guardar(usuarioAD.getUsuario());
+            usuarioAD.setListaUsuarios(usuarioServicio.buscar(new AccUsuario()));
+            addInfoMessage("Guardado exitoso");
+            PrimeFaces.current().executeScript("PF('dlgUsuario').hide();");
+            PrimeFaces.current().ajax().update("form:contenidoPrincipal");
         } catch (RegistroNoGuardado ex) {
-            Logger.getLogger(UsuarioControlador.class.getName()).log(Level.SEVERE, null, ex);
+            addErrorMessage(ex.getMessage());
         }
     }
 
-    public void eliminar() {
-       
+    public void eliminar(AccUsuario usuario) {
+
         try {
-            usuarioServicio.eliminar(accesoAD.getUsuario());
+            usuarioServicio.eliminar(usuario);
+            usuarioAD.setListaUsuarios(usuarioServicio.buscar(new AccUsuario()));
+            addInfoMessage("Registro eliminado");
         } catch (RegistroNoEliminado | RegistroNoLocalizado ex) {
-            Logger.getLogger(UsuarioControlador.class.getName()).log(Level.SEVERE, null, ex);
+            addErrorMessage(ex.getMessage());
         }
     }
-    
+
     public UsuarioAD getUsuarioAD() {
         return usuarioAD;
     }
-    
+
     public void setUsuarioAD(UsuarioAD usuarioAD) {
         this.usuarioAD = usuarioAD;
     }
-    
+
     public void cerrarCesion() {
         System.err.println("cerrar cesion");
         getSession().invalidate();
         PrimeFaces.current().executeScript("location.reload();");
     }
-    
+
     public String redireccionarUrl(String urlDestino) {
         String urlFinal = urlBase()
                 + urlDestino;
