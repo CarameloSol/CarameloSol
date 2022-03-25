@@ -5,25 +5,17 @@
  */
 package com.futurait.controladorAcceso;
 
-import com.acceso.modelo.AccRol;
 import com.acceso.modelo.AccUsuario;
-import com.acceso.servicioImp.IUsuarioServicio;
 import com.excepciones.registos.RegistroNoEliminado;
 import com.excepciones.registos.RegistroNoGuardado;
 import com.excepciones.registos.RegistroNoLocalizado;
-import com.futura.acceso.variables.AccesoAD;
 import com.futura.acceso.variables.UsuarioAD;
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.ejb.EJB;
 import javax.inject.Named;
-import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import org.primefaces.PrimeFaces;
 
 /**
