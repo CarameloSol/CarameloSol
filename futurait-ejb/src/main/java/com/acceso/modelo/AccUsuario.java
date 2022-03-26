@@ -41,6 +41,9 @@ public class AccUsuario implements Serializable {
 
     @Transient
     private String validacionNombre;
+    
+        @Transient
+    private String validacionClave;
 
     public Long getEmpresa() {
         return empresa;
@@ -112,6 +115,14 @@ public class AccUsuario implements Serializable {
     @Override
     public String toString() {
         return "com.acceso.modelo.Usuario[ id=" + id + " ]";
+    }
+
+    public String getValidacionClave() {
+        return validacionClave;
+    }
+
+    public void setValidacionClave(String validacionClave) {
+        this.validacionClave = validacionClave;
     }
 
 }

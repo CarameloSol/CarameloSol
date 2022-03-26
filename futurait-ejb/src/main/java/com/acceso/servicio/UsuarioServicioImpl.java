@@ -11,9 +11,11 @@ import com.acceso.servicioImp.IUsuarioServicio;
 import com.excepciones.registos.RegistroNoEliminado;
 import com.excepciones.registos.RegistroNoGuardado;
 import com.excepciones.registos.RegistroNoLocalizado;
+import java.security.MessageDigest;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import org.apache.commons.codec.binary.Base64;
 
 /**
  *
@@ -58,8 +60,11 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
     }
 
     @Override
-    public void guardar(AccUsuario usuario) throws RegistroNoGuardado {
+    public void guardar(AccUsuario usuario) throws RegistroNoGuardado,Exception {
         validacionUsuario(usuario);
+        if (!usuario.getClave().equals(usuario.getValidacionClave())) {
+            usuario.setClave(SHA256(usuario.getClave()));
+        }
         if (usuario == null) {
             usuarioDao.crear(usuario);
         } else {
@@ -67,6 +72,23 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
         }
     }
 
+        /**
+     *
+     * @param args
+     * @return
+     * @throws Exception
+     */
+    public static String SHA256(final String args) throws Exception {
+
+        MessageDigest md = MessageDigest.getInstance("SHA-256");
+        md.update(args.getBytes());
+        md.digest();
+
+        String hash = Base64.encodeBase64String(md.digest(args.getBytes()));
+        return hash.trim();
+
+    }
+    
     @Override
     public AccUsuario usuarioLogeado(Long empresa, String usuario) {
         return usuarioDao.usuarioLogeado(empresa, usuario);

@@ -3,56 +3,52 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:p="http://primefaces.org/ui">
 
-    <p:dialog header="Actualizar Usuario" widgetVar="dlgUsuario" modal="true" height="100%" width="40%">
+    <p:dialog header="Usuario" widgetVar="dlgUsuario" modal="true" height="100%" width="40%">
         <p:outputPanel id="contenidoCrud">
-    
 
-    
-    <div class="ui-dialog-content ui-widget-content" id="form:j_idt164_content" style="height: auto;"><div id="form:manage-product-content" class="ui-outputpanel ui-widget ui-fluid">
-            <div id="form:j_idt165" class="ui-outputpanel ui-widget">
-                                 
-                            <div class="p-field">
-                                <label id="form:j_idt168" class="ui-outputlabel ui-widget" for="form:name">Nombre
-                                    <span class="ui-outputlabel-rfi">*</span></label>
-                                    <input id="form:name" name="form:name" type="text" 
-                                           class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all"
-                                           aria-required="true" role="textbox" aria-readonly="false"
-                                           aria-disabled="false"/>
-                                    </div>
-                                    <div class="p-field"><label id="form:j_idt171" class="ui-outputlabel ui-widget" for="form:description">Clave</label><textarea id="form:description" name="form:description" class="ui-inputfield ui-inputtextarea ui-widget ui-state-default ui-corner-all ui-inputtextarea-resizable" cols="20" rows="3" maxlength="2147483647" role="textbox" aria-readonly="false" aria-disabled="false" aria-multiline="true" style="overflow-x: hidden; overflow-wrap: break-word; height: 66px;"></textarea>
-                                    </div>
-                                    <div class="p-field"><label id="form:j_idt174" class="ui-outputlabel ui-widget" for="form:category">Categoría</label><div id="form:category" class="ui-selectoneradio ui-widget ui-grid ui-grid-responsive"><div class="ui-g"><div class="ui-g-12 ui-md-6"><div class="ui-radiobutton ui-widget"><div class="ui-helper-hidden-accessible">
-                                                            <input id="form:category:0" name="form:category" type="radio" value="Accessories"/></div><div class="ui-radiobutton-box ui-widget ui-corner-all ui-state-default"><span class="ui-radiobutton-icon ui-icon ui-icon-blank ui-c"></span></div></div><label for="form:category:0">Accesorios</label></div><div class="ui-g-12 ui-md-6"><div class="ui-radiobutton ui-widget"><div class="ui-helper-hidden-accessible">
-                                                                        <input id="form:category:1" name="form:category" type="radio" value="Clothing"/></div><div class="ui-radiobutton-box ui-widget ui-corner-all ui-state-default"><span class="ui-radiobutton-icon ui-icon ui-icon-blank ui-c"></span></div></div><label for="form:category:1">Ropa</label></div></div><div class="ui-g"><div class="ui-g-12 ui-md-6"><div class="ui-radiobutton ui-widget"><div class="ui-helper-hidden-accessible">
-                                                                                        <input id="form:category:2" name="form:category" type="radio" value="Electronics"/></div><div class="ui-radiobutton-box ui-widget ui-corner-all ui-state-default"><span class="ui-radiobutton-icon ui-icon ui-icon-blank ui-c"></span></div></div><label for="form:category:2">Electrónica</label></div><div class="ui-g-12 ui-md-6"><div class="ui-radiobutton ui-widget"><div class="ui-helper-hidden-accessible">
-                                                                                                    <input id="form:category:3" name="form:category" type="radio" value="Fitness"/></div><div class="ui-radiobutton-box ui-widget ui-corner-all ui-state-default"><span class="ui-radiobutton-icon ui-icon ui-icon-blank ui-c"></span></div></div><label for="form:category:3">Deportes</label></div></div></div>
-                                    </div>
-                                    <div class="p-formgrid p-grid">
-                                        <div class="p-field p-col"><label id="form:j_idt181" class="ui-outputlabel ui-widget" for="form:price_input">Precio</label><span id="form:price" class="ui-inputnumber ui-widget ui-inputwrapper-filled">
-                                                <input id="form:price_input" name="form:price_input" type="text" autocomplete="off"
-                                                                                                                                                                                                        value="0.0" class="ui-inputfield ui-inputtext ui-widget ui-state-default 
-                                                                                                                                                                                                        ui-corner-all ui-state-filled" aria-labelledby="form:j_idt181" 
-                                                                                                                                                                                                        inputmode="decimal" role="textbox" aria-readonly="false" aria-disabled="false"/>
-                                                <input id="form:price_hinput" name="form:price_hinput" type="hidden" autocomplete="off" value="0.0"/></span>  
-                                        </div>
-                                        <div class="p-field p-col"><label id="form:j_idt184" class="ui-outputlabel ui-widget" for="form:quantity_input">Cantidad</label><span id="form:quantity" class="ui-spinner ui-widget ui-corner-all ui-spinner-stacked ui-inputwrapper-filled">
-                                                <input id="form:quantity_input" name="form:quantity_input" type="text" class="ui-spinner-input ui-inputfield ui-state-default
-                                                       ui-corner-all ui-state-filled" autocomplete="off" value="0"
-                                                       aria-labelledby="form:j_idt184" role="textbox" aria-multiline="false" aria-valuenow="0"
-                                                       aria-valuemin="0" aria-readonly="false" aria-disabled="false"/><a class="ui-spinner-button ui-spinner-up ui-corner-tr ui-button ui-widget ui-state-default ui-button-text-only"><span class="ui-button-text"><span class="ui-icon ui-c ui-icon-triangle-1-n"></span></span></a><a class="ui-spinner-button ui-spinner-down ui-corner-br ui-button ui-widget ui-state-default ui-button-text-only"><span class="ui-button-text"><span class="ui-icon ui-c ui-icon-triangle-1-s"></span></span></a></span>
-                                        </div>
-                                        <br></br>
-                                        <div class="ui-dialog-footer ui-widget-content" _mstvisible="1"><span _mstvisible="2"><button id="form:j_idt187" name="form:j_idt187" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left" 
-									onclick="PrimeFaces.ab({s:&quot;form:j_idt187&quot;,f:&quot;form&quot;,p:&quot;form:manage-product-content form:j_idt187&quot;,u:&quot;form:manage-product-content&quot;});return false;" type="submit" role="button" aria-disabled="false" _mstvisible="3">
-									<span class="ui-button-icon-left ui-icon ui-c pi pi-check" _mstvisible="4"></span><span class="ui-button-text ui-c" _msthash="374231" _msttexthash="77272" _mstvisible="4">Guardar</span></button>
-									
-									<button id="form:j_idt188" name="form:j_idt188" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left ui-button-secondary" 
-									onclick="PrimeFaces.bcn(this,event,[function(event){PF('manageProductDialog').hide()},function(event){PrimeFaces.ab({s:&quot;form:j_idt188&quot;,f:&quot;form&quot;});return false;}]);" 
-									type="submit" role="button" aria-disabled="false" _mstvisible="3"><span class="ui-button-icon-left ui-icon ui-c pi pi-times" _mstvisible="4"></span>
-									<span class="ui-button-text ui-c" _msthash="374569" _msttexthash="110357" _mstvisible="4">Cancelar</span></button></span></div>
-                                        
-                                    </div></div></div></div>
-   
+
+
+            <div class="ui-dialog-content ui-widget-content" id="form:j_idt164_content" style="height: auto;"><div id="form:manage-product-content" class="ui-outputpanel ui-widget ui-fluid">
+                    <div id="form:j_idt165" class="ui-outputpanel ui-widget">
+
+                        <div class="p-field">
+
+                            <p:outputLabel for="txtNombreUsuario" class="ui-outputlabel ui-widget" value="Nombre" />
+                            <p:inputText id="txtNombreUsuario" value="#{usuarioAD.usuario.nombre}" required="true"  class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all">
+                                <p:ajax/>
+                            </p:inputText>
+                        </div>
+                        <div class="p-field">
+                            <p:outputLabel for="txtClaveUsuario" class="ui-outputlabel ui-widget" value="Clave" />
+
+                            <p:password id="txtClaveUsuario" value="#{usuarioAD.usuario.clave}" required="true"  
+                                        class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" >
+                                <p:ajax/>
+
+                            </p:password>
+
+
+                        </div>
+
+                        <div class="p-formgrid p-grid">
+
+                            <br></br>
+                            <div class="ui-dialog-footer ui-widget-content" _mstvisible="1">
+                                <span _mstvisible="2">
+
+                                    <p:commandButton  value="Guardar" icon="pi pi-check" process="@this,contenidoCrud" update="contenidoCrud,mensaje" 
+                                                      class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left" 
+                                                      actionListener="#{usuarioControlador.guardar()}"/>
+
+                                    <p:commandButton  value="Cancelar" icon="pi pi-times" process="@this,contenidoCrud" 
+                                                      onclick="PF('dlgUsuario').hide();"
+                                                      class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left ui-button-secondary"  
+                                                      />
+
+                                </span></div>
+
+                        </div></div></div></div>
+
 
         </p:outputPanel>
 

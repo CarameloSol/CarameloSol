@@ -36,16 +36,19 @@ public class UsuarioControlador extends BaseControlador implements Serializable 
     public void nuevo() {
         usuarioAD.setUsuario(new AccUsuario());
         usuarioAD.getUsuario().setValidacionNombre("");
+         usuarioAD.getUsuario().setValidacionClave("");
     }
 
     public void seleccionarUsuario(AccUsuario usuario) {
         usuarioAD.setUsuario(usuario);
         usuarioAD.getUsuario().setValidacionNombre(usuario.getNombre());
+           usuarioAD.getUsuario().setValidacionClave(usuario.getClave());
     }
 
     public void guardar() {
         try {
             usuarioAD.getUsuario().setEmpresa(1L);
+              
             usuarioServicio.guardar(usuarioAD.getUsuario());
             usuarioAD.setListaUsuarios(usuarioServicio.buscar(new AccUsuario()));
             addInfoMessage("Guardado exitoso");
@@ -53,9 +56,13 @@ public class UsuarioControlador extends BaseControlador implements Serializable 
             PrimeFaces.current().ajax().update("form:contenidoPrincipal");
         } catch (RegistroNoGuardado ex) {
             addErrorMessage(ex.getMessage());
+        } catch (Exception ex) {
+            addErrorMessage(ex.getMessage());
         }
     }
 
+  
+      
     public void eliminar(AccUsuario usuario) {
 
         try {
@@ -86,4 +93,6 @@ public class UsuarioControlador extends BaseControlador implements Serializable 
                 + urlDestino;
         return urlFinal;
     }
+    
+     
 }
