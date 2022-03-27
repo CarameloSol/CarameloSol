@@ -14,9 +14,9 @@
             <h:outputText value="#{usuario.nombre}" />
         </p:column>
  
-        <p:column headerText="Clave"  sortBy="#{usuario.clave}"
-                  filterBy="#{usuario.clave}" filterMatchMode="contains">
-            <h:outputText value="#{usuario.clave}" />
+        <p:column headerText="Rol"  sortBy="#{usuario.rol.nombre}"
+                  filterBy="#{usuario.rol.nombre}" filterMatchMode="contains">
+            <h:outputText value="#{usuario.rol.nombre}" />
         </p:column>
 
         <p:column headerText="Opciones">

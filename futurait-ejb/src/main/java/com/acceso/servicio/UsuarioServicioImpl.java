@@ -60,9 +60,11 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
     }
 
     @Override
-    public void guardar(AccUsuario usuario) throws RegistroNoGuardado,Exception {
+    public void guardar(AccUsuario usuario) throws RegistroNoGuardado, Exception {
         validacionUsuario(usuario);
-        if (!usuario.getClave().equals(usuario.getValidacionClave())) {
+        if (usuario.getClave().isEmpty()) {
+            usuario.setClave(usuario.getValidacionClave());
+        } else {
             usuario.setClave(SHA256(usuario.getClave()));
         }
         if (usuario == null) {
@@ -72,7 +74,7 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
         }
     }
 
-        /**
+    /**
      *
      * @param args
      * @return
@@ -88,7 +90,7 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
         return hash.trim();
 
     }
-    
+
     @Override
     public AccUsuario usuarioLogeado(Long empresa, String usuario) {
         return usuarioDao.usuarioLogeado(empresa, usuario);

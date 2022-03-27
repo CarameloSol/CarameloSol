@@ -22,7 +22,7 @@
                                              filterMatchMode="contains" 
                                              style="width: 100%;"
                                              >
-                                <f:selectItem itemLabel="--- Seleccione un periodo ---"
+                                <f:selectItem itemLabel="Seleccione un rol"
                                               itemValue="#{null}"
                                               noSelectionOption="true"/>
                                 <f:selectItems value="#{usuarioAD.listaRoles}"
@@ -45,7 +45,7 @@
                         <div class="p-field">
                             <p:outputLabel for="txtClaveUsuario" class="ui-outputlabel ui-widget" value="Clave" />
 
-                            <p:password id="txtClaveUsuario" value="#{usuarioAD.usuario.clave}" required="true"  
+                            <p:password id="txtClaveUsuario" value="#{usuarioAD.usuario.clave}" required="#{usuarioAD.usuario.id eq null?'true':'false'}"  
                                         class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" >
                                 <p:ajax/>
 
