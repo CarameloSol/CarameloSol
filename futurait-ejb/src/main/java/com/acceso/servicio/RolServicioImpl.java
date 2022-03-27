@@ -21,36 +21,44 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class RolServicioImpl implements IRolServicio {
-
+    
     @EJB
     IRolDao rolDao;
-
+    
     @Override
     public AccRol obtenerPorId(Long id) throws RegistroNoLocalizado {
         return rolDao.recuperar(id);
     }
-
+    
     @Override
     public List<AccRol> buscar(AccRol rol) {
         return rolDao.buscar(rol);
     }
-
+    
     @Override
     public void actualizar(AccRol rol) throws RegistroNoGuardado {
-
+        
         rolDao.actualizar(rol);
     }
-
+    
     @Override
     public void eliminar(AccRol rol) throws RegistroNoEliminado, RegistroNoLocalizado {
-
+        
         AccRol rolEliminar = rolDao.recuperar(rol.getId());
+        if (!rolEliminar.getListaUsuarios().isEmpty()) {
+            throw new RegistroNoEliminado("Rol asignado a usuarios");
+        }
         rolDao.eliminar(rolEliminar);
     }
-
+    
     @Override
     public void guardar(AccRol rol) throws RegistroNoGuardado {
-        rolDao.crear(rol);
+        if (rol.getId() == null) {
+            rolDao.crear(rol);
+        } else {
+            rolDao.actualizar(rol);
+        }
+        
     }
-
+    
 }

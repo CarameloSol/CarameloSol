@@ -22,12 +22,11 @@
                             <div class="ui-toolbar-group-left"> 
                                 Roles  </div>
                             <div class="ui-toolbar-group-right">
-                                <p:commandButton value="Nuevo Rol"   process="@this"
-                                                 actionListener="#"
-                                                 icon="pi pi-plus"  onclick="PF('dlgNuevoRol').show();" update="form:pnlNuevoRol"
+                            <p:commandButton value="Nuevo"   process="@this"
+                                             actionListener="#{rolControlador.nuevo()}"
+                                                 icon="pi pi-plus"  onclick="PF('dlgRol').show();" update="form:contenidoCrud"
                                                  class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left ui-button-success "
                                                  />
-
 
                             </div>
                         </div>

@@ -5,7 +5,6 @@
  */
 package com.futurait.controladorAcceso;
 
-
 import com.acceso.modelo.AccRol;
 import com.acceso.modelo.AccUsuario;
 import com.acceso.servicioImp.IRolServicio;
@@ -43,24 +42,24 @@ public class RolControlador extends BaseControlador implements Serializable {
 
     }
 
-    public void nuevo(){
-    rolAD.setRol(new AccRol());
-    rolAD.getRol().setEmpresa(1l);
+    public void nuevo() {
+        rolAD.setRol(new AccRol());
+        rolAD.getRol().setEmpresa(1l);
     }
-    
-    public void seleccionarRol(AccRol rol){
+
+    public void seleccionarRol(AccRol rol) {
         rolAD.setRol(rol);
         rolAD.getRol();
     }
-    
+
     public void guardar() {
         try {
             rolAD.getRol().setEmpresa(1L);
             rolServicio.guardar(rolAD.getRol());
             rolAD.setListaRoles(rolServicio.buscar(new AccRol()));
             addInfoMessage("Guardado exitoso");
-            PrimeFaces.current().executeScript("PF('dlgActualizarRol').hide();");
-            PrimeFaces.current().ajax().update("form:pnlActualizarRol");
+            PrimeFaces.current().ajax().update("form:contenidoPrincipal");
+            PrimeFaces.current().executeScript("PF('dlgRol').hide();");
         } catch (RegistroNoGuardado ex) {
             addErrorMessage(ex.getMessage());
         }
@@ -76,8 +75,8 @@ public class RolControlador extends BaseControlador implements Serializable {
             addErrorMessage(ex.getMessage());
         }
     }
-    
-     public RolAD getRolAD() {
+
+    public RolAD getRolAD() {
         return rolAD;
     }
 

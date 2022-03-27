@@ -6,12 +6,14 @@
 package com.acceso.modelo;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -31,12 +33,15 @@ public class AccRol implements Serializable {
 
     @Column(name = "rol_nombre", nullable = false)
     private String nombre;
-    
-        @Column(name = "rol_descripcion", nullable = false)
+
+    @Column(name = "rol_descripcion", nullable = false)
     private String descripcion;
 
     @Column(name = "empresa", nullable = false)
     private Long empresa;
+
+    @OneToMany(mappedBy = "rol")
+    private List<AccUsuario> listaUsuarios;
 
     public Long getId() {
         return id;
@@ -70,6 +75,12 @@ public class AccRol implements Serializable {
         this.empresa = empresa;
     }
 
-   
+    public List<AccUsuario> getListaUsuarios() {
+        return listaUsuarios;
+    }
+
+    public void setListaUsuarios(List<AccUsuario> listaUsuarios) {
+        this.listaUsuarios = listaUsuarios;
+    }
 
 }

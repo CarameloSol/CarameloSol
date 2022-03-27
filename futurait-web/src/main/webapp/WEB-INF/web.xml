@@ -7,26 +7,31 @@
     
     <display-name>jsf</display-name>
     
-     <listener>
+    <listener>
         <listener-class>com.futurait.controladorAcceso.SesionManagement</listener-class>
     </listener>
-	
+    <context-param>
+        <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+        <param-value>server</param-value>
+    </context-param>
 	
     <context-param>
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>
     </context-param>
 	
-   <context-param>
-		<param-name>primefaces.THEME</param-name>
-		<param-value>none</param-value>
-	</context-param>
+    <context-param>
+        <param-name>primefaces.THEME</param-name>
+        <param-value>none</param-value>
+    </context-param>
 	
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
+    
+    
 	
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
@@ -47,6 +52,30 @@
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
     
+    
+    
+    <error-page>
+        <exception-type>javax.faces.application.ViewExpiredException</exception-type>
+        <location>/paginas/protegidas/acceso/usuario/inicio.fut</location>
+    </error-page>
+    
+        <error-page>
+        <error-code>500</error-code>
+        <location>/paginas/protegidas/acceso/usuario/inicio.fut</location>
+    </error-page>
+
+    
+    <error-page>
+        <error-code>404</error-code>
+        <location>/paginas/protegidas/acceso/usuario/inicio.fut</location>
+    </error-page>
+    
+    <error-page>
+        <error-code>405</error-code>
+        <location>/paginas/protegidas/acceso/usuario/inicio.fut</location>
+    </error-page>
+    
+    
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>futura-seguridad</web-resource-name>
@@ -62,31 +91,23 @@
         </user-data-constraint>
     </security-constraint>
     
-    
-    
-<filter>
-    <filter-name>UrlRewriteFilter</filter-name>
-    <filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>
-</filter>
-<filter-mapping>
-    <filter-name>UrlRewriteFilter</filter-name>
-    <url-pattern>/*</url-pattern>
-    <dispatcher>REQUEST</dispatcher>
-    <dispatcher>FORWARD</dispatcher>
-</filter-mapping>
+
     
     <login-config>
         <auth-method>FORM</auth-method>
         <form-login-config>
             <form-login-page>/paginas/acceso.fut</form-login-page>
-            <form-error-page>/paginas/acceso-errores.html</form-error-page>
+            <form-error-page>/paginas/acceso-error.html</form-error-page>
         </form-login-config>
     </login-config>
     
     <security-role>
         <role-name>*</role-name>
     </security-role>
-    
+    <servlet-mapping>
+        <servlet-name>springFlowApplication</servlet-name>
+        <url-pattern>/app/*</url-pattern>
+    </servlet-mapping>
         
     <session-config>
         <session-timeout>

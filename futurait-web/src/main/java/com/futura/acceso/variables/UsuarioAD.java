@@ -5,6 +5,7 @@
  */
 package com.futura.acceso.variables;
 
+import com.acceso.modelo.AccRol;
 import com.acceso.modelo.AccUsuario;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -21,7 +22,9 @@ import javax.faces.view.ViewScoped;
 public class UsuarioAD implements Serializable {
 
     List<AccUsuario> listaUsuarios = new ArrayList<>();
+    List<AccRol> listaRoles = new ArrayList<>();
     AccUsuario usuario = new AccUsuario();
+    Long idRol = null;
 
     public List<AccUsuario> getListaUsuarios() {
         return listaUsuarios;
@@ -43,6 +46,23 @@ public class UsuarioAD implements Serializable {
 
     public void setUsuario(AccUsuario usuario) {
         this.usuario = usuario;
+    }
+
+    public List<AccRol> getListaRoles() {
+        return listaRoles;
+    }
+
+    public void setListaRoles(List<AccRol> listaRoles) {
+        this.listaRoles = listaRoles;
+    }
+
+  
+    public Long getIdRol() {
+        return idRol;
+    }
+
+    public void setIdRol(Long idRol) {
+        this.idRol = idRol;
     }
 
 }

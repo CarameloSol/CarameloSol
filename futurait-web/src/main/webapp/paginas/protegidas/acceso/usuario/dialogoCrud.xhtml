@@ -1,20 +1,44 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <p:dialog header="Usuario" widgetVar="dlgUsuario" modal="true" height="100%" width="40%">
+        <p:defaultCommand target="btnGuardar"/>
         <p:outputPanel id="contenidoCrud">
 
 
 
             <div class="ui-dialog-content ui-widget-content" id="form:j_idt164_content" style="height: auto;"><div id="form:manage-product-content" class="ui-outputpanel ui-widget ui-fluid">
                     <div id="form:j_idt165" class="ui-outputpanel ui-widget">
+                        <div class="p-field">
+                            <p:outputLabel for="somRol" class="ui-outputlabel ui-widget" value="Rol" />
+
+                            <p:selectOneMenu id="somRol" dynamic="true"  
+                                             value="#{usuarioAD.idRol}" 
+                                             filter="true" 
+                                             required="true"
+                                             filterMatchMode="contains" 
+                                             style="width: 100%;"
+                                             >
+                                <f:selectItem itemLabel="--- Seleccione un periodo ---"
+                                              itemValue="#{null}"
+                                              noSelectionOption="true"/>
+                                <f:selectItems value="#{usuarioAD.listaRoles}"
+                                               var="rol"
+                                               itemLabel="#{rol.nombre}"
+                                               itemValue="#{rol.id}" />
+                                <p:ajax />
+                            </p:selectOneMenu>
+                        </div>        
+
 
                         <div class="p-field">
 
                             <p:outputLabel for="txtNombreUsuario" class="ui-outputlabel ui-widget" value="Nombre" />
-                            <p:inputText id="txtNombreUsuario" value="#{usuarioAD.usuario.nombre}" required="true"  class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all">
+                            <p:inputText id="txtNombreUsuario" value="#{usuarioAD.usuario.nombre}" required="true" 
+                                         class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all">
                                 <p:ajax/>
                             </p:inputText>
                         </div>
@@ -36,9 +60,9 @@
                             <div class="ui-dialog-footer ui-widget-content" _mstvisible="1">
                                 <span _mstvisible="2">
 
-                                    <p:commandButton  value="Guardar" icon="pi pi-check" process="@this,contenidoCrud" update="contenidoCrud,mensaje" 
-                                                      class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left" 
-                                                      actionListener="#{usuarioControlador.guardar()}"/>
+                                    <p:commandButton id="btnGuardar" value="Guardar" icon="pi pi-check" process="@this,contenidoCrud" update="contenidoCrud,mensaje" 
+                                                     class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left" 
+                                                     actionListener="#{usuarioControlador.guardar()}"/>
 
                                     <p:commandButton  value="Cancelar" icon="pi pi-times" process="@this,contenidoCrud" 
                                                       onclick="PF('dlgUsuario').hide();"
