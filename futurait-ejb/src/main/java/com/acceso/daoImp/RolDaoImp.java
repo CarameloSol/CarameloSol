@@ -34,7 +34,35 @@ public class RolDaoImp extends GenericDaoImp<AccRol, Long>
             sql.append(" and t.id=:id");
             parametros.put("id", rol.getId());
         }
+        sql.append(" order by t.id  desc ");
+        Query q = this.em.createQuery(sql.toString());
+        parametros.keySet().forEach((key) -> {
+            q.setParameter((String) key, parametros.get(key));
+        });
+        return q.getResultList();
+    }
 
+    @Override
+    public List<AccRol> busquedaPorFiltros(AccRol rol) {
+        StringBuilder sql = new StringBuilder();
+        HashMap<Object, Object> parametros = new HashMap();
+        sql.append("Select t from AccRol t where 1=1");
+        if (rol.getId() != null) {
+            sql.append(" and t.id=:id");
+            parametros.put("id", rol.getId());
+        }
+        if (rol.getNombre() != null) {
+            String parametroBusqueda = rol.getNombre().toLowerCase().replaceAll(" ", "%_%");
+            sql.append(" and LOWER(t.nombre) like :nombre");
+            parametros.put("nombre", "%" + parametroBusqueda + "%");
+        }
+        
+           if (rol.getDescripcion() != null) {
+            String parametroBusqueda = rol.getDescripcion().toLowerCase().replaceAll(" ", "%_%");
+            sql.append(" and LOWER(t.descripcion) like :descripcion");
+            parametros.put("descripcion", "%" + parametroBusqueda + "%");
+        }
+        sql.append(" order by t.id  desc ");
         Query q = this.em.createQuery(sql.toString());
         parametros.keySet().forEach((key) -> {
             q.setParameter((String) key, parametros.get(key));

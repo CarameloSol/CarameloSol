@@ -46,6 +46,9 @@ public class AccUsuario implements Serializable {
     private AccRol rol;
 
     @Transient
+    private Long idRol;
+
+    @Transient
     private String validacionNombre;
 
     @Transient
@@ -120,9 +123,10 @@ public class AccUsuario implements Serializable {
 
     @Override
     public String toString() {
-        return "com.acceso.modelo.Usuario[ id=" + id + " ]";
+        return "AccUsuario{" + "id=" + id + ", clave=" + clave + ", nombre=" + nombre + ", empresa=" + empresa + ", idRol=" + idRol + '}';
     }
 
+  
     public String getValidacionClave() {
         return validacionClave;
     }
@@ -137,6 +141,14 @@ public class AccUsuario implements Serializable {
 
     public void setRol(AccRol rol) {
         this.rol = rol;
+    }
+
+    public Long getIdRol() {
+        return idRol;
+    }
+
+    public void setIdRol(Long idRol) {
+        this.idRol = idRol;
     }
 
 }

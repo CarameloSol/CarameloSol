@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.acceso.servicioImp;
+package com.acceso.servicio;
 
-import com.acceso.modelo.AccRol;
+import com.acceso.modelo.AccUsuario;
 import com.excepciones.registos.RegistroNoEliminado;
 import com.excepciones.registos.RegistroNoGuardado;
 import com.excepciones.registos.RegistroNoLocalizado;
@@ -17,17 +17,22 @@ import javax.ejb.Local;
  * @author Ricardo
  */
 @Local
-public interface IRolServicio {
-      public AccRol obtenerPorId(Long id)
+public interface IUsuarioServicio {
+
+    public AccUsuario obtenerPorId(Long id)
             throws RegistroNoLocalizado;
 
-    public List<AccRol> buscar(AccRol rol);
+    public List<AccUsuario> buscar(AccUsuario usuario);
 
-    public void actualizar(AccRol rol)
+    public void actualizar(AccUsuario usuario)
             throws RegistroNoGuardado;
 
-    public void eliminar(AccRol rol)
+    public void eliminar(AccUsuario usuario)
             throws RegistroNoEliminado, RegistroNoLocalizado;
 
-    public void guardar(AccRol rol) throws RegistroNoGuardado; 
+    public void guardar(AccUsuario usuario) throws RegistroNoGuardado,Exception ;
+
+    public AccUsuario usuarioLogeado(Long empresa, String usuario);
+    public List<AccUsuario> busquedaPorFiltros(AccUsuario usuario);
+
 }

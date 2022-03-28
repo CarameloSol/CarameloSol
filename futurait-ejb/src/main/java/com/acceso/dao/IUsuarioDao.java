@@ -22,4 +22,6 @@ public interface IUsuarioDao extends IGenericoDao<AccUsuario, Long> {
     public AccUsuario usuarioLogeado(Long empresa, String usuario);
 
     public AccUsuario obtenerValidacionNombre(String nombre);
+
+    public List<AccUsuario> busquedaPorFiltros(AccUsuario usuario);
 }

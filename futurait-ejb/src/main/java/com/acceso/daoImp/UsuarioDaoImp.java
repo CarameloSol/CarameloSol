@@ -34,7 +34,33 @@ public class UsuarioDaoImp extends GenericDaoImp<AccUsuario, Long>
             sql.append(" and t.id=:id");
             parametros.put("id", usuario.getId());
         }
+        sql.append(" order by t.id  desc ");
+        Query q = this.em.createQuery(sql.toString());
+        parametros.keySet().forEach((key) -> {
+            q.setParameter((String) key, parametros.get(key));
+        });
+        return q.getResultList();
+    }
 
+    @Override
+    public List<AccUsuario> busquedaPorFiltros(AccUsuario usuario) {
+        StringBuilder sql = new StringBuilder();
+        HashMap<Object, Object> parametros = new HashMap();
+        sql.append("Select t from AccUsuario t where 1=1");
+        if (usuario.getId() != null) {
+            sql.append(" and t.id=:id");
+            parametros.put("id", usuario.getId());
+        }
+        if (usuario.getIdRol() != null) {
+            sql.append(" and t.rol.id=:rol");
+            parametros.put("rol", usuario.getIdRol());
+        }
+        if (usuario.getNombre() != null) {
+            String parametroBusqueda = usuario.getNombre().toLowerCase().replaceAll(" ", "%_%");
+            sql.append(" and LOWER(t.nombre) like :nombre");
+            parametros.put("nombre", "%" + parametroBusqueda + "%");
+        }
+        sql.append(" order by t.id  desc ");
         Query q = this.em.createQuery(sql.toString());
         parametros.keySet().forEach((key) -> {
             q.setParameter((String) key, parametros.get(key));
@@ -63,7 +89,7 @@ public class UsuarioDaoImp extends GenericDaoImp<AccUsuario, Long>
 
     @Override
     public AccUsuario obtenerValidacionNombre(String nombre) {
-  StringBuilder sql = new StringBuilder();
+        StringBuilder sql = new StringBuilder();
         HashMap<Object, Object> parametros = new HashMap();
         sql.append("Select t from AccUsuario t where t.nombre=:nombre");
         parametros.put("nombre", nombre);

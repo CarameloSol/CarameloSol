@@ -7,17 +7,14 @@ package com.futurait.controladorAcceso;
 
 import com.acceso.modelo.AccRol;
 import com.acceso.modelo.AccUsuario;
-import com.acceso.servicioImp.IRolServicio;
+import com.acceso.servicio.IRolServicio;
 import com.excepciones.registos.RegistroNoEliminado;
 import com.excepciones.registos.RegistroNoGuardado;
 import com.excepciones.registos.RegistroNoLocalizado;
-import com.futura.acceso.variables.AccesoAD;
 import com.futura.acceso.variables.RolAD;
-import com.futura.acceso.variables.UsuarioAD;
 import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.inject.Named;
-import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import org.primefaces.PrimeFaces;
@@ -50,6 +47,16 @@ public class RolControlador extends BaseControlador implements Serializable {
     public void seleccionarRol(AccRol rol) {
         rolAD.setRol(rol);
         rolAD.getRol();
+    }
+
+    public void limpiarBusqueda() {
+        rolAD.setRolBusqueda(new AccRol());
+        buscar();
+
+    }
+
+    public void buscar() {
+        rolAD.setListaRoles(rolServicio.busquedaPorFiltros(rolAD.getRolBusqueda()));
     }
 
     public void guardar() {

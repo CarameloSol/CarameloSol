@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.acceso.servicio;
+package com.acceso.servicioImp;
 
 import com.acceso.dao.IUsuarioDao;
 import com.acceso.modelo.AccUsuario;
-import com.acceso.servicioImp.IUsuarioServicio;
+import com.acceso.servicio.IUsuarioServicio;
 import com.excepciones.registos.RegistroNoEliminado;
 import com.excepciones.registos.RegistroNoGuardado;
 import com.excepciones.registos.RegistroNoLocalizado;
@@ -94,6 +94,11 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
     @Override
     public AccUsuario usuarioLogeado(Long empresa, String usuario) {
         return usuarioDao.usuarioLogeado(empresa, usuario);
+    }
+
+    @Override
+    public List<AccUsuario> busquedaPorFiltros(AccUsuario usuario) {
+        return usuarioDao.busquedaPorFiltros(usuario);
     }
 
 }

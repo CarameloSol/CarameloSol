@@ -7,7 +7,7 @@ package com.futurait.controladorAcceso;
 
 import com.acceso.modelo.AccRol;
 import com.acceso.modelo.AccUsuario;
-import com.acceso.servicioImp.IRolServicio;
+import com.acceso.servicio.IRolServicio;
 import com.excepciones.registos.RegistroNoEliminado;
 import com.excepciones.registos.RegistroNoGuardado;
 import com.excepciones.registos.RegistroNoLocalizado;
@@ -38,6 +38,16 @@ public class UsuarioControlador extends BaseControlador implements Serializable 
         usuarioAD.setListaRoles(rolServicio.buscar(new AccRol()));
     }
 
+    public void limpiarBusqueda() {
+        usuarioAD.setUsuarioBusqueda(new AccUsuario());
+        buscar();
+
+    }
+
+    public void buscar() {
+        usuarioAD.setListaUsuarios(usuarioServicio.busquedaPorFiltros(usuarioAD.getUsuarioBusqueda()));
+    }
+
     public void nuevo() {
         usuarioAD.setUsuario(new AccUsuario());
         usuarioAD.setIdRol(null);
@@ -54,7 +64,7 @@ public class UsuarioControlador extends BaseControlador implements Serializable 
 
     public void guardar() {
         try {
-            System.err.println("usuario cla "+usuarioAD.getUsuario().getClave().isEmpty());
+            System.err.println("usuario cla " + usuarioAD.getUsuario().getClave().isEmpty());
             usuarioAD.getUsuario().setEmpresa(1L);
             AccRol rolEncontrado = rolServicio.obtenerPorId(usuarioAD.getIdRol());
             usuarioAD.getUsuario().setRol(rolEncontrado);

@@ -19,19 +19,16 @@
             <h:outputText value="#{rol.descripcion}" />
         </p:column>
         
-        <p:column headerText="Empresa" sortBy="#{rol.empresa}"
-                  filterBy="#{rol.empresa}" filterMatchMode="contains">
-            <h:outputText value="#{rol.empresa}"/>
-        </p:column>
+       
 
-        <p:column headerText="Opciones">
+        <p:column headerText="Opciones" width="5%">
 
 
 
 
-            <p:commandButton icon="pi pi-pencil" process="@this" 
-                             class="ui-button ui-widget ui-state-default ui-corner-all
-                             ui-button-icon-only edit-button rounded-button ui-button-success ui-state-hover" 
+            <p:commandButton icon="pi pi-pencil" process="@this"  style="font-size: 2rem"
+                                 class="ui-button ui-widget ui-state-default ui-corner-all
+                             ui-button-icon-only edit-button   ui-button-success ui-state-hover" 
                              actionListener="#{rolControlador.seleccionarRol(rol)}"
                              onclick="PF('dlgRol').show();" update="form:contenidoCrud"
                              />
@@ -39,11 +36,10 @@
 
 
 
-            <p:commandButton  process="@this" 
+            <p:commandButton  process="@this"  style="font-size: 2rem"
                               icon="pi pi-trash" update="tablaPrincipal,mensaje"
                               actionListener="#{rolControlador.eliminar(rol)}"
-                              class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-button-warning rounded-button ui-state-hover"  
-                              >
+       class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-button-warning   ui-state-hover"                              >
                 <p:confirm header="Confirmación" message="Esta seguro de eliminar el rol?" icon="pi pi-info-circle"/>
             </p:commandButton>
 

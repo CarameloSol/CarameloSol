@@ -16,4 +16,6 @@ import javax.ejb.Local;
 @Local
 public interface IRolDao extends IGenericoDao<AccRol, Long>{
         public List<AccRol> buscar(AccRol rol);
+
+    public List<AccRol> busquedaPorFiltros(AccRol rol);
 }

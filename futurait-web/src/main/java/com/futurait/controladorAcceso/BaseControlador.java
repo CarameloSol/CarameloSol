@@ -5,8 +5,8 @@
  */
 package com.futurait.controladorAcceso;
 
-import com.acceso.servicioImp.IUsuarioServicio;
-import java.io.Serializable;
+import com.acceso.servicio.IUsuarioServicio;
+ import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
