@@ -13,7 +13,21 @@
                   filterBy="#{usuario.nombre}" filterMatchMode="contains">
             <h:outputText value="#{usuario.nombre}" />
         </p:column>
- 
+
+        <p:column headerText="Imagen"  >
+
+            <p:graphicImage  style="position: relative; height: 100px;"
+                             class="btnImagen" 
+                             stream="false"
+                             value="#{usuario.imagen eq null?request.contextPath.concat('/resources/images/noImagen.jpg'):usuario.imagen}"
+                             >
+            </p:graphicImage>
+
+           
+
+        </p:column>
+
+
         <p:column headerText="Rol"  sortBy="#{usuario.rol.nombre}"
                   filterBy="#{usuario.rol.nombre}" filterMatchMode="contains">
             <h:outputText value="#{usuario.rol.nombre}" />

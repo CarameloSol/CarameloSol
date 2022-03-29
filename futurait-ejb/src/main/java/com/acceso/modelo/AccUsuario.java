@@ -37,6 +37,9 @@ public class AccUsuario implements Serializable {
 
     @Column(name = "usu_nombre", nullable = false)
     private String nombre;
+    
+      @Column(name = "usu_imagen")
+    private byte[] imagen;
 
     @Column(name = "empresa", nullable = false)
     private Long empresa;
@@ -53,7 +56,8 @@ public class AccUsuario implements Serializable {
 
     @Transient
     private String validacionClave;
-
+    @Transient
+    private String imagenBase64;
     public Long getEmpresa() {
         return empresa;
     }
@@ -150,5 +154,23 @@ public class AccUsuario implements Serializable {
     public void setIdRol(Long idRol) {
         this.idRol = idRol;
     }
+
+    public String getImagenBase64() {
+        return imagenBase64;
+    }
+
+    public void setImagenBase64(String imagenBase64) {
+        this.imagenBase64 = imagenBase64;
+    }
+
+    public byte[] getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(byte[] imagen) {
+        this.imagen = imagen;
+    }
+
+   
 
 }

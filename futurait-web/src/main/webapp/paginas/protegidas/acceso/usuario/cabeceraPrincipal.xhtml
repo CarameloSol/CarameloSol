@@ -10,7 +10,7 @@
     <div >
         <p:outputLabel     value="Nombre usuario" /><br/>
         <p:inputText   value="#{usuarioAD.usuarioBusqueda.nombre}"   
-                       onkeyup="if (event.keyCode === 13) {
+                       onkeypress="if (event.keyCode === 13) {
                                    onchange();
                                }"
                        class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all">

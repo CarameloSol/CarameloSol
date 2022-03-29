@@ -5,13 +5,40 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <p:dialog header="Usuario" widgetVar="dlgUsuario" modal="true" height="100%" width="40%">
+        
+        
+  
         <p:defaultCommand target="btnGuardar"/>
         <p:outputPanel id="contenidoCrud">
 
 
+            <p:commandLink id="btnSeleccionarImagen" value="Imagen"
+                                           process="@this,subida"
+                                           update="subida"
+                                           onclick="PF('dialogSubirImagen').show();"
+                                           >
+                
+                
+                                <p:graphicImage id="imagenProducto" style="position: relative; height: 100px;"
+                                                class="btnImagen"
+                                                stream="false"
+                                                value="#{usuarioAD.usuario.imagen eq null?'':usuarioAD.usuario.imagen}"
+                                                >
+                                </p:graphicImage>
 
+
+                            </p:commandLink>
             <div class="ui-dialog-content ui-widget-content" id="form:j_idt164_content" style="height: auto;"><div id="form:manage-product-content" class="ui-outputpanel ui-widget ui-fluid">
                     <div id="form:j_idt165" class="ui-outputpanel ui-widget">
+s
+                        
+
+
+
+                           
+
+                            
+
                         <div class="p-field">
                             <p:outputLabel for="somRol" class="ui-outputlabel ui-widget" value="Rol" />
 

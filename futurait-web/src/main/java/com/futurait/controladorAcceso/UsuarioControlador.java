@@ -12,12 +12,21 @@ import com.excepciones.registos.RegistroNoEliminado;
 import com.excepciones.registos.RegistroNoGuardado;
 import com.excepciones.registos.RegistroNoLocalizado;
 import com.futura.acceso.variables.UsuarioAD;
+import com.ultil.Utilitarios;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
+import java.util.Base64;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import org.primefaces.PrimeFaces;
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
+import org.primefaces.shaded.commons.io.IOUtils;
 
 /**
  *
@@ -91,6 +100,15 @@ public class UsuarioControlador extends BaseControlador implements Serializable 
         }
     }
 
+    public void almacenarImagen(FileUploadEvent event) {
+
+        try {
+            usuarioAD.getUsuario().setImagen(IOUtils.toByteArray(event.getFile().getInputStream()));
+        } catch (IOException e) {
+            addErrorMessage(e.getMessage());
+        }
+    }
+
     public UsuarioAD getUsuarioAD() {
         return usuarioAD;
     }
@@ -98,6 +116,19 @@ public class UsuarioControlador extends BaseControlador implements Serializable 
     public void setUsuarioAD(UsuarioAD usuarioAD) {
         this.usuarioAD = usuarioAD;
     }
+
+    public StreamedContent mostrarImagenTemporal(String base64) {
+        try {
+            base64 = base64.replaceAll("\n", "");
+            InputStream is = new ByteArrayInputStream(Base64.getDecoder().decode(base64.getBytes()));
+            return DefaultStreamedContent.builder().contentType("image/jpeg").name("image.jpg").stream(() -> is).build();
+        } catch (Exception e) {
+            return null;
+        }
+
+    }
+
+    
 
     public void cerrarCesion() {
         System.err.println("cerrar cesion");
