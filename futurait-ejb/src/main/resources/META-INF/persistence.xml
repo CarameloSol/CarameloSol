@@ -5,6 +5,8 @@
         <jta-data-source>java:jboss/futuraItDataSource</jta-data-source>
         <class>com.acceso.modelo.AccUsuario</class>
         <class>com.acceso.modelo.AccRol</class>
+        <class>com.acceso.modelo.AccMenu</class>
+        <class>com.acceso.modelo.AccRolMenu</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
    <properties>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
