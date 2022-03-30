@@ -5,16 +5,15 @@
  */
 package com.futura.inventario.controlador;
 
-
-
 import com.excepciones.registos.RegistroNoEliminado;
 import com.excepciones.registos.RegistroNoGuardado;
 import com.excepciones.registos.RegistroNoLocalizado;
 import com.futura.inventario.variables.ArticuloAD;
 import com.futurait.controladorAcceso.BaseControlador;
 import com.inventario.modelo.InvArticulo;
+import com.inventario.modelo.InvCategoria;
 import com.inventario.servicio.IArticuloServicio;
-import com.inventario.servicio.IClasificacionServicio;
+import com.inventario.servicio.ICategoriaServicio;
 import java.io.IOException;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -30,8 +29,6 @@ import org.primefaces.shaded.commons.io.IOUtils;
  *
  * @author Ricardo
  */
-
-
 @Named(value = "articuloControlador")
 @ViewScoped
 public class ArticuloControlador extends BaseControlador implements Serializable {
@@ -41,11 +38,11 @@ public class ArticuloControlador extends BaseControlador implements Serializable
     @EJB
     IArticuloServicio articuloServicio;
     @EJB
-    IClasificacionServicio clasificacionServicio;
+    ICategoriaServicio categoriaServicio;
 
     public void inicio() {
         articuloAD.setListaArticulos(articuloServicio.buscar(new InvArticulo()));
-
+        articuloAD.setListaCategoria(categoriaServicio.buscar(new InvCategoria()));
     }
 
     public void limpiarBusqueda() {
@@ -61,13 +58,14 @@ public class ArticuloControlador extends BaseControlador implements Serializable
 
     public void nuevo() {
         articuloAD.setArticulo(new InvArticulo());
-
+        articuloAD.setIdCategoria(null);
         articuloAD.getArticulo().setValidacionNombre("");
 
     }
 
     public void seleccionarArticulo(InvArticulo articulo) {
         articuloAD.setArticulo(articulo);
+        articuloAD.setIdCategoria(articulo.getCategoria().getId());
         articuloAD.getArticulo().setValidacionNombre(articulo.getNombre());
 
     }
@@ -76,6 +74,8 @@ public class ArticuloControlador extends BaseControlador implements Serializable
         try {
             articuloAD.getArticulo().setEmpresa(1L);
             articuloAD.getArticulo().setStock(BigDecimal.ZERO);
+            InvCategoria categoriaEncontrada = categoriaServicio.obtenerPorId(articuloAD.getIdCategoria());
+            articuloAD.getArticulo().setCategoria(categoriaEncontrada);
             articuloServicio.guardar(articuloAD.getArticulo());
 
             articuloAD.setListaArticulos(articuloServicio.buscar(new InvArticulo()));

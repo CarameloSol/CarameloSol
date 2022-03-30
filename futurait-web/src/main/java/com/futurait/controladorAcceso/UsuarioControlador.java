@@ -73,8 +73,7 @@ public class UsuarioControlador extends BaseControlador implements Serializable 
 
     public void guardar() {
         try {
-            System.err.println("usuario cla " + usuarioAD.getUsuario().getClave().isEmpty());
-            usuarioAD.getUsuario().setEmpresa(1L);
+             usuarioAD.getUsuario().setEmpresa(1L);
             AccRol rolEncontrado = rolServicio.obtenerPorId(usuarioAD.getIdRol());
             usuarioAD.getUsuario().setRol(rolEncontrado);
             usuarioServicio.guardar(usuarioAD.getUsuario());
@@ -117,16 +116,7 @@ public class UsuarioControlador extends BaseControlador implements Serializable 
         this.usuarioAD = usuarioAD;
     }
 
-    public StreamedContent mostrarImagenTemporal(String base64) {
-        try {
-            base64 = base64.replaceAll("\n", "");
-            InputStream is = new ByteArrayInputStream(Base64.getDecoder().decode(base64.getBytes()));
-            return DefaultStreamedContent.builder().contentType("image/jpeg").name("image.jpg").stream(() -> is).build();
-        } catch (Exception e) {
-            return null;
-        }
 
-    }
 
     
 

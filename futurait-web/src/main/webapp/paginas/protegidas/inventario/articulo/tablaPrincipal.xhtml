@@ -18,10 +18,21 @@
                   filterBy="#{articulo.codigo}" filterMatchMode="contains">
             <h:outputText value="#{articulo.codigo}" />
         </p:column>
-        
+          <p:column headerText="Imagen"  >
+
+            <p:graphicImage  style="position: relative; height: 100px;"
+                             class="btnImagen" 
+                             stream="false"
+                             value="#{articulo.imagen eq null?request.contextPath.concat('/resources/images/noImagen.jpg'):articulo.imagen}"
+                             >
+            </p:graphicImage>
+
+           
+
+        </p:column>
        
 
-        <p:column headerText="Opciones" width="5%">
+        <p:column headerText="Opciones" width="7%">
 
 
 

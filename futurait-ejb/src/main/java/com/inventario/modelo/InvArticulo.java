@@ -13,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -48,6 +50,10 @@ public class InvArticulo implements Serializable {
 
     @Column(name = "empresa", nullable = false)
     private Long empresa;
+    
+      @JoinColumn(name = "categoria", referencedColumnName = "cat_id")
+    @ManyToOne
+    private InvCategoria categoria;
 
     @Transient
     private String validacionNombre;
@@ -114,6 +120,14 @@ public class InvArticulo implements Serializable {
 
     public void setCodigo(String codigo) {
         this.codigo = codigo;
+    }
+
+    public InvCategoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(InvCategoria categoria) {
+        this.categoria = categoria;
     }
 
 }

@@ -1,10 +1,9 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:p="http://primefaces.org/ui">
 
-    <p:dialog header="Nuevo articulo" widgetVar="dlgArticulo" modal="true" height="100%" width="40%">
+    <p:dialog header="Nuevo categoria" widgetVar="dlgCategoria" modal="true" height="100%" width="40%">
         <p:defaultCommand target="btnGuardar"/>
 
         <p:outputPanel id="contenidoCrud">
@@ -13,6 +12,7 @@
 
             <div class="ui-dialog-content ui-widget-content" id="form:j_idt164_content" style="height: auto;"><div id="form:manage-product-content" class="ui-outputpanel ui-widget ui-fluid">
                     <div id="form:j_idt165" class="ui-outputpanel ui-widget">
+
                         <div class="p-field">
                             <p:commandLink id="btnSeleccionarImagen" value="Imagen"
                                            process="@this,subida"
@@ -21,52 +21,26 @@
                                            >
 
 
-
-
                                 <p:graphicImage id="imagenProducto" style="position: relative; height: 100px;"
                                                 class="btnImagen"
                                                 stream="false"
-                                                value="#{articuloAD.articulo.imagen eq null?'':articuloAD.articulo.imagen}"
+                                                value="#{categoriaAD.categoria.imagen eq null?'':categoriaAD.categoria.imagen}"
                                                 >
                                 </p:graphicImage>
 
 
                             </p:commandLink>
                         </div>
-                        
-                          <div class="p-field">
-                            <p:outputLabel for="somCategoria" class="ui-outputlabel ui-widget" value="Categoria" />
-
-                            <p:selectOneMenu id="somCategoria" dynamic="true"  
-                                             value="#{articuloAD.idCategoria}" 
-                                             filter="true" 
-                                             required="true"
-                                             filterMatchMode="contains" 
-                                             style="width: 100%;"
-                                             >
-                                <f:selectItem itemLabel="Seleccione un rol"
-                                              itemValue="#{null}"
-                                              noSelectionOption="true"/>
-                                <f:selectItems value="#{articuloAD.listaCategoria}"
-                                               var="categoria"
-                                               itemLabel="#{categoria.nombre}"
-                                               itemValue="#{categoria.id}" />
-                                <p:ajax />
-                            </p:selectOneMenu>
-                        </div>        
-
-                        
                         <div class="p-field">
-
-                            <p:outputLabel for="txtNombreArticulo" class="ui-outputlabel ui-widget" value="Nombre" />
-                            <p:inputText id="txtNombreArticulo" value="#{articuloAD.articulo.nombre}" required="true"  class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all">
+                            <p:outputLabel for="txtNombreCategoria" class="ui-outputlabel ui-widget" value="Nombre" />
+                            <p:inputText id="txtNombreCategoria" value="#{categoriaAD.categoria.nombre}" required="true"  class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all">
                                 <p:ajax/>
                             </p:inputText>
                         </div>
                         <div class="p-field">
-                            <p:outputLabel for="txtDescripcionArticulo" class="ui-outputlabel ui-widget" value="Codigo" />
+                            <p:outputLabel for="txtDescripcionCategoria" class="ui-outputlabel ui-widget" value="Descripcion" />
 
-                            <p:inputText id="txtDescripcionArticulo" value="#{articuloAD.articulo.codigo}" required="true"  
+                            <p:inputText id="txtDescripcionCategoria" value="#{categoriaAD.categoria.descripcion}" required="true"  
                                          class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" >
                                 <p:ajax/>
 
@@ -75,17 +49,6 @@
 
                         </div>
 
-                        <div class="p-field">
-                            <p:outputLabel for="txtPrecioArticulo" class="ui-outputlabel ui-widget" value="Precio" />
-
-                            <p:inputNumber id="txtPrecioArticulo" value="#{articuloAD.articulo.precio}" required="true"  
-                                           >
-                                <p:ajax/>
-
-                            </p:inputNumber>
-
-
-                        </div>
 
 
 
@@ -97,10 +60,10 @@
 
                                     <p:commandButton id="btnGuardar"  value="Guardar" icon="pi pi-check" process="@this,contenidoCrud" update="contenidoCrud,mensaje" 
                                                      class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left" 
-                                                     actionListener="#{articuloControlador.guardar()}"/>
+                                                     actionListener="#{categoriaControlador.guardar()}"/>
 
                                     <p:commandButton  value="Cancelar" icon="pi pi-times" process="@this,contenidoCrud" 
-                                                      onclick="PF('dlgArticulo').hide();"
+                                                      onclick="PF('dlgCategoria').hide();"
                                                       class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left ui-button-secondary"  
                                                       />
 

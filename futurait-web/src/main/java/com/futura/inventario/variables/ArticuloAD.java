@@ -5,10 +5,8 @@
  */
 package com.futura.inventario.variables;
 
-
-import com.acceso.modelo.AccRol;
-import com.acceso.modelo.AccUsuario;
 import com.inventario.modelo.InvArticulo;
+import com.inventario.modelo.InvCategoria;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +24,8 @@ public class ArticuloAD implements Serializable {
     List<InvArticulo> listaArticulos = new ArrayList<>();
     InvArticulo articulo = new InvArticulo();
     InvArticulo articuloBusqueda = new InvArticulo();
+       List<InvCategoria> listaCategoria = new ArrayList<>();
+    Long idCategoria = null;
 
     public List<InvArticulo> getListaArticulos() {
         return listaArticulos;
@@ -51,5 +51,20 @@ public class ArticuloAD implements Serializable {
         this.articuloBusqueda = articuloBusqueda;
     }
 
+    public Long getIdCategoria() {
+        return idCategoria;
+    }
+
+    public void setIdCategoria(Long idCategoria) {
+        this.idCategoria = idCategoria;
+    }
+
+    public List<InvCategoria> getListaCategoria() {
+        return listaCategoria;
+    }
+
+    public void setListaCategoria(List<InvCategoria> listaCategoria) {
+        this.listaCategoria = listaCategoria;
+    }
 
 }

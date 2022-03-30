@@ -10,7 +10,7 @@ import com.acceso.modelo.AccUsuario;
 import com.excepciones.registos.RegistroNoEliminado;
 import com.excepciones.registos.RegistroNoGuardado;
 import com.excepciones.registos.RegistroNoLocalizado;
-import com.inventario.modelo.InvClasificacion;
+import com.inventario.modelo.InvCategoria;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -19,21 +19,21 @@ import javax.ejb.Local;
  * @author Ricardo
  */
 @Local
-public interface IClasificacionServicio {
+public interface ICategoriaServicio {
 
-    public InvClasificacion obtenerPorId(Long id)
+    public InvCategoria obtenerPorId(Long id)
             throws RegistroNoLocalizado;
 
-    public List<InvClasificacion> buscar(InvClasificacion clasificacion);
+    public List<InvCategoria> buscar(InvCategoria categoria);
 
-    public void actualizar(InvClasificacion clasificacion)
+    public void actualizar(InvCategoria categoria)
             throws RegistroNoGuardado;
 
-    public void eliminar(InvClasificacion clasificacion)
+    public void eliminar(InvCategoria categoria)
             throws RegistroNoEliminado, RegistroNoLocalizado;
 
-    public void guardar(InvClasificacion clasificacion) throws RegistroNoGuardado,Exception ;
+    public void guardar(InvCategoria categoria) throws RegistroNoGuardado,Exception ;
 
-    public List<InvClasificacion> busquedaPorFiltros(InvClasificacion clasificacion);
+    public List<InvCategoria> busquedaPorFiltros(InvCategoria categoria);
 
 }

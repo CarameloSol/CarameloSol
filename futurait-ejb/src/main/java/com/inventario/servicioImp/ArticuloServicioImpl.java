@@ -7,6 +7,7 @@ package com.inventario.servicioImp;
 
 
 
+import com.acceso.modelo.AccUsuario;
 import com.excepciones.registos.RegistroNoEliminado;
 import com.excepciones.registos.RegistroNoGuardado;
 import com.excepciones.registos.RegistroNoLocalizado;
@@ -43,9 +44,17 @@ public class ArticuloServicioImpl implements IArticuloServicio {
         InvArticulo articuloEliminar= articuloDao.recuperar(articulo.getId());
         articuloDao.eliminar(articuloEliminar);
     }
-
+    private void validacionUsuario(InvArticulo articulo) throws RegistroNoGuardado {
+        if (!articulo.getNombre().equals(articulo.getValidacionNombre())) {
+            InvArticulo articuloEncontrado = articuloDao.obtenerValidacionNombre(articulo.getNombre());
+            if (articuloEncontrado != null) {
+                throw new RegistroNoGuardado("El articulo ingresado ya existe");
+            }
+        }
+    }
     @Override
     public void guardar(InvArticulo articulo) throws RegistroNoGuardado, Exception {
+        validacionUsuario(articulo);
        if (articulo.getId() == null) {
             articuloDao.crear(articulo);
         } else {

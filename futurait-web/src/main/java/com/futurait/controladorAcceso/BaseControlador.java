@@ -7,7 +7,6 @@ package com.futurait.controladorAcceso;
 
 import com.acceso.servicio.IUsuarioServicio;
 import com.inventario.servicio.IArticuloServicio;
-import com.inventario.servicio.IClasificacionServicio;
  import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -15,6 +14,7 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import com.inventario.servicio.ICategoriaServicio;
 
 /**
  *

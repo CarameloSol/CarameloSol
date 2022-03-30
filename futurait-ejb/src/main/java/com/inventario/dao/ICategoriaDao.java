@@ -8,7 +8,7 @@ package com.inventario.dao;
 
 
 import com.generico.daoImp.IGenericoDao;
-import com.inventario.modelo.InvClasificacion;
+import com.inventario.modelo.InvCategoria;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -17,11 +17,11 @@ import javax.ejb.Local;
  * @author Ricardo
  */
 @Local
-public interface IClasificacionDao extends IGenericoDao<InvClasificacion, Long> {
+public interface ICategoriaDao extends IGenericoDao<InvCategoria, Long> {
 
-    public List<InvClasificacion> buscar(InvClasificacion clasificacion);
+    public List<InvCategoria> buscar(InvCategoria categoria);
 
-    public InvClasificacion obtenerValidacionNombre(String nombre);
+    public InvCategoria obtenerValidacionNombre(String nombre);
 
-    public List<InvClasificacion> busquedaPorFiltros(InvClasificacion clasificacion);
+    public List<InvCategoria> busquedaPorFiltros(InvCategoria categoria);
 }

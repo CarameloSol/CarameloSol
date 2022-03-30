@@ -4,22 +4,33 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
 
-    <p:dataTable id="tablaPrincipal" var="rol" value="#{rolAD.listaRoles}" 
-                 rowKey="#{rol.id}"  paginator="true" rows="3"
+    <p:dataTable id="tablaPrincipal" var="categoria" value="#{categoriaAD.listaCategoria}" 
+                 rowKey="#{categoria.id}"  paginator="true" rows="3"
                  paginatorPosition="bottom"  reflow="true" 
                  paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                  rowsPerPageTemplate="3,6,9">
-        <p:column headerText="Nombre" sortBy="#{rol.nombre}"
-                  filterBy="#{rol.nombre}" filterMatchMode="contains">
-            <h:outputText value="#{rol.nombre}" />
+        <p:column headerText="Nombre" sortBy="#{categoria.nombre}"
+                  filterBy="#{categoria.nombre}" filterMatchMode="contains">
+            <h:outputText value="#{categoria.nombre}" />
         </p:column>
  
-        <p:column headerText="Descripción"  sortBy="#{rol.descripcion}"
-                  filterBy="#{rol.descripcion}" filterMatchMode="contains">
-            <h:outputText value="#{rol.descripcion}" />
+        <p:column headerText="Descripción"  sortBy="#{categoria.descripcion}"
+                  filterBy="#{categoria.descripcion}" filterMatchMode="contains">
+            <h:outputText value="#{categoria.descripcion}" />
         </p:column>
         
-       
+            <p:column headerText="Imagen"  >
+
+            <p:graphicImage  style="position: relative; height: 100px;"
+                             class="btnImagen" 
+                             stream="false"
+                             value="#{categoria.imagen eq null?request.contextPath.concat('/resources/images/noImagen.jpg'):categoria.imagen}"
+                             >
+            </p:graphicImage>
+
+           
+
+        </p:column>
 
         <p:column headerText="Opciones" width="7%">
 
@@ -29,8 +40,8 @@
             <p:commandButton icon="pi pi-pencil" process="@this"  style="font-size: 2rem"
                                  class="ui-button ui-widget ui-state-default ui-corner-all
                              ui-button-icon-only edit-button   ui-button-success ui-state-hover" 
-                             actionListener="#{rolControlador.seleccionarRol(rol)}"
-                             onclick="PF('dlgRol').show();" update="form:contenidoCrud"
+                             actionListener="#{categoriaControlador.seleccionarCategoria(categoria)}"
+                             onclick="PF('dlgCategoria').show();" update="form:contenidoCrud"
                              />
 
 
@@ -38,9 +49,9 @@
 
             <p:commandButton  process="@this"  style="font-size: 2rem"
                               icon="pi pi-trash" update="tablaPrincipal,mensaje"
-                              actionListener="#{rolControlador.eliminar(rol)}"
+                              actionListener="#{categoriaControlador.eliminar(categoria)}"
        class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-button-warning   ui-state-hover"                              >
-                <p:confirm header="Confirmación" message="Esta seguro de eliminar el rol?" icon="pi pi-info-circle"/>
+                <p:confirm header="Confirmación" message="Esta seguro de eliminar el categoria?" icon="pi pi-info-circle"/>
             </p:commandButton>
 
 

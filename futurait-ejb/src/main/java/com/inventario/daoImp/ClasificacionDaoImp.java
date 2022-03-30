@@ -9,35 +9,35 @@ package com.inventario.daoImp;
 
 
 import com.genericos.dao.GenericDaoImp;
-import com.inventario.dao.IClasificacionDao;
-import com.inventario.modelo.InvClasificacion;
+import com.inventario.modelo.InvCategoria;
 import java.util.HashMap;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.Query;
+import com.inventario.dao.ICategoriaDao;
 
 /**
  *
  * @author Ricardo
  */
 @Stateless
-public class ClasificacionDaoImp extends GenericDaoImp<InvClasificacion, Long>
-        implements IClasificacionDao {
+public class ClasificacionDaoImp extends GenericDaoImp<InvCategoria, Long>
+        implements ICategoriaDao {
 
     public ClasificacionDaoImp() {
-        super(InvClasificacion.class);
+        super(InvCategoria.class);
     }
 
    
 
     @Override
-    public List<InvClasificacion> buscar(InvClasificacion clasificacion) {
+    public List<InvCategoria> buscar(InvCategoria categoria) {
        StringBuilder sql = new StringBuilder();
         HashMap<Object, Object> parametros = new HashMap();
-        sql.append("Select t from InvClasificacion t where 1=1");
-        if (clasificacion.getId() != null) {
+        sql.append("Select t from InvCategoria t where 1=1");
+        if (categoria.getId() != null) {
             sql.append(" and t.id=:id");
-            parametros.put("id", clasificacion.getId());
+            parametros.put("id", categoria.getId());
         }
         sql.append(" order by t.id  desc ");
         Query q = this.em.createQuery(sql.toString());
@@ -48,17 +48,17 @@ public class ClasificacionDaoImp extends GenericDaoImp<InvClasificacion, Long>
     }
 
     @Override
-    public List<InvClasificacion> busquedaPorFiltros(InvClasificacion clasificacion) {
+    public List<InvCategoria> busquedaPorFiltros(InvCategoria categoria) {
         StringBuilder sql = new StringBuilder();
         HashMap<Object, Object> parametros = new HashMap();
-        sql.append("Select t from InvClasificacion t where 1=1");
-        if (clasificacion.getId() != null) {
+        sql.append("Select t from InvCategoria t where 1=1");
+        if (categoria.getId() != null) {
             sql.append(" and t.id=:id");
-            parametros.put("id", clasificacion.getId());
+            parametros.put("id", categoria.getId());
         }
        
-        if (clasificacion.getNombre() != null) {
-            String parametroBusqueda = clasificacion.getNombre().toLowerCase().replaceAll(" ", "%_%");
+        if (categoria.getNombre() != null) {
+            String parametroBusqueda = categoria.getNombre().toLowerCase().replaceAll(" ", "%_%");
             sql.append(" and LOWER(t.nombre) like :nombre");
             parametros.put("nombre", "%" + parametroBusqueda + "%");
         }
@@ -71,10 +71,10 @@ public class ClasificacionDaoImp extends GenericDaoImp<InvClasificacion, Long>
     }
 
     @Override
-    public InvClasificacion obtenerValidacionNombre(String nombre) {
+    public InvCategoria obtenerValidacionNombre(String nombre) {
         StringBuilder sql = new StringBuilder();
         HashMap<Object, Object> parametros = new HashMap();
-        sql.append("Select t from InvClasificacion t where t.nombre=:nombre");
+        sql.append("Select t from InvCategoria t where t.nombre=:nombre");
         parametros.put("nombre", nombre);
 
         Query q = this.em.createQuery(sql.toString());
@@ -82,7 +82,7 @@ public class ClasificacionDaoImp extends GenericDaoImp<InvClasificacion, Long>
             q.setParameter((String) key, parametros.get(key));
         });
         try {
-            return (InvClasificacion) q.getSingleResult();
+            return (InvCategoria) q.getSingleResult();
         } catch (Exception e) {
             return null;
     }

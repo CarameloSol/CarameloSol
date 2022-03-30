@@ -57,10 +57,13 @@
                                     <p:submenu label="Acceso">
                                         <p:menuitem value="Usuarios" url="#{usuarioControlador.redireccionarUrl('/paginas/protegidas/acceso/usuario/inicio.fut')}"  icon="pi pi-user"/>
                                         <p:menuitem value="Roles" url="#{usuarioControlador.redireccionarUrl('/paginas/protegidas/acceso/rol/inicio.fut')}"  icon="pi pi-external-link"/>
-                                        <p:menuitem value="Articulos" url="#{usuarioControlador.redireccionarUrl('/paginas/protegidas/inventario/articulo/inicio.fut')}"  icon="pi pi-external-link"/>
 
                                     </p:submenu>
+                                    <p:submenu label="Inventario">
+                                        <p:menuitem value="Articulos" url="#{usuarioControlador.redireccionarUrl('/paginas/protegidas/inventario/articulo/inicio.fut')}"  icon="pi pi-external-link"/>
+                                        <p:menuitem value="Categoria" url="#{usuarioControlador.redireccionarUrl('/paginas/protegidas/inventario/categoria/inicio.fut')}"  icon="pi pi-external-link"/>
 
+                                    </p:submenu>
                                 </p:panelMenu>
 
                                 <script id="menuform:j_idt16_s"

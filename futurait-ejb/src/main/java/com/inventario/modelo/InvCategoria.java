@@ -5,7 +5,7 @@
  */
 package com.inventario.modelo;
 
-
+import com.acceso.modelo.AccRol;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -13,37 +13,40 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-
 
 /**
  *
  * @author Ricardo
  */
 @Entity
-@Table(name = "inv_clasificacion", schema = "inventario")
-public class InvClasificacion implements Serializable {
+@Table(name = "inv_categoria", schema = "inventario")
+public class InvCategoria implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "cla_id")
+    @Column(name = "cat_id")
     private Long id;
 
-    @Column(name = "cla_nombre", nullable = false)
+    @Column(name = "cat_nombre", nullable = false)
     private String nombre;
-    
-    @Column(name = "cla_imagen")
+
+    @Column(name = "cat_imagen")
     private byte[] imagen;
 
-    @Column(name = "cla_descripcion", nullable = false)
+    @Column(name = "cat_descripcion", nullable = false)
     private String descripcion;
-    
-        @Column(name = "empresa", nullable = false)
+
+    @Column(name = "empresa", nullable = false)
     private Long empresa;
-          @Transient
+
+   
+    @Transient
     private String validacionNombre;
 
     public Long getId() {
@@ -93,5 +96,6 @@ public class InvClasificacion implements Serializable {
     public void setValidacionNombre(String validacionNombre) {
         this.validacionNombre = validacionNombre;
     }
+
 
 }
