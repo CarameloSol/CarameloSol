@@ -5,6 +5,8 @@
  */
 package com.futura.inventario.controlador;
 
+
+
 import com.excepciones.registos.RegistroNoEliminado;
 import com.excepciones.registos.RegistroNoGuardado;
 import com.excepciones.registos.RegistroNoLocalizado;
@@ -28,6 +30,8 @@ import org.primefaces.shaded.commons.io.IOUtils;
  *
  * @author Ricardo
  */
+
+
 @Named(value = "articuloControlador")
 @ViewScoped
 public class ArticuloControlador extends BaseControlador implements Serializable {
@@ -36,13 +40,12 @@ public class ArticuloControlador extends BaseControlador implements Serializable
     ArticuloAD articuloAD;
     @EJB
     IArticuloServicio articuloServicio;
-   @EJB
-     IClasificacionServicio clasificacionServicio;
+    @EJB
+    IClasificacionServicio clasificacionServicio;
 
     public void inicio() {
-        
         articuloAD.setListaArticulos(articuloServicio.buscar(new InvArticulo()));
-      
+
     }
 
     public void limpiarBusqueda() {
@@ -52,28 +55,34 @@ public class ArticuloControlador extends BaseControlador implements Serializable
     }
 
     public void buscar() {
-        articuloAD.setListaArticulos(articuloServicio.buscar(articuloAD.getArticuloBusqueda()));
+
+        articuloAD.setListaArticulos(articuloServicio.busquedaPorFiltros(articuloAD.getArticuloBusqueda()));
     }
 
     public void nuevo() {
         articuloAD.setArticulo(new InvArticulo());
+
         articuloAD.getArticulo().setValidacionNombre("");
+
     }
 
     public void seleccionarArticulo(InvArticulo articulo) {
         articuloAD.setArticulo(articulo);
         articuloAD.getArticulo().setValidacionNombre(articulo.getNombre());
+
     }
 
     public void guardar() {
         try {
             articuloAD.getArticulo().setEmpresa(1L);
             articuloAD.getArticulo().setStock(BigDecimal.ZERO);
-             articuloServicio.guardar(articuloAD.getArticulo());
+            articuloServicio.guardar(articuloAD.getArticulo());
+
             articuloAD.setListaArticulos(articuloServicio.buscar(new InvArticulo()));
             addInfoMessage("Guardado exitoso");
             PrimeFaces.current().executeScript("PF('dlgArticulo').hide();");
             PrimeFaces.current().ajax().update("form:contenidoPrincipal");
+
         } catch (RegistroNoGuardado ex) {
             addErrorMessage(ex.getMessage());
         } catch (Exception ex) {
@@ -108,9 +117,5 @@ public class ArticuloControlador extends BaseControlador implements Serializable
     public void setArticuloAD(ArticuloAD articuloAD) {
         this.articuloAD = articuloAD;
     }
-
- 
-
- 
 
 }
