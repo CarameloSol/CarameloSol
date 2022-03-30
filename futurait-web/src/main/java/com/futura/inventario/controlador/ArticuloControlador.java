@@ -6,19 +6,18 @@
 package com.futura.inventario.controlador;
 
 import com.futurait.controladorAcceso.*;
-import com.acceso.modelo.AccRol;
-import com.acceso.modelo.AccUsuario;
-import com.acceso.servicio.IRolServicio;
+
 import com.excepciones.registos.RegistroNoEliminado;
 import com.excepciones.registos.RegistroNoGuardado;
 import com.excepciones.registos.RegistroNoLocalizado;
-import com.futura.acceso.variables.UsuarioAD;
+
 import com.futura.inventario.variables.ArticuloAD;
 import com.inventario.modelo.InvArticulo;
 import com.inventario.modelo.InvClasificacion;
+import com.inventario.servicio.IArticuloServicio;
 import com.inventario.servicio.IClasificacionServicio;
 import com.inventario.servicioImp.ArticuloServicioImpl;
-import com.ultil.Utilitarios;
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -45,49 +44,46 @@ public class ArticuloControlador extends BaseControlador implements Serializable
     @Inject
     ArticuloAD articuloAD;
     @EJB
-    ArticuloServicio articuloServicio;
+    IArticuloServicio articuloServicio;
 
     public void inicio() {
+        articuloAD.setListaArticulos(articuloServicio.buscar(new InvArticulo()));
         
-        articuloAD.setListaArticulos(articuloServicio.);
       
     }
 
     public void limpiarBusqueda() {
-        usuarioAD.setUsuarioBusqueda(new AccUsuario());
+        articuloAD.setArticuloBusqueda(new InvArticulo());
         buscar();
 
     }
 
     public void buscar() {
-        articuloAD.setListaArticulos(ArticuloS);
+        articuloAD.setListaArticulos(articuloServicio.busquedaPorFiltros(articuloAD.getArticuloBusqueda()));
     }
 
     public void nuevo() {
-        usuarioAD.setUsuario(new AccUsuario());
-        usuarioAD.setIdRol(null);
-        usuarioAD.getUsuario().setValidacionNombre("");
-        usuarioAD.getUsuario().setValidacionClave("");
+        articuloAD.setArticulo(new InvArticulo());
+        
     }
 
-    public void seleccionarUsuario(AccUsuario usuario) {
-        usuarioAD.setUsuario(usuario);
-        usuarioAD.setIdRol(usuario.getRol().getId());
-        usuarioAD.getUsuario().setValidacionNombre(usuario.getNombre());
-        usuarioAD.getUsuario().setValidacionClave(usuario.getClave());
+    public void seleccionarArticulo(InvArticulo articulo) {
+        articuloAD.setArticulo(articulo);
+
+       
     }
 
     public void guardar() {
         try {
-            System.err.println("usuario cla " + usuarioAD.getUsuario().getClave().isEmpty());
-            usuarioAD.getUsuario().setEmpresa(1L);
-            AccRol rolEncontrado = rolServicio.obtenerPorId(usuarioAD.getIdRol());
-            usuarioAD.getUsuario().setRol(rolEncontrado);
-            usuarioServicio.guardar(usuarioAD.getUsuario());
-            usuarioAD.setListaUsuarios(usuarioServicio.buscar(new AccUsuario()));
+            
+            articuloAD.getArticulo().setNombre(String.valueOf(0));
+            
+            
+            articuloServicio.guardar(articuloAD.getArticulo());
+            articuloAD.setListaArticulos(articuloServicio.buscar(new InvArticulo()));
             addInfoMessage("Guardado exitoso");
-            PrimeFaces.current().executeScript("PF('dlgUsuario').hide();");
-            PrimeFaces.current().ajax().update("form:contenidoPrincipal");
+            PrimeFaces.current().executeScript("");
+            PrimeFaces.current().ajax().update("");
         } catch (RegistroNoGuardado ex) {
             addErrorMessage(ex.getMessage());
         } catch (Exception ex) {
@@ -95,11 +91,11 @@ public class ArticuloControlador extends BaseControlador implements Serializable
         }
     }
 
-    public void eliminar(AccUsuario usuario) {
+    public void eliminar(InvArticulo articulo) {
 
         try {
-            usuarioServicio.eliminar(usuario);
-            usuarioAD.setListaUsuarios(usuarioServicio.buscar(new AccUsuario()));
+            articuloServicio.eliminar(articulo);
+            articuloAD.setListaArticulos(articuloServicio.buscar(new InvArticulo()));
             addInfoMessage("Registro eliminado");
         } catch (RegistroNoEliminado | RegistroNoLocalizado ex) {
             addErrorMessage(ex.getMessage());
@@ -109,18 +105,18 @@ public class ArticuloControlador extends BaseControlador implements Serializable
     public void almacenarImagen(FileUploadEvent event) {
 
         try {
-            usuarioAD.getUsuario().setImagen(IOUtils.toByteArray(event.getFile().getInputStream()));
+            articuloAD.getArticulo().setImagen(IOUtils.toByteArray(event.getFile().getInputStream()));
         } catch (IOException e) {
             addErrorMessage(e.getMessage());
         }
     }
 
-    public UsuarioAD getUsuarioAD() {
-        return usuarioAD;
+    public ArticuloAD getArticuloAD() {
+        return articuloAD;
     }
 
-    public void setUsuarioAD(UsuarioAD usuarioAD) {
-        this.usuarioAD = usuarioAD;
+    public void setArticuloAD(ArticuloAD articuloAD) {
+        this.articuloAD = articuloAD;
     }
 
     public StreamedContent mostrarImagenTemporal(String base64) {
@@ -136,16 +132,6 @@ public class ArticuloControlador extends BaseControlador implements Serializable
 
     
 
-    public void cerrarCesion() {
-        System.err.println("cerrar cesion");
-        getSession().invalidate();
-        PrimeFaces.current().executeScript("location.reload();");
-    }
-
-    public String redireccionarUrl(String urlDestino) {
-        String urlFinal = urlBase()
-                + urlDestino;
-        return urlFinal;
-    }
+   
 
 }

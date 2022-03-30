@@ -6,14 +6,15 @@
 package com.futura.inventario.controlador;
 
 import com.futurait.controladorAcceso.*;
-import com.acceso.modelo.AccRol;
-import com.acceso.modelo.AccUsuario;
-import com.acceso.servicio.IRolServicio;
+
 import com.excepciones.registos.RegistroNoEliminado;
 import com.excepciones.registos.RegistroNoGuardado;
 import com.excepciones.registos.RegistroNoLocalizado;
 import com.futura.acceso.variables.UsuarioAD;
-import com.ultil.Utilitarios;
+import com.futura.inventario.variables.ClasificacionAD;
+import com.inventario.modelo.InvClasificacion;
+import com.inventario.servicio.IClasificacionServicio;
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -38,51 +39,47 @@ import org.primefaces.shaded.commons.io.IOUtils;
 public class ClasificacionControlador extends BaseControlador implements Serializable {
 
     @Inject
-    UsuarioAD usuarioAD;
+    ClasificacionAD clasificacionAD;
     @EJB
-    IRolServicio rolServicio;
+    IClasificacionServicio clasificacionServicio;
 
     public void inicio() {
         validarAcceso();
-        usuarioAD.setListaUsuarios(usuarioServicio.buscar(new AccUsuario()));
-        usuarioAD.setListaRoles(rolServicio.buscar(new AccRol()));
+        clasificacionAD.setListaClasificacion(clasificacionServicio.buscar(new InvClasificacion()));
+       
     }
 
     public void limpiarBusqueda() {
-        usuarioAD.setUsuarioBusqueda(new AccUsuario());
+        clasificacionAD.setClasificacionBusqueda(new InvClasificacion());
         buscar();
 
     }
 
     public void buscar() {
-        usuarioAD.setListaUsuarios(usuarioServicio.busquedaPorFiltros(usuarioAD.getUsuarioBusqueda()));
+        clasificacionAD.setListaClasificacion(clasificacionServicio.busquedaPorFiltros(clasificacionAD.getClasificacionBusqueda()));
     }
 
     public void nuevo() {
-        usuarioAD.setUsuario(new AccUsuario());
-        usuarioAD.setIdRol(null);
-        usuarioAD.getUsuario().setValidacionNombre("");
-        usuarioAD.getUsuario().setValidacionClave("");
+        clasificacionAD.setClasificacion(new InvClasificacion());
+        
     }
 
-    public void seleccionarUsuario(AccUsuario usuario) {
-        usuarioAD.setUsuario(usuario);
-        usuarioAD.setIdRol(usuario.getRol().getId());
-        usuarioAD.getUsuario().setValidacionNombre(usuario.getNombre());
-        usuarioAD.getUsuario().setValidacionClave(usuario.getClave());
+    public void seleccionarClasificacion(InvClasificacion clasificacion) {
+        clasificacionAD.setClasificacion(clasificacion);
+        
     }
 
     public void guardar() {
         try {
-            System.err.println("usuario cla " + usuarioAD.getUsuario().getClave().isEmpty());
-            usuarioAD.getUsuario().setEmpresa(1L);
-            AccRol rolEncontrado = rolServicio.obtenerPorId(usuarioAD.getIdRol());
-            usuarioAD.getUsuario().setRol(rolEncontrado);
-            usuarioServicio.guardar(usuarioAD.getUsuario());
-            usuarioAD.setListaUsuarios(usuarioServicio.buscar(new AccUsuario()));
+           
+            clasificacionAD.getClasificacion().setNombre(String.valueOf(0));
+            
+          
+            clasificacionServicio.guardar(clasificacionAD.getClasificacion());
+            clasificacionAD.setListaClasificacion(clasificacionServicio.buscar(new InvClasificacion()));
             addInfoMessage("Guardado exitoso");
-            PrimeFaces.current().executeScript("PF('dlgUsuario').hide();");
-            PrimeFaces.current().ajax().update("form:contenidoPrincipal");
+            PrimeFaces.current().executeScript("");
+            PrimeFaces.current().ajax().update("");
         } catch (RegistroNoGuardado ex) {
             addErrorMessage(ex.getMessage());
         } catch (Exception ex) {
@@ -90,11 +87,11 @@ public class ClasificacionControlador extends BaseControlador implements Seriali
         }
     }
 
-    public void eliminar(AccUsuario usuario) {
+    public void eliminar(InvClasificacion clasificacion) {
 
         try {
-            usuarioServicio.eliminar(usuario);
-            usuarioAD.setListaUsuarios(usuarioServicio.buscar(new AccUsuario()));
+            clasificacionServicio.eliminar(clasificacion);
+            clasificacionAD.setListaClasificacion(clasificacionServicio.buscar(new InvClasificacion()));
             addInfoMessage("Registro eliminado");
         } catch (RegistroNoEliminado | RegistroNoLocalizado ex) {
             addErrorMessage(ex.getMessage());
@@ -104,18 +101,18 @@ public class ClasificacionControlador extends BaseControlador implements Seriali
     public void almacenarImagen(FileUploadEvent event) {
 
         try {
-            usuarioAD.getUsuario().setImagen(IOUtils.toByteArray(event.getFile().getInputStream()));
+            clasificacionAD.getClasificacion().setImagen(IOUtils.toByteArray(event.getFile().getInputStream()));
         } catch (IOException e) {
             addErrorMessage(e.getMessage());
         }
     }
 
-    public UsuarioAD getUsuarioAD() {
-        return usuarioAD;
+    public ClasificacionAD getClasificacionAD() {
+        return clasificacionAD;
     }
 
     public void setUsuarioAD(UsuarioAD usuarioAD) {
-        this.usuarioAD = usuarioAD;
+        this.clasificacionAD = clasificacionAD;
     }
 
     public StreamedContent mostrarImagenTemporal(String base64) {
@@ -130,17 +127,4 @@ public class ClasificacionControlador extends BaseControlador implements Seriali
     }
 
     
-
-    public void cerrarCesion() {
-        System.err.println("cerrar cesion");
-        getSession().invalidate();
-        PrimeFaces.current().executeScript("location.reload();");
-    }
-
-    public String redireccionarUrl(String urlDestino) {
-        String urlFinal = urlBase()
-                + urlDestino;
-        return urlFinal;
-    }
-
 }
