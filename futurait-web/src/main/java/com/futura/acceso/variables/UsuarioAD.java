@@ -24,7 +24,7 @@ public class UsuarioAD implements Serializable {
     List<AccUsuario> listaUsuarios = new ArrayList<>();
     List<AccRol> listaRoles = new ArrayList<>();
     AccUsuario usuario = new AccUsuario();
-     AccUsuario usuarioBusqueda = new AccUsuario();
+    AccUsuario usuarioBusqueda = new AccUsuario();
     Long idRol = null;
 
     public List<AccUsuario> getListaUsuarios() {
@@ -57,7 +57,6 @@ public class UsuarioAD implements Serializable {
         this.listaRoles = listaRoles;
     }
 
-  
     public Long getIdRol() {
         return idRol;
     }

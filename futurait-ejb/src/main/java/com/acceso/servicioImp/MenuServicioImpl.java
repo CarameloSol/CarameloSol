@@ -48,7 +48,7 @@ public class MenuServicioImpl implements IMenuServicio {
     public void eliminar(AccMenu menu) throws RegistroNoEliminado, RegistroNoLocalizado {
         AccMenu menuEliminar = menuDao.recuperar(menu.getId());
         if (!menuEliminar.getNombre().isEmpty()) {
-            throw new RegistroNoEliminado("Menu asignado");
+            throw new RegistroNoEliminado("Menu eliminado");
         }
         menuDao.eliminar(menuEliminar);
             

@@ -6,6 +6,8 @@
 package com.futurait.controladorAcceso;
 
 import com.acceso.servicio.IUsuarioServicio;
+import com.inventario.servicio.IArticuloServicio;
+import com.inventario.servicio.IClasificacionServicio;
  import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -22,6 +24,8 @@ public abstract class BaseControlador implements Serializable {
 
     @EJB
     IUsuarioServicio usuarioServicio;
+    IArticuloServicio articuloServicio;
+    IClasificacionServicio clasificacionServicio;
 
 
     public void validarAcceso() {

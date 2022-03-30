@@ -22,7 +22,8 @@ public class RolAD implements Serializable {
 
     List<AccRol> listaRoles = new ArrayList<>();
     AccRol rol = new AccRol();
- AccRol rolBusqueda = new AccRol();
+    AccRol rolBusqueda = new AccRol();
+
     public List<AccRol> getListaRoles() {
         return listaRoles;
     }
@@ -47,5 +48,4 @@ public class RolAD implements Serializable {
         this.rolBusqueda = rolBusqueda;
     }
 
-  
 }

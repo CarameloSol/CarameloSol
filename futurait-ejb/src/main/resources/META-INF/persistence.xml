@@ -7,6 +7,8 @@
         <class>com.acceso.modelo.AccRol</class>
         <class>com.acceso.modelo.AccMenu</class>
         <class>com.acceso.modelo.AccRolMenu</class>
+        <class>com.inventario.modelo.InvArticulo</class>
+        <class>com.inventario.modelo.InvClasificacion</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
    <properties>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
