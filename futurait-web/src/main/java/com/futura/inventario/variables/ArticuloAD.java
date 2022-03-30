@@ -26,7 +26,6 @@ public class ArticuloAD implements Serializable {
     List<InvArticulo> listaArticulos = new ArrayList<>();
     InvArticulo articulo = new InvArticulo();
     InvArticulo articuloBusqueda = new InvArticulo();
-    Long idRol = null;
 
     public List<InvArticulo> getListaArticulos() {
         return listaArticulos;
@@ -52,14 +51,5 @@ public class ArticuloAD implements Serializable {
         this.articuloBusqueda = articuloBusqueda;
     }
 
-    public Long getIdRol() {
-        return idRol;
-    }
-
-    public void setIdRol(Long idRol) {
-        this.idRol = idRol;
-    }
-
-   
 
 }

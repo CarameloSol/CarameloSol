@@ -14,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 
 /**
@@ -28,17 +29,22 @@ public class InvClasificacion implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "clas_id")
+    @Column(name = "cla_id")
     private Long id;
 
-    @Column(name = "clas_nombre", nullable = false)
+    @Column(name = "cla_nombre", nullable = false)
     private String nombre;
     
-    @Column(name = "clas_imagen")
+    @Column(name = "cla_imagen")
     private byte[] imagen;
 
-    @Column(name = "clas_descripcion", nullable = false)
+    @Column(name = "cla_descripcion", nullable = false)
     private String descripcion;
+    
+        @Column(name = "empresa", nullable = false)
+    private Long empresa;
+          @Transient
+    private String validacionNombre;
 
     public Long getId() {
         return id;
@@ -70,6 +76,22 @@ public class InvClasificacion implements Serializable {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public Long getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Long empresa) {
+        this.empresa = empresa;
+    }
+
+    public String getValidacionNombre() {
+        return validacionNombre;
+    }
+
+    public void setValidacionNombre(String validacionNombre) {
+        this.validacionNombre = validacionNombre;
     }
 
 }

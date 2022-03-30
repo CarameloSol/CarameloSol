@@ -26,7 +26,6 @@ public class ClasificacionAD implements Serializable {
     List<InvClasificacion> listaClasificacion = new ArrayList<>();
     InvClasificacion clasificacion = new InvClasificacion();
     InvClasificacion clasificacionBusqueda = new InvClasificacion();
-    Long idRol = null;
 
     public List<InvClasificacion> getListaClasificacion() {
         return listaClasificacion;
@@ -52,13 +51,4 @@ public class ClasificacionAD implements Serializable {
         this.clasificacionBusqueda = clasificacionBusqueda;
     }
 
-    public Long getIdRol() {
-        return idRol;
-    }
-
-    public void setIdRol(Long idRol) {
-        this.idRol = idRol;
-    }
-
-    
 }

@@ -24,8 +24,7 @@ public abstract class BaseControlador implements Serializable {
 
     @EJB
     IUsuarioServicio usuarioServicio;
-    IArticuloServicio articuloServicio;
-    IClasificacionServicio clasificacionServicio;
+  
 
 
     public void validarAcceso() {

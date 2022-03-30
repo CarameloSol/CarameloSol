@@ -5,33 +5,23 @@
  */
 package com.futura.inventario.controlador;
 
-import com.futurait.controladorAcceso.*;
-import com.acceso.modelo.AccRol;
-import com.acceso.modelo.AccUsuario;
-import com.acceso.servicio.IRolServicio;
 import com.excepciones.registos.RegistroNoEliminado;
 import com.excepciones.registos.RegistroNoGuardado;
 import com.excepciones.registos.RegistroNoLocalizado;
-import com.futura.acceso.variables.UsuarioAD;
 import com.futura.inventario.variables.ArticuloAD;
+import com.futurait.controladorAcceso.BaseControlador;
 import com.inventario.modelo.InvArticulo;
-import com.inventario.modelo.InvClasificacion;
+import com.inventario.servicio.IArticuloServicio;
 import com.inventario.servicio.IClasificacionServicio;
-import com.inventario.servicioImp.ArticuloServicioImpl;
-import com.ultil.Utilitarios;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.Serializable;
-import java.util.Base64;
+import java.math.BigDecimal;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.FileUploadEvent;
-import org.primefaces.model.DefaultStreamedContent;
-import org.primefaces.model.StreamedContent;
 import org.primefaces.shaded.commons.io.IOUtils;
 
 /**
@@ -45,48 +35,44 @@ public class ArticuloControlador extends BaseControlador implements Serializable
     @Inject
     ArticuloAD articuloAD;
     @EJB
-    ArticuloServicio articuloServicio;
+    IArticuloServicio articuloServicio;
+   @EJB
+     IClasificacionServicio clasificacionServicio;
 
     public void inicio() {
         
-        articuloAD.setListaArticulos(articuloServicio.);
+        articuloAD.setListaArticulos(articuloServicio.buscar(new InvArticulo()));
       
     }
 
     public void limpiarBusqueda() {
-        usuarioAD.setUsuarioBusqueda(new AccUsuario());
+        articuloAD.setArticuloBusqueda(new InvArticulo());
         buscar();
 
     }
 
     public void buscar() {
-        articuloAD.setListaArticulos(ArticuloS);
+        articuloAD.setListaArticulos(articuloServicio.buscar(articuloAD.getArticuloBusqueda()));
     }
 
     public void nuevo() {
-        usuarioAD.setUsuario(new AccUsuario());
-        usuarioAD.setIdRol(null);
-        usuarioAD.getUsuario().setValidacionNombre("");
-        usuarioAD.getUsuario().setValidacionClave("");
+        articuloAD.setArticulo(new InvArticulo());
+        articuloAD.getArticulo().setValidacionNombre("");
     }
 
-    public void seleccionarUsuario(AccUsuario usuario) {
-        usuarioAD.setUsuario(usuario);
-        usuarioAD.setIdRol(usuario.getRol().getId());
-        usuarioAD.getUsuario().setValidacionNombre(usuario.getNombre());
-        usuarioAD.getUsuario().setValidacionClave(usuario.getClave());
+    public void seleccionarArticulo(InvArticulo articulo) {
+        articuloAD.setArticulo(articulo);
+        articuloAD.getArticulo().setValidacionNombre(articulo.getNombre());
     }
 
     public void guardar() {
         try {
-            System.err.println("usuario cla " + usuarioAD.getUsuario().getClave().isEmpty());
-            usuarioAD.getUsuario().setEmpresa(1L);
-            AccRol rolEncontrado = rolServicio.obtenerPorId(usuarioAD.getIdRol());
-            usuarioAD.getUsuario().setRol(rolEncontrado);
-            usuarioServicio.guardar(usuarioAD.getUsuario());
-            usuarioAD.setListaUsuarios(usuarioServicio.buscar(new AccUsuario()));
+            articuloAD.getArticulo().setEmpresa(1L);
+            articuloAD.getArticulo().setStock(BigDecimal.ZERO);
+             articuloServicio.guardar(articuloAD.getArticulo());
+            articuloAD.setListaArticulos(articuloServicio.buscar(new InvArticulo()));
             addInfoMessage("Guardado exitoso");
-            PrimeFaces.current().executeScript("PF('dlgUsuario').hide();");
+            PrimeFaces.current().executeScript("PF('dlgArticulo').hide();");
             PrimeFaces.current().ajax().update("form:contenidoPrincipal");
         } catch (RegistroNoGuardado ex) {
             addErrorMessage(ex.getMessage());
@@ -95,11 +81,11 @@ public class ArticuloControlador extends BaseControlador implements Serializable
         }
     }
 
-    public void eliminar(AccUsuario usuario) {
+    public void eliminar(InvArticulo articulo) {
 
         try {
-            usuarioServicio.eliminar(usuario);
-            usuarioAD.setListaUsuarios(usuarioServicio.buscar(new AccUsuario()));
+            articuloServicio.eliminar(articulo);
+            articuloAD.setListaArticulos(articuloServicio.buscar(new InvArticulo()));
             addInfoMessage("Registro eliminado");
         } catch (RegistroNoEliminado | RegistroNoLocalizado ex) {
             addErrorMessage(ex.getMessage());
@@ -109,43 +95,22 @@ public class ArticuloControlador extends BaseControlador implements Serializable
     public void almacenarImagen(FileUploadEvent event) {
 
         try {
-            usuarioAD.getUsuario().setImagen(IOUtils.toByteArray(event.getFile().getInputStream()));
+            articuloAD.getArticulo().setImagen(IOUtils.toByteArray(event.getFile().getInputStream()));
         } catch (IOException e) {
             addErrorMessage(e.getMessage());
         }
     }
 
-    public UsuarioAD getUsuarioAD() {
-        return usuarioAD;
+    public ArticuloAD getArticuloAD() {
+        return articuloAD;
     }
 
-    public void setUsuarioAD(UsuarioAD usuarioAD) {
-        this.usuarioAD = usuarioAD;
+    public void setArticuloAD(ArticuloAD articuloAD) {
+        this.articuloAD = articuloAD;
     }
 
-    public StreamedContent mostrarImagenTemporal(String base64) {
-        try {
-            base64 = base64.replaceAll("\n", "");
-            InputStream is = new ByteArrayInputStream(Base64.getDecoder().decode(base64.getBytes()));
-            return DefaultStreamedContent.builder().contentType("image/jpeg").name("image.jpg").stream(() -> is).build();
-        } catch (Exception e) {
-            return null;
-        }
+ 
 
-    }
-
-    
-
-    public void cerrarCesion() {
-        System.err.println("cerrar cesion");
-        getSession().invalidate();
-        PrimeFaces.current().executeScript("location.reload();");
-    }
-
-    public String redireccionarUrl(String urlDestino) {
-        String urlFinal = urlBase()
-                + urlDestino;
-        return urlFinal;
-    }
+ 
 
 }

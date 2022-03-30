@@ -5,7 +5,6 @@
  */
 package com.inventario.modelo;
 
-
 import java.io.Serializable;
 import java.math.BigDecimal;
 import javax.persistence.Basic;
@@ -15,7 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
+import javax.persistence.Transient;
 
 /**
  *
@@ -34,15 +33,24 @@ public class InvArticulo implements Serializable {
 
     @Column(name = "art_nombre", nullable = false)
     private String nombre;
-    
+
+    @Column(name = "art_codigo", nullable = false)
+    private String codigo;
+
     @Column(name = "art_imagen")
     private byte[] imagen;
 
     @Column(name = "art_precio", nullable = false)
     private BigDecimal precio;
 
-    @Column (name = "art_stock", nullable = false)
+    @Column(name = "art_stock", nullable = false)
     private BigDecimal stock;
+
+    @Column(name = "empresa", nullable = false)
+    private Long empresa;
+
+    @Transient
+    private String validacionNombre;
 
     public Long getId() {
         return id;
@@ -83,6 +91,29 @@ public class InvArticulo implements Serializable {
     public void setStock(BigDecimal stock) {
         this.stock = stock;
     }
-            
+
+    public String getValidacionNombre() {
+        return validacionNombre;
+    }
+
+    public void setValidacionNombre(String validacionNombre) {
+        this.validacionNombre = validacionNombre;
+    }
+
+    public Long getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Long empresa) {
+        this.empresa = empresa;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
 
 }

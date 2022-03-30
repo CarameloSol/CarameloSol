@@ -33,7 +33,7 @@
     </h:head>
 
     <h:body >
- <p:growl id="mensaje" showDetail="true" globalOnly="true" />
+        <p:growl id="mensaje" showDetail="true" globalOnly="true" />
         <div class="layout-wrapper layout-overlay layout-yana         ">
 
             <div class="layout-topbar">
@@ -57,7 +57,9 @@
                                     <p:submenu label="Acceso">
                                         <p:menuitem value="Usuarios" url="#{usuarioControlador.redireccionarUrl('/paginas/protegidas/acceso/usuario/inicio.fut')}"  icon="pi pi-user"/>
                                         <p:menuitem value="Roles" url="#{usuarioControlador.redireccionarUrl('/paginas/protegidas/acceso/rol/inicio.fut')}"  icon="pi pi-external-link"/>
-                                   </p:submenu>
+                                        <p:menuitem value="Articulos" url="#{usuarioControlador.redireccionarUrl('/paginas/protegidas/inventario/articulo/inicio.fut')}"  icon="pi pi-external-link"/>
+
+                                    </p:submenu>
 
                                 </p:panelMenu>
 
