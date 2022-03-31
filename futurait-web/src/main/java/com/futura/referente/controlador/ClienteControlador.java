@@ -5,24 +5,19 @@
  */
 package com.futura.referente.controlador;
 
-import com.futura.inventario.controlador.*;
 import com.excepciones.registos.RegistroNoEliminado;
 import com.excepciones.registos.RegistroNoGuardado;
 import com.excepciones.registos.RegistroNoLocalizado;
-import com.futura.inventario.variables.ArticuloAD;
 import com.futura.referente.variables.ClienteAD;
 import com.futurait.controladorAcceso.BaseControlador;
-import com.inventario.modelo.InvArticulo;
-import com.inventario.modelo.InvCategoria;
-import com.inventario.servicio.IArticuloServicio;
-import com.inventario.servicio.ICategoriaServicio;
 import com.referente.modelo.RefCliente;
+import com.referente.modelo.RefPersona;
 import com.referente.modelo.RefReferente;
 import com.referente.servicio.IClienteServicio;
+import com.referente.servicio.IPersonaServicio;
 import com.referente.servicio.IReferenteServicio;
 import java.io.IOException;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
@@ -45,8 +40,12 @@ public class ClienteControlador extends BaseControlador implements Serializable 
     IClienteServicio clienteServicio;
     @EJB
     IReferenteServicio referenteServicio;
+    @EJB
+    IPersonaServicio personaServicio;
 
     public void inicio() {
+        clienteAD.setClienteBusqueda(new RefCliente());
+        clienteAD.getClienteBusqueda().setReferente(new RefReferente());
         clienteAD.setListaClientes(clienteServicio.buscar(new RefCliente()));
         clienteAD.setListaReferente(referenteServicio.buscar(new RefReferente()));
     }
@@ -58,36 +57,39 @@ public class ClienteControlador extends BaseControlador implements Serializable 
     }
 
     public void buscar() {
-
         clienteAD.setListaClientes(clienteServicio.busquedaPorFiltros(clienteAD.getClienteBusqueda()));
     }
 
     public void nuevo() {
         clienteAD.setCliente(new RefCliente());
-        clienteAD.setIdReferente(null);
+        clienteAD.setReferente(new RefReferente());
         clienteAD.getCliente();
+
+    }
+
+    public void recuperarDatosPersona() {
+
+        clienteAD.setReferente(referenteServicio.obtenerDatosReferente(clienteAD.getReferente()));
 
     }
 
     public void seleccionarCliente(RefCliente cliente) {
         clienteAD.setCliente(cliente);
-        clienteAD.setIdReferente(cliente.getReferente().getId());
+        clienteAD.setReferente(cliente.getReferente());
         clienteAD.getCliente();
 
     }
 
     public void guardar() {
         try {
-            clienteAD.getCliente().setId(1l);
-           
-            RefReferente referenteEncontrada = referenteServicio.obtenerPorId(clienteAD.getIdReferente());
-            clienteAD.getCliente().setReferente(referenteEncontrada);
+            clienteAD.getReferente().setEmpresa(1l);
+            clienteAD.getReferente().setEstado(Boolean.TRUE);
+            clienteAD.getCliente().setReferente(clienteAD.getReferente());
             clienteServicio.guardar(clienteAD.getCliente());
-
             clienteAD.setListaClientes(clienteServicio.buscar(new RefCliente()));
             addInfoMessage("Guardado exitoso");
-            PrimeFaces.current().executeScript("");
-            PrimeFaces.current().ajax().update("");
+            PrimeFaces.current().executeScript("PF('dlgCliente').hide();");
+            PrimeFaces.current().ajax().update("form:contenidoPrincipal");
 
         } catch (RegistroNoGuardado ex) {
             addErrorMessage(ex.getMessage());
@@ -107,7 +109,14 @@ public class ClienteControlador extends BaseControlador implements Serializable 
         }
     }
 
-    
+    public void almacenarImagen(FileUploadEvent event) {
+
+        try {
+            clienteAD.getCliente().setImagen(IOUtils.toByteArray(event.getFile().getInputStream()));
+        } catch (IOException e) {
+            addErrorMessage(e.getMessage());
+        }
+    }
 
     public ClienteAD getClienteAD() {
         return clienteAD;

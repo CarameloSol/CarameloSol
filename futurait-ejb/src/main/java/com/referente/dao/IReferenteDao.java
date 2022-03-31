@@ -9,7 +9,6 @@ package com.referente.dao;
 
 
 import com.generico.daoImp.IGenericoDao;
-import com.inventario.modelo.InvArticulo;
 import com.referente.modelo.RefReferente;
 import java.util.List;
 import javax.ejb.Local;
@@ -26,4 +25,6 @@ public interface IReferenteDao extends IGenericoDao<RefReferente, Long> {
     public RefReferente obtenerValidacionNombre(String nombre);
 
     public List<RefReferente> busquedaPorFiltros(RefReferente referente);
+
+    public RefReferente buscarPorIdentificacion(RefReferente referente);
 }

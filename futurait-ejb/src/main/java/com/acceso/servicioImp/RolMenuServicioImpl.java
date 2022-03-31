@@ -5,12 +5,9 @@
  */
 package com.acceso.servicioImp;
 
-import com.acceso.dao.IRolDao;
 import com.acceso.dao.IRolMenuDao;
-import com.acceso.modelo.AccRol;
 import com.acceso.modelo.AccRolMenu;
 import com.acceso.servicio.IRolMenuServicio;
-import com.acceso.servicio.IRolServicio;
 import com.excepciones.registos.RegistroNoEliminado;
 import com.excepciones.registos.RegistroNoGuardado;
 import com.excepciones.registos.RegistroNoLocalizado;

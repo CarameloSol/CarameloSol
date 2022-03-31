@@ -7,17 +7,13 @@ package com.referente.servicioImp;
 
 
 
-import com.inventario.servicioImp.*;
-import com.acceso.modelo.AccUsuario;
 import com.excepciones.registos.RegistroNoEliminado;
 import com.excepciones.registos.RegistroNoGuardado;
 import com.excepciones.registos.RegistroNoLocalizado;
-import com.inventario.dao.IArticuloDao;
-import com.inventario.modelo.InvArticulo;
-import com.inventario.servicio.IArticuloServicio;
 import com.referente.dao.IClienteDao;
 import com.referente.modelo.RefCliente;
 import com.referente.servicio.IClienteServicio;
+import com.referente.servicio.IReferenteServicio;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -33,7 +29,8 @@ public class ClienteServicioImpl implements IClienteServicio {
     @EJB
     IClienteDao clienteDao;
 
-
+   @EJB
+    IReferenteServicio referenteServicio;
 
     @Override
     public List<RefCliente> buscar(RefCliente cliente) {
@@ -57,7 +54,8 @@ public class ClienteServicioImpl implements IClienteServicio {
     
     @Override
     public void guardar(RefCliente cliente) throws RegistroNoGuardado, Exception {
-        
+        cliente.setEstado(Boolean.TRUE);
+       referenteServicio.guardar(cliente.getReferente());
         if (cliente.getId()== null) {
             clienteDao.crear(cliente);
         } else {

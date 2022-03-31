@@ -9,6 +9,7 @@ package com.referente.daoImp;
 import com.genericos.dao.GenericDaoImp;
 
 import com.referente.dao.IReferenteDao;
+import com.referente.modelo.RefPersona;
 import com.referente.modelo.RefReferente;
 import java.util.HashMap;
 import java.util.List;
@@ -86,6 +87,28 @@ public class ReferenteDaoImp extends GenericDaoImp<RefReferente, Long>
         return q.getResultList();
     }
     
-    
+        @Override
+    public RefReferente buscarPorIdentificacion(RefReferente referente) {
+        StringBuilder sql = new StringBuilder();
+        HashMap<Object, Object> parametros = new HashMap();
+        sql.append("Select t from RefReferente t where 1=1");
+
+        if (referente.getIdentificacion() != null) {
+            sql.append(" and t.identificacion=:identificacion");
+            parametros.put("identificacion", referente.getIdentificacion());
+        }
+        Query q = this.em.createQuery(sql.toString());
+
+        parametros.keySet().forEach((key) -> {
+            q.setParameter((String) key, parametros.get(key));
+        });
+        try {
+            return (RefReferente) q.getSingleResult();
+
+        } catch (Exception e) {
+            return null;
+        }
+
+    }
 
     }

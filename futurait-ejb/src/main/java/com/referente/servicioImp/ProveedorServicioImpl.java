@@ -5,19 +5,11 @@
  */
 package com.referente.servicioImp;
 
-import com.inventario.servicioImp.*;
-import com.acceso.modelo.AccUsuario;
 import com.excepciones.registos.RegistroNoEliminado;
 import com.excepciones.registos.RegistroNoGuardado;
 import com.excepciones.registos.RegistroNoLocalizado;
-import com.inventario.dao.IArticuloDao;
-import com.inventario.modelo.InvArticulo;
-import com.inventario.servicio.IArticuloServicio;
-import com.referente.dao.IClienteDao;
 import com.referente.dao.IProveedorDao;
-import com.referente.modelo.RefCliente;
 import com.referente.modelo.RefProveedor;
-import com.referente.servicio.IClienteServicio;
 import com.referente.servicio.IProveedorServicio;
 import java.util.List;
 import javax.ejb.EJB;

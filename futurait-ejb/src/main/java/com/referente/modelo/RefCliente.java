@@ -5,7 +5,6 @@
  */
 package com.referente.modelo;
 
-
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -16,7 +15,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
 
 /**
  *
@@ -35,6 +33,9 @@ public class RefCliente implements Serializable {
 
     @Column(name = "cli_estado", nullable = false)
     private Boolean estado;
+
+    @Column(name = "cli_imagen")
+    private byte[] imagen;
 
     @JoinColumn(name = "referente", referencedColumnName = "ref_id")
     @ManyToOne
@@ -64,6 +65,12 @@ public class RefCliente implements Serializable {
         this.referente = referente;
     }
 
-   
+    public byte[] getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(byte[] imagen) {
+        this.imagen = imagen;
+    }
 
 }

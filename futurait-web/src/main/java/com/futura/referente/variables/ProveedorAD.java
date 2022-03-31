@@ -5,10 +5,6 @@
  */
 package com.futura.referente.variables;
 
-import com.futura.inventario.variables.*;
-import com.inventario.modelo.InvArticulo;
-import com.inventario.modelo.InvCategoria;
-import com.referente.modelo.RefCliente;
 import com.referente.modelo.RefProveedor;
 import com.referente.modelo.RefReferente;
 import java.io.Serializable;

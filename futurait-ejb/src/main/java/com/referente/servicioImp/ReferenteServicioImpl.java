@@ -5,19 +5,13 @@
  */
 package com.referente.servicioImp;
 
-import com.inventario.servicioImp.*;
-import com.acceso.modelo.AccUsuario;
 import com.excepciones.registos.RegistroNoEliminado;
 import com.excepciones.registos.RegistroNoGuardado;
 import com.excepciones.registos.RegistroNoLocalizado;
-import com.inventario.dao.IArticuloDao;
-import com.inventario.modelo.InvArticulo;
-import com.inventario.servicio.IArticuloServicio;
-import com.referente.dao.IClienteDao;
 import com.referente.dao.IReferenteDao;
-import com.referente.modelo.RefCliente;
+import com.referente.modelo.RefPersona;
 import com.referente.modelo.RefReferente;
-import com.referente.servicio.IClienteServicio;
+import com.referente.servicio.IPersonaServicio;
 import com.referente.servicio.IReferenteServicio;
 import java.util.List;
 import javax.ejb.EJB;
@@ -32,6 +26,8 @@ public class ReferenteServicioImpl implements IReferenteServicio {
 
     @EJB
     IReferenteDao referenteDao;
+    @EJB
+    IPersonaServicio personaServicio;
 
     @Override
     public List<RefReferente> buscar(RefReferente referente) {
@@ -51,7 +47,7 @@ public class ReferenteServicioImpl implements IReferenteServicio {
 
     @Override
     public void guardar(RefReferente referente) throws RegistroNoGuardado, Exception {
-        if (referente.getId()== null) {
+        if (referente.getId() == null) {
             referenteDao.crear(referente);
         } else {
             referenteDao.actualizar(referente);
@@ -66,6 +62,55 @@ public class ReferenteServicioImpl implements IReferenteServicio {
     @Override
     public RefReferente obtenerPorId(Long id) throws RegistroNoLocalizado {
         return referenteDao.recuperar(id);
+    }
+
+    @Override
+    public RefReferente buscarPorIdentificacion(RefReferente referente) {
+        return referenteDao.buscarPorIdentificacion(referente);
+    }
+
+    @Override
+    public RefReferente obtenerDatosReferente(RefReferente referente) {
+        RefReferente referenteEncontrado = buscarPorIdentificacion(referente);
+        if (referenteEncontrado == null) {
+            RefPersona personaEncontrada = personaServicio.buscar(new RefPersona(referente.getIdentificacion()));
+            if (personaEncontrada != null) {
+                String[] listaNombres = personaEncontrada.getNombres().split(" ");
+                String apellido = "";
+                String nombre = "";
+                if (listaNombres.length == 5) {
+                    apellido = listaNombres[0] + " " + listaNombres[1] + " " + listaNombres[2];
+                    nombre = listaNombres[3] + " " + listaNombres[4] + " " + listaNombres[5];
+                }
+
+                if (listaNombres.length == 5) {
+                    apellido = listaNombres[0] + " " + listaNombres[1];
+                    nombre = listaNombres[2] + " " + listaNombres[3] + " " + listaNombres[4];
+                }
+
+                if (listaNombres.length == 4) {
+                    apellido = listaNombres[0] + " " + listaNombres[1];
+                    nombre = listaNombres[2] + " " + listaNombres[3];
+                }
+                if (listaNombres.length == 3) {
+                    apellido = listaNombres[0] + " " + listaNombres[1];
+                    nombre = listaNombres[2];
+                }
+                if (listaNombres.length == 2) {
+                    apellido = listaNombres[0];
+                    nombre = listaNombres[1];
+                }
+
+                referente.setNombre(nombre);
+                referente.setApellido(apellido);
+            } else {
+                referente.setNombre("");
+                referente.setApellido("");
+            }
+        } else {
+            referente = referenteEncontrado;
+        }
+        return referente;
     }
 
 }

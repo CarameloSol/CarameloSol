@@ -40,14 +40,12 @@ public class RefReferente implements Serializable {
     private String apellido;
 
     @Column(name = "ref_identificacion", nullable = false)
-    private Integer identificacion;
+    private String identificacion;
 
     @Column(name = "ref_empresa", nullable = false)
     private Long empresa;
     
-    @Column(name = "ref_fechaNacimiento", nullable = false)
-    private Date fechaNacimiento;
-    
+  
      @Column(name = "ref_estado", nullable = false)
     private Boolean estado;
 
@@ -75,14 +73,15 @@ public class RefReferente implements Serializable {
         this.apellido = apellido;
     }
 
-    public Integer getIdentificacion() {
+    public String getIdentificacion() {
         return identificacion;
     }
 
-    public void setIdentificacion(Integer identificacion) {
+    public void setIdentificacion(String identificacion) {
         this.identificacion = identificacion;
     }
 
+ 
     public Long getEmpresa() {
         return empresa;
     }
@@ -90,14 +89,7 @@ public class RefReferente implements Serializable {
     public void setEmpresa(Long empresa) {
         this.empresa = empresa;
     }
-
-    public Date getFechaNacimiento() {
-        return fechaNacimiento;
-    }
-
-    public void setFechaNacimiento(Date fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
-    }
+ 
 
     public Boolean getEstado() {
         return estado;

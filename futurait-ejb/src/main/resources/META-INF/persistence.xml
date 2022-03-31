@@ -12,6 +12,7 @@
         <class>com.referente.modelo.RefCliente</class>
         <class>com.referente.modelo.RefProveedor</class>
         <class>com.referente.modelo.RefReferente</class>
+          <class>com.referente.modelo.RefPersona</class>
         <class>com.referente.modelo.RefContacto</class>
         <class>com.referente.modelo.RefDireccion</class>
         <class>com.referente.modelo.RefTelefono</class>

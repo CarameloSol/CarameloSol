@@ -7,9 +7,7 @@ package com.referente.daoImp;
 
 import com.genericos.dao.GenericDaoImp;
 
-import com.referente.dao.IClienteDao;
 import com.referente.dao.IContactoDao;
-import com.referente.modelo.RefCliente;
 import com.referente.modelo.RefContacto;
 import java.util.HashMap;
 import java.util.List;

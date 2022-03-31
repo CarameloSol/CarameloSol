@@ -85,6 +85,7 @@ public class CategoriaControlador extends BaseControlador implements Serializabl
             addErrorMessage(ex.getMessage());
         }
     }
+    
 
     public void almacenarImagen(FileUploadEvent event) {
 

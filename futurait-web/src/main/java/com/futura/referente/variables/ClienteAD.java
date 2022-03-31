@@ -5,9 +5,6 @@
  */
 package com.futura.referente.variables;
 
-import com.futura.inventario.variables.*;
-import com.inventario.modelo.InvArticulo;
-import com.inventario.modelo.InvCategoria;
 import com.referente.modelo.RefCliente;
 import com.referente.modelo.RefReferente;
 import java.io.Serializable;
@@ -26,9 +23,9 @@ public class ClienteAD implements Serializable {
 
     List<RefCliente> listaClientes = new ArrayList<>();
     RefCliente cliente = new RefCliente();
+    RefReferente referente = new RefReferente();
     RefCliente clienteBusqueda = new RefCliente();
     List<RefReferente> listaReferente = new ArrayList<>();
-    Long idReferente = null;
 
     public List<RefCliente> getListaClientes() {
         return listaClientes;
@@ -62,13 +59,14 @@ public class ClienteAD implements Serializable {
         this.listaReferente = listaReferente;
     }
 
-    public Long getIdReferente() {
-        return idReferente;
+ 
+
+    public RefReferente getReferente() {
+        return referente;
     }
 
-    public void setIdReferente(Long idReferente) {
-        this.idReferente = idReferente;
+    public void setReferente(RefReferente referente) {
+        this.referente = referente;
     }
-   
 
 }

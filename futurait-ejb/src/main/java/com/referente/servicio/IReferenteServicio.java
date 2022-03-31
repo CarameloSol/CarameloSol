@@ -11,8 +11,6 @@ package com.referente.servicio;
 import com.excepciones.registos.RegistroNoEliminado;
 import com.excepciones.registos.RegistroNoGuardado;
 import com.excepciones.registos.RegistroNoLocalizado;
-import com.inventario.modelo.InvArticulo;
-import com.referente.modelo.RefCliente;
 import com.referente.modelo.RefReferente;
 import java.util.List;
 import javax.ejb.Local;
@@ -39,5 +37,8 @@ public interface IReferenteServicio {
 
    
     public List<RefReferente> busquedaPorFiltros(RefReferente referente);
+    public RefReferente buscarPorIdentificacion(RefReferente referente);
+
+    public RefReferente obtenerDatosReferente(RefReferente referente);
 
 }
