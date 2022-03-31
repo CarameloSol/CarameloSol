@@ -121,7 +121,6 @@ public class UsuarioControlador extends BaseControlador implements Serializable 
     
 
     public void cerrarCesion() {
-        System.err.println("cerrar cesion");
         getSession().invalidate();
         PrimeFaces.current().executeScript("location.reload();");
     }
