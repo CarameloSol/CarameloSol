@@ -24,7 +24,7 @@ public class ArticuloAD implements Serializable {
     List<InvArticulo> listaArticulos = new ArrayList<>();
     InvArticulo articulo = new InvArticulo();
     InvArticulo articuloBusqueda = new InvArticulo();
-       List<InvCategoria> listaCategoria = new ArrayList<>();
+    List<InvCategoria> listaCategoria = new ArrayList<>();
     Long idCategoria = null;
 
     public List<InvArticulo> getListaArticulos() {
