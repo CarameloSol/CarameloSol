@@ -5,13 +5,16 @@
  */
 package com.catalogo.modelo;
 
+import com.acceso.modelo.AccUsuario;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -37,6 +40,9 @@ public class CatCatalogo implements Serializable {
     
     @Column(name = "cat_codigo", nullable = false)
     private String codigo;
+    
+       @OneToMany(mappedBy = "catalogo")
+    private List<CatItem> listaItems;
 
     public Long getId() {
         return id;
@@ -68,6 +74,14 @@ public class CatCatalogo implements Serializable {
 
     public void setCodigo(String codigo) {
         this.codigo = codigo;
+    }
+
+    public List<CatItem> getListaItems() {
+        return listaItems;
+    }
+
+    public void setListaItems(List<CatItem> listaItems) {
+        this.listaItems = listaItems;
     }
 
 }

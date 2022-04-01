@@ -5,18 +5,17 @@
  */
 package com.catalogo.servicioImp;
 
-
-
 import com.catalogo.dao.ICatalogoDao;
 import com.catalogo.modelo.CatCatalogo;
+import com.catalogo.modelo.CatItem;
 import com.catalogo.servicio.ICatalogoServicio;
+import com.catalogo.servicio.IItemServicio;
 import com.excepciones.registos.RegistroNoEliminado;
 import com.excepciones.registos.RegistroNoGuardado;
 import com.excepciones.registos.RegistroNoLocalizado;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-
 
 /**
  *
@@ -28,10 +27,9 @@ public class CatalogoServicioImpl implements ICatalogoServicio {
     @EJB
     ICatalogoDao catalogoDao;
 
-   @EJB
-    ICatalogoServicio catalogoServicio;
+    @EJB
+    IItemServicio itemServicio;
 
-    
     @Override
     public List<CatCatalogo> buscar(CatCatalogo catalogo) {
         return catalogoDao.buscar(catalogo);
@@ -45,17 +43,24 @@ public class CatalogoServicioImpl implements ICatalogoServicio {
     @Override
     public void eliminar(CatCatalogo catalogo) throws RegistroNoEliminado, RegistroNoLocalizado {
         CatCatalogo catalogoEliminar = catalogoDao.recuperar(catalogo.getId());
+        if (!catalogoEliminar.getListaItems().isEmpty()) {
+            throw new RegistroNoEliminado("El registro posee items asociados");
+        }
         catalogoDao.eliminar(catalogoEliminar);
     }
 
     @Override
-    public void guardar(CatCatalogo catalogo) throws RegistroNoGuardado, Exception {
-        catalogo.setEstado(Boolean.TRUE);
-        if (catalogo.getId()== null) {
+    public void guardar(CatCatalogo catalogo, List<CatItem> listaItemCrear, List<CatItem> listaItemEliminar) throws RegistroNoGuardado, Exception {
+
+        if (catalogo.getId() == null) {
+            catalogo.setEstado(Boolean.TRUE);
+
             catalogoDao.crear(catalogo);
         } else {
             catalogoDao.actualizar(catalogo);
         }
+        itemServicio.guardarListaItem(listaItemCrear);
+        itemServicio.eliminarItem(listaItemEliminar);
     }
 
     @Override

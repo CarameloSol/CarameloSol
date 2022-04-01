@@ -25,7 +25,8 @@ public class CatalogoAD implements Serializable {
     CatCatalogo catalogo = new CatCatalogo();
     CatItem item = new CatItem();
     CatCatalogo catalogoBusqueda = new CatCatalogo();
-    List<CatItem> listaItem = new ArrayList<>();
+    List<CatItem> listaItemCrear = new ArrayList<>();
+    List<CatItem> listaItemEliminar = new ArrayList<>();
 
     public List<CatCatalogo> getListaCatalogos() {
         return listaCatalogos;
@@ -59,13 +60,21 @@ public class CatalogoAD implements Serializable {
         this.catalogoBusqueda = catalogoBusqueda;
     }
 
-    public List<CatItem> getListaItem() {
-        return listaItem;
+    public List<CatItem> getListaItemCrear() {
+        return listaItemCrear;
     }
 
-    public void setListaItem(List<CatItem> listaItem) {
-        this.listaItem = listaItem;
+    public void setListaItemCrear(List<CatItem> listaItemCrear) {
+        this.listaItemCrear = listaItemCrear;
     }
 
-    
+    public List<CatItem> getListaItemEliminar() {
+        return listaItemEliminar;
+    }
+
+    public void setListaItemEliminar(List<CatItem> listaItemEliminar) {
+        this.listaItemEliminar = listaItemEliminar;
+    }
+
+ 
 }

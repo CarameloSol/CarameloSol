@@ -33,23 +33,24 @@
                         </div>
                         <div class="p-field">
                             <p:outputLabel for="txtIdentificacionProveedor" class="ui-outputlabel ui-widget" value="Identificacion" />
-                            <p:inputText id="txtIdentifiacionCliente" value="#{proveedorAD.referente.identificacion}" required="true"
+                            <p:inputText id="txtIdentificacionProveedor" value="#{proveedorAD.referente.identificacion}" required="true"
                                          class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all">
-                                <p:ajax event="change" update="contenidoCrud" listener=""/>
+                                <p:ajax event="change" update="contenidoCrud" listener="#{proveedorControlador.recuperarDatosPersona()}"/>
+
                             </p:inputText>
                         </div>
 
                         <div class="p-field">
                             <p:outputLabel for="txtNombreProveedor" class="ui-outputlabel ui-widget" value="Nombre" />
-                            <p:inputText id="txtNombreCliente" value="#{proveedorAD.referente.nombre}" required="true"  class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all">
+                            <p:inputText id="txtNombreProveedor" value="#{proveedorAD.referente.nombre}" required="true"  class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all">
                                 <p:ajax/>
                             </p:inputText>
                         </div>
 
 
                         <div class="p-field">
-                            <p:outputLabel for="txtEstadoProveedor" class="ui-outputlabel ui-widget" value="Estado" />
-                            <p:inputText id="txtApellidoCliente" value="#{proveedorAD.referente.estado}" required="true"  class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all">
+                            <p:outputLabel for="txtEstadoProveedor" class="ui-outputlabel ui-widget" value="Apellido" />
+                            <p:inputText id="txtEstadoProveedor" value="#{proveedorAD.referente.apellido}" required="true"  class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all">
                                 <p:ajax/>
                             </p:inputText>
                         </div>

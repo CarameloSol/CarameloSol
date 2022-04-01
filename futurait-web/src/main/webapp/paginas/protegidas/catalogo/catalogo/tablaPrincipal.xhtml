@@ -9,34 +9,23 @@
                  paginatorPosition="bottom"  reflow="true" 
                  paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                  rowsPerPageTemplate="3,6,9">
-        
+
         <p:column headerText="Nombre" sortBy="#{catalogo.nombre}"
                   filterBy="#{catalogo.nombre}" filterMatchMode="contains">
             <h:outputText value="#{catalogo.nombre}" />
         </p:column>
-        
+
         <p:column headerText="Estado" sortBy="#{catalogo.estado}"
                   filterBy="#{catalogo.estado}" filterMatchMode="contains">
             <h:outputText value="#{catalogo.estado}" />
         </p:column>
- 
+
         <p:column headerText="Codigo" sortBy="#{catalogo.codigo}"
                   filterBy="#{catalogo.codigo}" filterMatchMode="contains">
             <h:outputText value="#{catalogo.codigo}" />
         </p:column>
-        
-            <p:column headerText="Imagen"  >
 
-            <p:graphicImage  style="position: relative; height: 100px;"
-                             class="btnImagen" 
-                             stream="false"
-                             value="#{cliente.imagen eq null?request.contextPath.concat('/resources/images/noImagen.jpg'):cliente.imagen}"
-                             >
-            </p:graphicImage>
 
-           
-
-        </p:column>
 
         <p:column headerText="Opciones" width="7%">
 
@@ -44,7 +33,7 @@
 
 
             <p:commandButton icon="pi pi-pencil" process="@this"  style="font-size: 2rem"
-                                 class="ui-button ui-widget ui-state-default ui-corner-all
+                             class="ui-button ui-widget ui-state-default ui-corner-all
                              ui-button-icon-only edit-button   ui-button-success ui-state-hover" 
                              actionListener="#{catalogoControlador.seleccionarCatalogo(catalogo)}"
                              onclick="PF('dlgCatalogo').show();" update="form:contenidoCrud"
@@ -56,8 +45,8 @@
             <p:commandButton  process="@this"  style="font-size: 2rem"
                               icon="pi pi-trash" update="tablaPrincipal,mensaje"
                               actionListener="#{catalogoControlador.eliminar(catalogo)}"
-       class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-button-warning   ui-state-hover"                              >
-                <p:confirm header="Confirmación" message="Esta seguro de eliminar el cliente?" icon="pi pi-info-circle"/>
+                              class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-button-warning   ui-state-hover"                              >
+                <p:confirm header="Confirmación" message="Esta seguro de eliminar el catalogo?" icon="pi pi-info-circle"/>
             </p:commandButton>
 
 

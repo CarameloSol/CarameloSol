@@ -35,13 +35,10 @@ public class CatalogoControlador extends BaseControlador implements Serializable
     ICatalogoServicio catalogoServicio;
     @EJB
     IItemServicio itemServicio;
-    
 
     public void inicio() {
         catalogoAD.setCatalogoBusqueda(new CatCatalogo());
-        
         catalogoAD.setListaCatalogos(catalogoServicio.buscar(new CatCatalogo()));
-        catalogoAD.setListaItem(itemServicio.buscar(new CatItem()));
     }
 
     public void limpiarBusqueda() {
@@ -50,22 +47,36 @@ public class CatalogoControlador extends BaseControlador implements Serializable
 
     }
 
+    public void agregarItem() {
+      
+        CatItem nuevoItem = new CatItem();
+        nuevoItem.setCatalogo(catalogoAD.getCatalogo());
+        catalogoAD.getListaItemCrear().add(0, nuevoItem);
+    }
+
+    public void eliminarItem(CatItem item) {
+        catalogoAD.getListaItemCrear().remove(item);
+        catalogoAD.getListaItemEliminar().add(item);
+
+    }
+
     public void buscar() {
         catalogoAD.setListaCatalogos(catalogoServicio.busquedaPorFiltros(catalogoAD.getCatalogoBusqueda()));
     }
 
     public void nuevo() {
+          catalogoAD.getListaItemCrear().clear();
+        catalogoAD.getListaItemEliminar().clear();
         catalogoAD.setCatalogo(new CatCatalogo());
         catalogoAD.setItem(new CatItem());
         catalogoAD.getCatalogo();
 
     }
 
-   
-
     public void seleccionarCatalogo(CatCatalogo catalogo) {
+        catalogoAD.getListaItemEliminar().clear();
+        catalogoAD.setListaItemCrear(itemServicio.buscar(new CatItem(catalogo)));
         catalogoAD.setCatalogo(catalogo);
-        
         catalogoAD.getCatalogo();
 
     }
@@ -73,9 +84,8 @@ public class CatalogoControlador extends BaseControlador implements Serializable
     public void guardar() {
         try {
             catalogoAD.getItem().setEstado(Boolean.TRUE);
-            
-            
-            catalogoServicio.guardar(catalogoAD.getCatalogo());
+
+            catalogoServicio.guardar(catalogoAD.getCatalogo(), catalogoAD.getListaItemCrear(), catalogoAD.getListaItemEliminar());
             catalogoAD.setListaCatalogos(catalogoServicio.buscar(new CatCatalogo()));
             addInfoMessage("Guardado exitoso");
             PrimeFaces.current().executeScript("PF('dlgCatalogo').hide();");
@@ -98,8 +108,6 @@ public class CatalogoControlador extends BaseControlador implements Serializable
             addErrorMessage(ex.getMessage());
         }
     }
-
-   
 
     public CatalogoAD getCatalogoAD() {
         return catalogoAD;

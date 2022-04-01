@@ -5,26 +5,15 @@
  */
 package com.catalogo.servicioImp;
 
-
-
-import com.catalogo.dao.ICatalogoDao;
 import com.catalogo.dao.IItemDao;
-import com.catalogo.modelo.CatCatalogo;
 import com.catalogo.modelo.CatItem;
-import com.catalogo.servicio.ICatalogoServicio;
 import com.catalogo.servicio.IItemServicio;
-import com.referente.servicioImp.*;
 import com.excepciones.registos.RegistroNoEliminado;
 import com.excepciones.registos.RegistroNoGuardado;
 import com.excepciones.registos.RegistroNoLocalizado;
-import com.referente.dao.IClienteDao;
-import com.referente.modelo.RefCliente;
-import com.referente.servicio.IClienteServicio;
-import com.referente.servicio.IReferenteServicio;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-
 
 /**
  *
@@ -36,10 +25,7 @@ public class ItemServicioImpl implements IItemServicio {
     @EJB
     IItemDao itemDao;
 
-   @EJB
-    ICatalogoServicio catalogoServicio;
 
-   
 
     @Override
     public List<CatItem> buscar(CatItem item) {
@@ -58,10 +44,9 @@ public class ItemServicioImpl implements IItemServicio {
     }
 
     @Override
-    public void guardar(CatItem item) throws RegistroNoGuardado, Exception {
-        item.setEstado(Boolean.TRUE);
-        catalogoServicio.guardar(item.getCatalogo());
-        if (item.getId()== null) {
+    public void guardar(CatItem item) throws RegistroNoGuardado {
+        if (item.getId() == null) {
+            item.setEstado(Boolean.TRUE);
             itemDao.crear(item);
         } else {
             itemDao.actualizar(item);
@@ -73,9 +58,23 @@ public class ItemServicioImpl implements IItemServicio {
         return itemDao.busquedaPorFiltros(item);
     }
 
-     @Override
+    @Override
     public CatItem obtenerPorId(Long id) throws RegistroNoLocalizado {
         return itemDao.recuperar(id);
     }
-    
+
+    @Override
+    public void guardarListaItem(List<CatItem> listaItemCrear)throws RegistroNoGuardado {
+        for (CatItem catItem : listaItemCrear) {
+            guardar(catItem);
+        }
+    }
+
+    @Override
+    public void eliminarItem(List<CatItem> listaItemEliminar)throws RegistroNoEliminado, RegistroNoLocalizado  {
+        for (CatItem catItem : listaItemEliminar) {
+            eliminar(catItem);
+        }
+    }
+
 }

@@ -46,6 +46,13 @@ public class ProveedorControlador extends BaseControlador implements Serializabl
         buscar();
 
     }
+    
+     public void recuperarDatosPersona() {
+
+        proveedorAD.setReferente(referenteServicio.obtenerDatosReferente(proveedorAD.getReferente()));
+
+    }
+     
 
     public void buscar() {
 
@@ -54,24 +61,23 @@ public class ProveedorControlador extends BaseControlador implements Serializabl
 
     public void nuevo() {
         proveedorAD.setProveedor(new RefProveedor());
-        proveedorAD.setIdReferente(null);
+        proveedorAD.setReferente(new RefReferente());
+        proveedorAD.getProveedor().setEstado(Boolean.TRUE);
         proveedorAD.getProveedor();
 
     }
 
     public void seleccionarProveedor(RefProveedor proveedor) {
         proveedorAD.setProveedor(proveedor);
-        proveedorAD.setIdReferente(proveedor.getReferente().getId());
+        proveedorAD.setReferente(proveedor.getReferente());
         proveedorAD.getProveedor();
 
     }
 
     public void guardar() {
         try {
-            proveedorAD.getProveedor().setId(1l);
-           
-            RefReferente referenteEncontrada = referenteServicio.obtenerPorId(proveedorAD.getIdReferente());
-            proveedorAD.getProveedor().setReferente(referenteEncontrada);
+          
+            proveedorAD.getProveedor().setReferente(proveedorAD.getReferente());
             proveedorServicio.guardar(proveedorAD.getProveedor());
 
             proveedorAD.setListaProveedores(proveedorServicio.buscar(new RefProveedor()));

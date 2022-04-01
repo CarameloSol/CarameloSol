@@ -35,6 +35,10 @@ public class ItemDaoImp extends GenericDaoImp<CatItem, Long>
             sql.append(" and t.id=:id");
             parametros.put("id", item.getId());
         }
+          if (item.getCatalogo() != null) {
+            sql.append(" and t.catalogo=:catalogo");
+            parametros.put("catalogo", item.getCatalogo());
+        }
         sql.append(" order by t.id  desc ");
         Query q = this.em.createQuery(sql.toString());
         parametros.keySet().forEach((key) -> {

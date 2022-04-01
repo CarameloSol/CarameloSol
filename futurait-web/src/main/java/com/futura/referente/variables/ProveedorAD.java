@@ -26,7 +26,6 @@ public class ProveedorAD implements Serializable {
     RefReferente referente = new RefReferente();
     RefProveedor proveedorBusqueda = new RefProveedor();
     List<RefReferente> listaReferente = new ArrayList<>();
-    Long idReferente = null;
 
     public List<RefProveedor> getListaProveedores() {
         return listaProveedores;
@@ -60,13 +59,6 @@ public class ProveedorAD implements Serializable {
         this.listaReferente = listaReferente;
     }
 
-    public Long getIdReferente() {
-        return idReferente;
-    }
-
-    public void setIdReferente(Long idReferente) {
-        this.idReferente = idReferente;
-    }
 
     public RefReferente getReferente() {
         return referente;

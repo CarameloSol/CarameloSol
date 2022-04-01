@@ -11,6 +11,7 @@ import com.excepciones.registos.RegistroNoLocalizado;
 import com.referente.dao.IProveedorDao;
 import com.referente.modelo.RefProveedor;
 import com.referente.servicio.IProveedorServicio;
+import com.referente.servicio.IReferenteServicio;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -24,6 +25,8 @@ public class ProveedorServicioImpl implements IProveedorServicio {
 
     @EJB
     IProveedorDao proveedorDao;
+    @EJB
+    IReferenteServicio referenteServicio;
 
     @Override
     public List<RefProveedor> buscar(RefProveedor proveedor) {
@@ -43,6 +46,7 @@ public class ProveedorServicioImpl implements IProveedorServicio {
 
     @Override
     public void guardar(RefProveedor proveedor) throws RegistroNoGuardado, Exception {
+       referenteServicio.guardar(proveedor.getReferente());
         if (proveedor.getId()== null) {
             proveedorDao.crear(proveedor);
         } else {

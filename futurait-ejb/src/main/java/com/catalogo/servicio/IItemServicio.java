@@ -38,4 +38,8 @@ public interface IItemServicio {
    
     public List<CatItem> busquedaPorFiltros(CatItem item);
 
+    public void guardarListaItem(List<CatItem> listaItemCrear)throws RegistroNoGuardado;
+
+    public void eliminarItem(List<CatItem> listaItemEliminar)throws RegistroNoEliminado, RegistroNoLocalizado;
+
 }

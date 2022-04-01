@@ -17,8 +17,8 @@
             <p:ajax event="change"  process="@this,datosCabecera" listener="#{proveedorControlador.buscar()}" update="tablaPrincipal"/>
         </p:inputText>
     </div>
-    
-        <div >
+
+    <div >
         <p:outputLabel     value="Nombre" /><br/>
         <p:inputText   value="#{proveedorAD.proveedorBusqueda.referente.nombre}"   
                        onkeyup="if (event.keyCode === 13) {
@@ -28,7 +28,7 @@
             <p:ajax event="change"  process="@this,datosCabecera" listener="#{proveedorControlador.buscar()}" update="tablaPrincipal"/>
         </p:inputText>
     </div>
- 
+
 
 
 

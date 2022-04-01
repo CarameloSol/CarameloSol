@@ -9,6 +9,7 @@ package com.catalogo.servicio;
 
 
 import com.catalogo.modelo.CatCatalogo;
+import com.catalogo.modelo.CatItem;
 import com.excepciones.registos.RegistroNoEliminado;
 import com.excepciones.registos.RegistroNoGuardado;
 import com.excepciones.registos.RegistroNoLocalizado;
@@ -33,7 +34,7 @@ public interface ICatalogoServicio {
     public void eliminar(CatCatalogo catalogo)
             throws RegistroNoEliminado, RegistroNoLocalizado;
 
-    public void guardar(CatCatalogo catalogo) throws RegistroNoGuardado,Exception ;
+    public void guardar(CatCatalogo catalogo, List<CatItem> listaItemCrear, List<CatItem> listaItemEliminar) throws RegistroNoGuardado,Exception ;
 
    
     public List<CatCatalogo> busquedaPorFiltros(CatCatalogo catalogo);

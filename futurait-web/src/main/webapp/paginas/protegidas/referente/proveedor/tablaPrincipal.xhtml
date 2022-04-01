@@ -19,6 +19,11 @@
                   filterBy="#{proveedor.referente.nombre}" filterMatchMode="contains">
             <h:outputText value="#{proveedor.referente.nombre}" />
         </p:column>
+        
+        <p:column headerText="Apellido" sortBy="#{proveedor.referente.apellido}"
+                  filterBy="#{proveedor.referente.apellido}" filterMatchMode="contains">
+            <h:outputText value="#{proveedor.referente.apellido}" />
+        </p:column>
  
         <p:column headerText="Estado" sortBy="#{proveedor.referente.estado}"
                   filterBy="#{proveedor.referente.estado}" filterMatchMode="contains">

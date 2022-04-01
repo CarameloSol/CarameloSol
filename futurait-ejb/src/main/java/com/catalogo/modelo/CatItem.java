@@ -44,6 +44,15 @@ public class CatItem implements Serializable {
     @ManyToOne
     private CatCatalogo catalogo;
 
+    public CatItem(CatCatalogo catalogo) {
+        this.catalogo = catalogo;
+    }
+
+    public CatItem() {
+    }
+    
+    
+
     public Long getId() {
         return id;
     }
