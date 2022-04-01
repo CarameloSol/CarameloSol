@@ -3,13 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.referente.dao;
+package com.catalogo.dao;
 
-
-
-
+import com.catalogo.modelo.CatCatalogo;
 import com.generico.daoImp.IGenericoDao;
-import com.referente.modelo.RefCliente;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -18,10 +15,10 @@ import javax.ejb.Local;
  * @author Ricardo
  */
 @Local
-public interface IClienteDao extends IGenericoDao<RefCliente, Long> {
+public interface ICatalogoDao extends IGenericoDao<CatCatalogo, Long> {
 
-    public List<RefCliente> buscar(RefCliente cliente);
+    public List<CatCatalogo> buscar(CatCatalogo catalogo);
 
     
-    public List<RefCliente> busquedaPorFiltros(RefCliente cliente);
+    public List<CatCatalogo> busquedaPorFiltros(CatCatalogo catalogo);
 }

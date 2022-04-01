@@ -1,0 +1,46 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+    </h:head>
+    <f:metadata>
+        <f:viewAction action="#{proveedorControlador.inicio()}" />
+    </f:metadata>
+    <h:body>
+
+        <ui:composition template="/WEB-INF/template.xhtml">
+
+            <ui:define name="content">
+                <h:form id="form" >
+                    <div class="card"><span id="form:messages"></span>
+  <p:outputPanel id="datosCabecera"
+                                       class="ui-toolbar ui-widget ui-widget-header ui-corner-all p-mb-12"  >
+      <ui:include src="cabeceraPrincipal.xhtml" />
+                        </p:outputPanel>
+                        
+                     
+                        <p:outputPanel id="contenidoPrincipal"
+                             class="ui-datatable ui-widget products-table ui-datatable-reflow"
+                             >
+
+                            <ui:include src="dialogoCrud.xhtml" />
+                            <ui:include src="tablaPrincipal.xhtml" />
+                            <ui:include src="dialogoImagen.xhtml" />
+
+
+
+
+
+                        </p:outputPanel>
+                    </div>
+
+                </h:form>
+            </ui:define>
+        </ui:composition>
+
+
+    </h:body>
+</html>

@@ -11,7 +11,6 @@ import com.excepciones.registos.RegistroNoLocalizado;
 import com.futura.referente.variables.ClienteAD;
 import com.futurait.controladorAcceso.BaseControlador;
 import com.referente.modelo.RefCliente;
-import com.referente.modelo.RefPersona;
 import com.referente.modelo.RefReferente;
 import com.referente.servicio.IClienteServicio;
 import com.referente.servicio.IPersonaServicio;

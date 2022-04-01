@@ -16,6 +16,11 @@
         <class>com.referente.modelo.RefContacto</class>
         <class>com.referente.modelo.RefDireccion</class>
         <class>com.referente.modelo.RefTelefono</class>
+        <class>com.catalogo.modelo.CatCatalogo</class>
+        <class>com.catalogo.modelo.CatItem</class>
+        <class>com.sistema.modelo.SisEmpresa</class>
+        <class>com.sistema.modelo.SisFormaPago</class>
+        <class>com.sistema.modelo.SisImpuesto</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
    <properties>
             <property name="hibernate.hbm2ddl.auto" value="update"/>

@@ -59,7 +59,7 @@ public class ProveedorControlador extends BaseControlador implements Serializabl
 
     }
 
-    public void seleccionarDireccion(RefProveedor proveedor) {
+    public void seleccionarProveedor(RefProveedor proveedor) {
         proveedorAD.setProveedor(proveedor);
         proveedorAD.setIdReferente(proveedor.getReferente().getId());
         proveedorAD.getProveedor();
@@ -76,8 +76,8 @@ public class ProveedorControlador extends BaseControlador implements Serializabl
 
             proveedorAD.setListaProveedores(proveedorServicio.buscar(new RefProveedor()));
             addInfoMessage("Guardado exitoso");
-            PrimeFaces.current().executeScript("");
-            PrimeFaces.current().ajax().update("");
+            PrimeFaces.current().executeScript("PF('dlgProveedor').hide();");
+            PrimeFaces.current().ajax().update("form:contenidoPrincipal");
 
         } catch (RegistroNoGuardado ex) {
             addErrorMessage(ex.getMessage());
