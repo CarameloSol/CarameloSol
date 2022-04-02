@@ -21,6 +21,25 @@
         <class>com.sistema.modelo.SisEmpresa</class>
         <class>com.sistema.modelo.SisFormaPago</class>
         <class>com.sistema.modelo.SisImpuesto</class>
+        <class>com.movimiento.modelo.MovAjuste</class>
+        <class>com.movimiento.modelo.MovDetalleAjuste</class>
+        <class>com.movimiento.modelo.MovDetalleTransferencia</class>
+        <class>com.movimiento.modelo.MovKardex</class>
+        <class>com.movimiento.modelo.MovTransferencia</class>
+        <class>com.caja.modelo.CajCierreCaja</class>
+        <class>com.caja.modelo.CajDetalleCierreCaja</class>
+        <class>com.compra.modelo.ComCompra</class>
+        <class>com.compra.modelo.ComCompraImpuesto</class>
+        <class>com.compra.modelo.ComDetalleCompra</class>
+        <class>com.compra.modelo.ComDetalleCompraImpuesto</class>
+        <class>com.venta.modelo.VenDetalleNotaCredito</class>
+        <class>com.venta.modelo.VenDetalleNotaCreditoImpuesto</class>
+        <class>com.venta.modelo.VenDetalleVenta</class>
+        <class>com.venta.modelo.VenDetalleVentaImpuesto</class>
+        <class>com.venta.modelo.VenImpuestoNotaCredito</class>
+        <class>com.venta.modelo.VenNotaCredito</class>
+        <class>com.venta.modelo.VenVenta</class>
+        <class>com.venta.modelo.VenVentaImpuesto</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
    <properties>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
