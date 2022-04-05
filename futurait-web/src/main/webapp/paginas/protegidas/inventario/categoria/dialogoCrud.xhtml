@@ -48,7 +48,14 @@
 
 
                         </div>
+                        <div class="p-field">
+                            <p:outputLabel for="sbcEstado" class="ui-outputlabel ui-widget" value="Estado" />
+                            <p:selectBooleanCheckbox id="sbcEstado" value="#{categoriaAD.categoria.estado}">
+                                <p:ajax/>
+                            </p:selectBooleanCheckbox>
 
+
+                        </div>
 
 
 

@@ -42,7 +42,7 @@ public class DetalleCompraImpuestoServicioImpl implements IDetalleCompraImpuesto
     }
 
     @Override
-    public void guardar(ComDetalleCompraImpuesto detalleCompraImpuesto) throws RegistroNoGuardado, Exception {
+    public void guardar(ComDetalleCompraImpuesto detalleCompraImpuesto) throws RegistroNoGuardado {
         if (detalleCompraImpuesto.getId()== null) {
             detalleCompraImpuestoDao.crear(detalleCompraImpuesto);
         } else {

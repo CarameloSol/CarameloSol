@@ -52,7 +52,7 @@ public class DetalleAjusteServicioImp implements IDetalleAjusteServicio {
     }
 
     @Override
-    public void guardar(MovDetalleAjuste detalleAjuste) throws RegistroNoGuardado, Exception {
+    public void guardar(MovDetalleAjuste detalleAjuste) throws RegistroNoGuardado {
         if (detalleAjuste.getId()== null) {
             detalleAjusteDao.crear(detalleAjuste);
         } else {

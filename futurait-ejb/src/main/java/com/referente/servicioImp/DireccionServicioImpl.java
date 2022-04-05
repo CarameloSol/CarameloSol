@@ -42,7 +42,7 @@ public class DireccionServicioImpl implements IDireccionServicio {
     }
 
     @Override
-    public void guardar(RefDireccion direccion) throws RegistroNoGuardado, Exception {
+    public void guardar(RefDireccion direccion) throws RegistroNoGuardado {
         if (direccion.getId()== null) {
             direccionDao.crear(direccion);
         } else {

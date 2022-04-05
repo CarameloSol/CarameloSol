@@ -36,7 +36,7 @@ public class SisImpuesto implements Serializable {
     private Integer porcentaje;
     
     @Column(name = "imp_empresa", nullable = false)
-    private String empresa;
+    private Long empresa;
     
     @Column(name = "imp_nombre", nullable = false)
     private String nombre;
@@ -65,13 +65,15 @@ public class SisImpuesto implements Serializable {
         this.porcentaje = porcentaje;
     }
 
-    public String getEmpresa() {
+    public Long getEmpresa() {
         return empresa;
     }
 
-    public void setEmpresa(String empresa) {
+    public void setEmpresa(Long empresa) {
         this.empresa = empresa;
     }
+
+  
 
     public String getNombre() {
         return nombre;

@@ -47,7 +47,7 @@ public class CompraImpuestoServicioImpl implements ICompraImpuestoServicio {
     }
 
     @Override
-    public void guardar(ComCompraImpuesto compraImpuesto) throws RegistroNoGuardado, Exception {
+    public void guardar(ComCompraImpuesto compraImpuesto) throws RegistroNoGuardado {
         if (compraImpuesto.getId()==null) {
             compraImpuestoDao.crear(compraImpuesto);
         } else {

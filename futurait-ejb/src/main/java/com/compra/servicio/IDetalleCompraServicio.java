@@ -33,7 +33,7 @@ public interface IDetalleCompraServicio {
     public void eliminar(ComDetalleCompra detalleCompra)
             throws RegistroNoEliminado, RegistroNoLocalizado;
 
-    public void guardar(ComDetalleCompra detalleCompra) throws RegistroNoGuardado,Exception ;
+    public void guardar(ComDetalleCompra detalleCompra) throws RegistroNoGuardado ;
 
    
     public List<ComDetalleCompra> busquedaPorFiltros(ComDetalleCompra detalleCompra);

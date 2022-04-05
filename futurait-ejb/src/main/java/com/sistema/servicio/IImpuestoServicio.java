@@ -33,7 +33,7 @@ public interface IImpuestoServicio {
     public void eliminar(SisImpuesto impuesto)
             throws RegistroNoEliminado, RegistroNoLocalizado;
 
-    public void guardar(SisImpuesto impuesto) throws RegistroNoGuardado,Exception ;
+    public void guardar(SisImpuesto impuesto) throws RegistroNoGuardado ;
 
    
     public List<SisImpuesto> busquedaPorFiltros(SisImpuesto impuesto);

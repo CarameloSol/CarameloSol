@@ -5,27 +5,27 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <p:dialog header="Usuario" widgetVar="dlgUsuario" modal="true" height="100%" width="40%">
-        
-        
-  
+
+
+
         <p:defaultCommand target="btnGuardar"/>
         <p:outputPanel id="contenidoCrud">
 
 
-          
+
             <div class="ui-dialog-content ui-widget-content" id="form:j_idt164_content" style="height: auto;"><div id="form:manage-product-content" class="ui-outputpanel ui-widget ui-fluid">
                     <div id="form:j_idt165" class="ui-outputpanel ui-widget">
 
                         <div class="p-field">
-                            
-                   
-                          <p:commandLink id="btnSeleccionarImagen" value="Imagen"
+
+
+                            <p:commandLink id="btnSeleccionarImagen" value="Imagen"
                                            process="@this,subida"
                                            update="subida"
                                            onclick="PF('dialogSubirImagen').show();"
                                            >
-                
-                
+
+
                                 <p:graphicImage id="imagenProducto" style="position: relative; height: 100px;"
                                                 class="btnImagen"
                                                 stream="false"
@@ -35,12 +35,12 @@
 
 
                             </p:commandLink>
-     </div>
+                        </div>
 
 
-                           
 
-                            
+
+
 
                         <div class="p-field">
                             <p:outputLabel for="somRol" class="ui-outputlabel ui-widget" value="Rol" />
@@ -80,6 +80,15 @@
                                 <p:ajax/>
 
                             </p:password>
+
+
+                        </div>
+
+                        <div class="p-field">
+                            <p:outputLabel for="sbcEstado" class="ui-outputlabel ui-widget" value="Estado" />
+                            <p:selectBooleanCheckbox id="sbcEstado" value="#{usuarioAD.usuario.estado}">
+                                <p:ajax/>
+                            </p:selectBooleanCheckbox>
 
 
                         </div>

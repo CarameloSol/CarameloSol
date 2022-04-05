@@ -46,7 +46,7 @@ public class TransferenciaServicioImp implements ITransferenciaServicio {
     }
 
     @Override
-    public void guardar(MovTransferencia transferencia) throws RegistroNoGuardado, Exception {
+    public void guardar(MovTransferencia transferencia) throws RegistroNoGuardado {
         if (transferencia.getId()==null) {
             transferenciaDao.crear(transferencia);
         } else {

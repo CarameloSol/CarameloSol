@@ -50,7 +50,7 @@ public class FormaPagoServicioImpl implements IFormaPagoServicio {
     }
 
     @Override
-    public void guardar(SisFormaPago formaPago) throws RegistroNoGuardado, Exception {
+    public void guardar(SisFormaPago formaPago) throws RegistroNoGuardado {
         formaPago.setEstado(Boolean.TRUE);
         if (formaPago.getId()==null) {
             formaPagoDao.crear(formaPago);

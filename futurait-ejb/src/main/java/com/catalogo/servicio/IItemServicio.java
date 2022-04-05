@@ -33,7 +33,7 @@ public interface IItemServicio {
     public void eliminar(CatItem item)
             throws RegistroNoEliminado, RegistroNoLocalizado;
 
-    public void guardar(CatItem item) throws RegistroNoGuardado,Exception ;
+    public void guardar(CatItem item) throws RegistroNoGuardado ;
 
    
     public List<CatItem> busquedaPorFiltros(CatItem item);

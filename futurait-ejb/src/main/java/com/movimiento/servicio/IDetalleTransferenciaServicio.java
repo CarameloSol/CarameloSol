@@ -33,7 +33,7 @@ public interface IDetalleTransferenciaServicio {
     public void eliminar(MovDetalleTransferencia detalleTransferencia)
             throws RegistroNoEliminado, RegistroNoLocalizado;
 
-    public void guardar(MovDetalleTransferencia detalleTransferencia) throws RegistroNoGuardado,Exception ;
+    public void guardar(MovDetalleTransferencia detalleTransferencia) throws RegistroNoGuardado ;
 
    
     public List<MovDetalleTransferencia> busquedaPorFiltros(MovDetalleTransferencia detalleTransferencia);

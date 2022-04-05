@@ -5,8 +5,6 @@
  */
 package com.sistema.servicioImp;
 
-
-
 import com.excepciones.registos.RegistroNoEliminado;
 import com.excepciones.registos.RegistroNoGuardado;
 import com.excepciones.registos.RegistroNoLocalizado;
@@ -18,7 +16,6 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
-
 /**
  *
  * @author Ricardo
@@ -29,7 +26,7 @@ public class EmpresaServicioImpl implements IEmpresaServicio {
     @EJB
     IEmpresaDao empresaDao;
 
-   @EJB
+    @EJB
     IReferenteServicio referenteServicio;
 
     @Override
@@ -49,11 +46,10 @@ public class EmpresaServicioImpl implements IEmpresaServicio {
     }
 
     @Override
-    public void guardar(SisEmpresa empresa) throws RegistroNoGuardado, Exception {
-        empresa.setEstado(Boolean.TRUE);
+    public void guardar(SisEmpresa empresa) throws RegistroNoGuardado{
         referenteServicio.guardar(empresa.getReferente());
-        if (empresa.getId()==null) {
-            empresaDao.crear(empresa);
+        if (empresa.getId() == null) {
+             empresaDao.crear(empresa);
         } else {
             empresaDao.actualizar(empresa);
         }

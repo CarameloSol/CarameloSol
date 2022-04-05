@@ -33,7 +33,7 @@ public interface IEmpresaServicio {
     public void eliminar(SisEmpresa empresa)
             throws RegistroNoEliminado, RegistroNoLocalizado;
 
-    public void guardar(SisEmpresa empresa) throws RegistroNoGuardado,Exception ;
+    public void guardar(SisEmpresa empresa) throws RegistroNoGuardado ;
 
    
     public List<SisEmpresa> busquedaPorFiltros(SisEmpresa empresa);

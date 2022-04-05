@@ -4,8 +4,8 @@
       xmlns:p="http://primefaces.org/ui">
 
     <p:dialog header="Nuevo Rol" widgetVar="dlgRol" modal="true" height="100%" width="40%">
-                <p:defaultCommand target="btnGuardar"/>
-     
+        <p:defaultCommand target="btnGuardar"/>
+
         <p:outputPanel id="contenidoCrud">
 
 
@@ -24,14 +24,21 @@
                             <p:outputLabel for="txtDescripcionRol" class="ui-outputlabel ui-widget" value="Descripcion" />
 
                             <p:inputText id="txtDescripcionRol" value="#{rolAD.rol.descripcion}" required="true"  
-                                        class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" >
+                                         class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" >
                                 <p:ajax/>
 
                             </p:inputText>
 
 
                         </div>
+                        <div class="p-field">
+                            <p:outputLabel for="sbcEstado" class="ui-outputlabel ui-widget" value="Estado" />
+                            <p:selectBooleanCheckbox id="sbcEstado" value="#{rolAD.rol.estado}">
+                                <p:ajax/>
+                            </p:selectBooleanCheckbox>
 
+
+                        </div>
                         <div class="p-formgrid p-grid">
 
                             <br></br>
@@ -39,8 +46,8 @@
                                 <span _mstvisible="2">
 
                                     <p:commandButton id="btnGuardar"  value="Guardar" icon="pi pi-check" process="@this,contenidoCrud" update="contenidoCrud,mensaje" 
-                                                      class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left" 
-                                                      actionListener="#{rolControlador.guardar()}"/>
+                                                     class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left" 
+                                                     actionListener="#{rolControlador.guardar()}"/>
 
                                     <p:commandButton  value="Cancelar" icon="pi pi-times" process="@this,contenidoCrud" 
                                                       onclick="PF('dlgRol').hide();"
@@ -55,7 +62,7 @@
         </p:outputPanel>
 
     </p:dialog> 
-    
-   
+
+
 </html>
 

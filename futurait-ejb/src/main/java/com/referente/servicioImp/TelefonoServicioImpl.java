@@ -43,7 +43,7 @@ public class TelefonoServicioImpl implements ITelefonoServicio{
     }
 
     @Override
-    public void guardar(RefTelefono telefono) throws RegistroNoGuardado, Exception {
+    public void guardar(RefTelefono telefono) throws RegistroNoGuardado {
         if (telefono.getId()== null) {
             telefonoDao.crear(telefono);
         } else {

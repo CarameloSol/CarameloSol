@@ -33,7 +33,7 @@ public interface IContactoServicio {
     public void eliminar(RefContacto contacto)
             throws RegistroNoEliminado, RegistroNoLocalizado;
 
-    public void guardar(RefContacto contacto) throws RegistroNoGuardado,Exception ;
+    public void guardar(RefContacto contacto) throws RegistroNoGuardado ;
 
    
     public List<RefContacto> busquedaPorFiltros(RefContacto contacto);

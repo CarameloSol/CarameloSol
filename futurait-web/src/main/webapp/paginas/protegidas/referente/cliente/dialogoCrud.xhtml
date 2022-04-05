@@ -54,7 +54,14 @@
                             </p:inputText>
                         </div>
 
+                        <div class="p-field">
+                            <p:outputLabel for="sbcEstado" class="ui-outputlabel ui-widget" value="Estado" />
+                            <p:selectBooleanCheckbox id="sbcEstado" value="#{clienteAD.cliente.estado}">
+                                <p:ajax/>
+                            </p:selectBooleanCheckbox>
 
+
+                        </div>
 
 
 

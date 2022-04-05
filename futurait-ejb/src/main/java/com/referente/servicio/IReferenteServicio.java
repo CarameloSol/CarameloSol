@@ -33,7 +33,7 @@ public interface IReferenteServicio {
     public void eliminar(RefReferente referente)
             throws RegistroNoEliminado, RegistroNoLocalizado;
 
-    public void guardar(RefReferente referente) throws RegistroNoGuardado,Exception ;
+    public void guardar(RefReferente referente) throws RegistroNoGuardado ;
 
    
     public List<RefReferente> busquedaPorFiltros(RefReferente referente);

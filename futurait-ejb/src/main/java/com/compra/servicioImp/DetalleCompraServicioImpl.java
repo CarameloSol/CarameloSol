@@ -45,7 +45,7 @@ public class DetalleCompraServicioImpl implements IDetalleCompraServicio {
     }
 
     @Override
-    public void guardar(ComDetalleCompra detalleCompra) throws RegistroNoGuardado, Exception {
+    public void guardar(ComDetalleCompra detalleCompra) throws RegistroNoGuardado {
         if (detalleCompra.getId()==null) {
             detalleCompraDao.crear(detalleCompra);
         } else {

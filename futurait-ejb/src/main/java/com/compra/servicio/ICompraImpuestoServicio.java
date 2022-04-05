@@ -33,7 +33,7 @@ public interface ICompraImpuestoServicio {
     public void eliminar(ComCompraImpuesto compraImpuesto)
             throws RegistroNoEliminado, RegistroNoLocalizado;
 
-    public void guardar(ComCompraImpuesto compraImpuesto) throws RegistroNoGuardado,Exception ;
+    public void guardar(ComCompraImpuesto compraImpuesto) throws RegistroNoGuardado ;
 
    
     public List<ComCompraImpuesto> busquedaPorFiltros(ComCompraImpuesto compraImpuesto);

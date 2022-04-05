@@ -33,7 +33,7 @@ public interface IDetalleAjusteServicio {
     public void eliminar(MovDetalleAjuste detalleAjuste)
             throws RegistroNoEliminado, RegistroNoLocalizado;
 
-    public void guardar(MovDetalleAjuste detalleAjuste) throws RegistroNoGuardado,Exception ;
+    public void guardar(MovDetalleAjuste detalleAjuste) throws RegistroNoGuardado ;
 
    
     public List<MovDetalleAjuste> busquedaPorFiltros(MovDetalleAjuste detalleAjuste);

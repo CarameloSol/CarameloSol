@@ -37,6 +37,9 @@ public class AccRol implements Serializable {
     @Column(name = "rol_descripcion", nullable = false)
     private String descripcion;
 
+    @Column(name = "usu_estado", nullable = true)
+    private Boolean estado;
+
     @Column(name = "empresa", nullable = false)
     private Long empresa;
 
@@ -81,6 +84,14 @@ public class AccRol implements Serializable {
 
     public void setListaUsuarios(List<AccUsuario> listaUsuarios) {
         this.listaUsuarios = listaUsuarios;
+    }
+
+    public Boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Boolean estado) {
+        this.estado = estado;
     }
 
 }

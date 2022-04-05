@@ -53,7 +53,7 @@ public class ArticuloServicioImpl implements IArticuloServicio {
         }
     }
     @Override
-    public void guardar(InvArticulo articulo) throws RegistroNoGuardado, Exception {
+    public void guardar(InvArticulo articulo) throws RegistroNoGuardado {
         validacionUsuario(articulo);
        if (articulo.getId() == null) {
             articuloDao.crear(articulo);

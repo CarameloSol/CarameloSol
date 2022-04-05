@@ -54,7 +54,7 @@ public class ImpuestoPagoServicioImpl implements IImpuestoServicio {
     }
 
     @Override
-    public void guardar(SisImpuesto impuesto) throws RegistroNoGuardado, Exception {
+    public void guardar(SisImpuesto impuesto) throws RegistroNoGuardado {
         impuesto.setEstado(Boolean.TRUE);
         if (impuesto.getId()== null) {
             impuestoDao.crear(impuesto);

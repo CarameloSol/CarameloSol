@@ -33,7 +33,7 @@ public interface IKardexServicio {
     public void eliminar(MovKardex kardex)
             throws RegistroNoEliminado, RegistroNoLocalizado;
 
-    public void guardar(MovKardex kardex) throws RegistroNoGuardado,Exception ;
+    public void guardar(MovKardex kardex) throws RegistroNoGuardado ;
 
    
     public List<MovKardex> busquedaPorFiltros(MovKardex kardex);
