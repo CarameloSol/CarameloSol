@@ -1,0 +1,88 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+
+    </h:head>
+    <f:metadata>
+
+    </f:metadata>
+    <h:body >
+        <ui:composition template="/WEB-INF/template.xhtml">
+            <ui:define name="content">
+                <div class="card">
+
+                    <p:splitter style="height: 500px" styleClass="p-mb-7">
+                        <p:splitterPanel size="30" styleClass="p-d-flex p-ai-center p-jc-center">
+
+
+                            <p:splitter layout="vertical" style="height: 495px">
+                                <p:splitterPanel  size="150" styleClass="p-d-flex p-ai-center p-jc-center" >
+                                    <div id="Layer1" style="width:100%; height:100%; overflow: scroll;">Aquí saldrá un scroll<br></br>
+                                        <br></br>
+                                        sólo<br></br>
+                                        dale<br></br>
+                                        interlineados<br></br>
+                                        simple<br></br>
+                                        no ?
+                                        <br></br>
+                                        sólo<br></br>
+                                        dale<br></br>
+                                        interlineados<br></br>
+                                        simple<br></br>
+                                        no ?
+                                        <br></br>
+                                        sólo<br></br>
+                                        dale<br></br>
+                                        interlineados<br></br>
+                                        simple<br></br>
+                                        no ?
+                                        <br></br>
+                                        sólo<br></br>
+                                        dale<br></br>
+                                        interlineados<br></br>
+                                        simple<br></br>
+                                        no ?
+
+
+
+                                    </div>
+                                </p:splitterPanel>
+                                <p:splitterPanel styleClass="p-d-flex p-ai-center p-jc-center" style="height: 550px">
+                                    <p:button value="Volver" style="left: 0%; height: 30%; width: 20% " /> 
+                                    <p:button value="Volver" style="left: 1%; height: 30%; width: 20% " />  
+                                    <p:button value="Validar" style="left: 2%; height: 30%; width: 20% " />
+                                </p:splitterPanel>
+                            </p:splitter>
+
+                        </p:splitterPanel>
+                        <p:splitterPanel styleClass="p-d-flex p-ai-center p-jc-center">
+                            <div id="Layer1" style="width:100%; height:100%; overflow: scroll;">
+                                <p:dataTable id="tablaventa" var="venta" value="#{articuloAD.listaArticulos}">
+                                    <p:column headerText="Imagen"  >
+
+                                        <p:graphicImage  style="position: relative; height: 100px;"
+                                                         class="btnImagen" 
+                                                         stream="false"
+                                                         value="#{articulo.imagen eq null?request.contextPath.concat('/resources/images/noImagen.jpg'):articulo.imagen}"
+                                                         >
+                                        </p:graphicImage>
+
+
+
+                                    </p:column>
+                                </p:dataTable>
+                            </div>
+
+
+                        </p:splitterPanel>
+                    </p:splitter>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+
+</html>
