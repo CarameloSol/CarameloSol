@@ -5,8 +5,8 @@
  */
 package com.futura.venta.controlador;
 
+import com.controladorAcceso.BaseControlador;
 import com.futura.venta.variables.VentaAD;
-import com.futurait.controladorAcceso.BaseControlador;
 import com.inventario.servicio.IArticuloServicio;
 import com.venta.modelo.VenVenta;
 import java.io.Serializable;
