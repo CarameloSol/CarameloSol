@@ -1,0 +1,108 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+
+    </h:head>
+    <f:metadata>
+
+        <f:viewAction action="#{ventaControlador.inicio()}" />
+    </f:metadata>
+    <h:body >
+        <ui:composition template="/WEB-INF/template.xhtml">
+            <ui:define name="content">
+                <h:form id="form" >
+
+
+                    <div class="card">
+
+                        <p:splitter style="height: 500px" styleClass="p-mb-7">
+                            <p:splitterPanel size="30" styleClass="p-d-flex p-ai-center p-jc-center">
+
+
+                                <p:splitter layout="vertical" style="height: 495px">
+                                    <p:splitterPanel  size="150" styleClass="p-d-flex p-ai-center p-jc-center" >
+
+                                        <div id="Layer12" style="width:100%; height:100%; overflow: scroll;">
+                                           <p:dataTable id="tablaDetalleVenta" var="detalleVenta" value="#{ventaAD.listaDetalleVentaCreacion}" 
+                                                         rowKey="#{detalleVenta.id}"   >
+                                                <p:column headerText="Nombre" sortBy="#{detalleVenta.articulo.nombre}"
+                                                          filterBy="#{detalleVenta.articulo.nombre}" filterMatchMode="contains">
+                                                    <h:outputText value="#{detalleVenta.articulo.nombre}" />
+                                                </p:column>
+
+
+
+
+                                                <p:column headerText="Eliminar" width="7%">
+
+
+                                                    <p:commandButton  process="@this"  style="font-size: 2rem"
+                                                                      icon="pi pi-trash" update="form,mensaje"
+                                                                      actionListener="#{ventaControlador.eliminarProductoVenta(detalleVenta)}"
+                                                                      class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-button-warning   ui-state-hover"                              >
+                                                    </p:commandButton>
+
+
+                                                </p:column>
+
+                                            </p:dataTable>  
+                                        </div>
+                                           
+                                    </p:splitterPanel>
+                                    <p:splitterPanel styleClass="p-d-flex p-ai-center p-jc-center" style="height: 550px">
+                                        <p:button value="Volver" style="left: 0%; height: 30%; width: 20% " /> 
+                                        <p:button value="Volver" style="left: 1%; height: 30%; width: 20% " />  
+                                        <p:button value="Validar" style="left: 2%; height: 30%; width: 20% " />
+                                    </p:splitterPanel>
+                                </p:splitter>
+
+                            </p:splitterPanel>
+                            <p:splitterPanel styleClass="p-d-flex p-ai-center p-jc-center">
+                                <div id="Layer1" style="width:100%; height:100%; overflow: scroll;">
+
+                                    <p:repeat value="#{ventaAD.listaArticulos}"  var="articulo">
+                                        <div class="product">
+                                            <div class="product-list-item border-1 p-p-5">
+                                                <p:commandLink process="@this" update="form" actionListener="#{ventaControlador.seleccionarProductoVenta(articulo)}">
+
+
+                                                    <p:graphicImage  style="position: relative; height: 100px;"
+                                                                     class="btnImagen" 
+                                                                     stream="false"
+                                                                     value="#{articulo.imagen eq null?request.contextPath.concat('/resources/images/noImagen.jpg'):articulo.imagen}"
+                                                                     >
+                                                    </p:graphicImage>
+
+                                                    <div class="product-list-detail">
+                                                        <div class="product-name">#{articulo.nombre}</div>
+                                                        <i class="pi pi-tag product-category-icon"/><span
+                                                            class="product-category">#{articulo.categoria.nombre}</span>
+                                                    </div>
+                                                    <div class="product-list-action">
+                                                        <h:outputText value="#{articulo.precio}" styleClass="product-price">
+                                                            <f:convertNumber currencySymbol="$" type="currency"/>
+                                                        </h:outputText>
+
+                                                    </div>
+                                                </p:commandLink >
+                                            </div>
+                                        </div>
+                                    </p:repeat>
+
+
+                                </div>
+
+
+                            </p:splitterPanel>
+                        </p:splitter>
+                    </div>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+
+</html>

@@ -8,6 +8,7 @@ package com.futura.venta.variables;
 import com.inventario.modelo.InvArticulo;
 import com.referente.modelo.RefCliente;
 import com.referente.modelo.RefReferente;
+import com.venta.modelo.VenDetalleVenta;
 import com.venta.modelo.VenVenta;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -23,18 +24,9 @@ import javax.faces.view.ViewScoped;
 @ViewScoped
 public class VentaAD implements Serializable {
 
-    List<VenVenta> listaventas = new ArrayList<>();
     VenVenta venta = new VenVenta();
-    VenVenta ventaBusqueda = new VenVenta();
     List<InvArticulo> listaArticulos = new ArrayList<>();
-
-    public List<VenVenta> getListaventas() {
-        return listaventas;
-    }
-
-    public void setListaventas(List<VenVenta> listaventas) {
-        this.listaventas = listaventas;
-    }
+    List<VenDetalleVenta> listaDetalleVentaCreacion = new ArrayList<>();
 
     public VenVenta getVenta() {
         return venta;
@@ -42,14 +34,6 @@ public class VentaAD implements Serializable {
 
     public void setVenta(VenVenta venta) {
         this.venta = venta;
-    }
-
-    public VenVenta getVentaBusqueda() {
-        return ventaBusqueda;
-    }
-
-    public void setVentaBusqueda(VenVenta ventaBusqueda) {
-        this.ventaBusqueda = ventaBusqueda;
     }
 
     public List<InvArticulo> getListaArticulos() {
@@ -60,5 +44,12 @@ public class VentaAD implements Serializable {
         this.listaArticulos = listaArticulos;
     }
 
-   
+    public List<VenDetalleVenta> getListaDetalleVentaCreacion() {
+        return listaDetalleVentaCreacion;
+    }
+
+    public void setListaDetalleVentaCreacion(List<VenDetalleVenta> listaDetalleVentaCreacion) {
+        this.listaDetalleVentaCreacion = listaDetalleVentaCreacion;
+    }
+
 }
