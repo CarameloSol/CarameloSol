@@ -37,7 +37,7 @@ public interface IProveedorServicio {
     public void eliminar(RefProveedor proveedor)
             throws RegistroNoEliminado, RegistroNoLocalizado;
 
-    public void guardar(RefProveedor proveedor) throws RegistroNoGuardado,Exception ;
+    public void guardar(RefProveedor proveedor) throws RegistroNoGuardado ;
 
    
     public List<RefProveedor> busquedaPorFiltros(RefProveedor proveedor);

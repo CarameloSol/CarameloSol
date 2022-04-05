@@ -30,7 +30,7 @@ public interface IUsuarioServicio {
     public void eliminar(AccUsuario usuario)
             throws RegistroNoEliminado, RegistroNoLocalizado;
 
-    public void guardar(AccUsuario usuario) throws RegistroNoGuardado,Exception ;
+    public void guardar(AccUsuario usuario) throws RegistroNoGuardado,Exception  ;
 
     public AccUsuario usuarioLogeado(Long empresa, String usuario);
     public List<AccUsuario> busquedaPorFiltros(AccUsuario usuario);

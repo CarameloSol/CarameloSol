@@ -34,7 +34,7 @@ public interface ICatalogoServicio {
     public void eliminar(CatCatalogo catalogo)
             throws RegistroNoEliminado, RegistroNoLocalizado;
 
-    public void guardar(CatCatalogo catalogo, List<CatItem> listaItemCrear, List<CatItem> listaItemEliminar) throws RegistroNoGuardado,Exception ;
+    public void guardar(CatCatalogo catalogo, List<CatItem> listaItemCrear, List<CatItem> listaItemEliminar) throws RegistroNoGuardado,RegistroNoLocalizado,RegistroNoEliminado ;
 
    
     public List<CatCatalogo> busquedaPorFiltros(CatCatalogo catalogo);

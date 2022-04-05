@@ -50,7 +50,7 @@ public class DetalleCierreCajaServicioImpl implements IDetalleCierreCajaServicio
     }
 
     @Override
-    public void guardar(CajDetalleCierreCaja detalleCierreCaja) throws RegistroNoGuardado, Exception {
+    public void guardar(CajDetalleCierreCaja detalleCierreCaja) throws RegistroNoGuardado {
         if (detalleCierreCaja.getId()==null) {
             detalleCierrecajaDao.crear(detalleCierreCaja);
         } else {

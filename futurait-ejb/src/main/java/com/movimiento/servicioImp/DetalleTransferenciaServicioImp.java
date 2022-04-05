@@ -54,7 +54,7 @@ public class DetalleTransferenciaServicioImp implements IDetalleTransferenciaSer
     }
 
     @Override
-    public void guardar(MovDetalleTransferencia detalleTransferencia) throws RegistroNoGuardado, Exception {
+    public void guardar(MovDetalleTransferencia detalleTransferencia) throws RegistroNoGuardado {
         if (detalleTransferencia.getId()==null) {
             detalleTransferenciaDao.crear(detalleTransferencia);
         } else {

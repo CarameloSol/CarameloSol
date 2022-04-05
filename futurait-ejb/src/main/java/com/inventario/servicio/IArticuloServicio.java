@@ -32,7 +32,7 @@ public interface IArticuloServicio {
     public void eliminar(InvArticulo articulo)
             throws RegistroNoEliminado, RegistroNoLocalizado;
 
-    public void guardar(InvArticulo articulo) throws RegistroNoGuardado,Exception ;
+    public void guardar(InvArticulo articulo) throws RegistroNoGuardado ;
 
    
     public List<InvArticulo> busquedaPorFiltros(InvArticulo articulo);

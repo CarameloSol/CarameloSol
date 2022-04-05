@@ -33,7 +33,7 @@ public interface IDireccionServicio {
     public void eliminar(RefDireccion direccion)
             throws RegistroNoEliminado, RegistroNoLocalizado;
 
-    public void guardar(RefDireccion direccion) throws RegistroNoGuardado,Exception ;
+    public void guardar(RefDireccion direccion) throws RegistroNoGuardado ;
 
    
     public List<RefDireccion> busquedaPorFiltros(RefDireccion direccion);

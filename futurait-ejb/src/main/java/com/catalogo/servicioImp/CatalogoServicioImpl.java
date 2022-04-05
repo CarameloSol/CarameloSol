@@ -50,7 +50,7 @@ public class CatalogoServicioImpl implements ICatalogoServicio {
     }
 
     @Override
-    public void guardar(CatCatalogo catalogo, List<CatItem> listaItemCrear, List<CatItem> listaItemEliminar) throws RegistroNoGuardado, Exception {
+    public void guardar(CatCatalogo catalogo, List<CatItem> listaItemCrear, List<CatItem> listaItemEliminar) throws RegistroNoGuardado,RegistroNoLocalizado,RegistroNoEliminado {
 
         if (catalogo.getId() == null) {
             catalogo.setEstado(Boolean.TRUE);

@@ -34,7 +34,8 @@ public class SisEmpresa implements Serializable {
 
     @Column(name = "emp_estado", nullable = false)
     private Boolean estado;
-
+    @Column(name = "emp_imagen")
+    private byte[] imagen;
     @JoinColumn(name = "referente", referencedColumnName = "ref_id")
     @ManyToOne
     private RefReferente referente;
@@ -61,6 +62,14 @@ public class SisEmpresa implements Serializable {
 
     public void setReferente(RefReferente referente) {
         this.referente = referente;
+    }
+
+    public byte[] getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(byte[] imagen) {
+        this.imagen = imagen;
     }
 
 }

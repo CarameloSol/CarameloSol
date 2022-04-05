@@ -45,7 +45,7 @@ public class ContactoServicioImpl implements IContactoServicio {
     }
 
     @Override
-    public void guardar(RefContacto contacto) throws RegistroNoGuardado, Exception {
+    public void guardar(RefContacto contacto) throws RegistroNoGuardado {
         if (contacto.getId()== null) {
             contactoDao.crear(contacto);
         } else {

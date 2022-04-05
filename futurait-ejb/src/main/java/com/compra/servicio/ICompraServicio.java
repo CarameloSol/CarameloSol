@@ -33,7 +33,7 @@ public interface ICompraServicio {
     public void eliminar(ComCompra compra)
             throws RegistroNoEliminado, RegistroNoLocalizado;
 
-    public void guardar(ComCompra compra) throws RegistroNoGuardado,Exception ;
+    public void guardar(ComCompra compra) throws RegistroNoGuardado ;
 
    
     public List<ComCompra> busquedaPorFiltros(ComCompra compra);

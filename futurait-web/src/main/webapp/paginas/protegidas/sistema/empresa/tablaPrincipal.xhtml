@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <p:dataTable id="tablaPrincipal" var="empresa" value="#{empresaAD.listaEmpresas}" 
+                 rowKey="#{empresa.id}"  paginator="true" rows="3"
+                 paginatorPosition="bottom"  reflow="true" 
+                 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                 rowsPerPageTemplate="3,6,9">
+        
+        <p:column headerText="Identifiacion" sortBy="#{empresa.referente.identificacion}"
+                  filterBy="#{empresa.referente.identificacion}" filterMatchMode="contains">
+            <h:outputText value="#{empresa.referente.identificacion}" />
+        </p:column>
+        
+        <p:column headerText="Nombre" sortBy="#{empresa.referente.nombre}"
+                  filterBy="#{empresa.referente.nombre}" filterMatchMode="contains">
+            <h:outputText value="#{empresa.referente.nombre}" />
+        </p:column>
+ 
+        <p:column headerText="Apellido" sortBy="#{empresa.referente.apellido}"
+                  filterBy="#{empresa.referente.apellido}" filterMatchMode="contains">
+            <h:outputText value="#{empresa.referente.apellido}" />
+        </p:column>
+        
+            <p:column headerText="Imagen"  >
+
+            <p:graphicImage  style="position: relative; height: 100px;"
+                             class="btnImagen" 
+                             stream="false"
+                             value="#{empresa.imagen eq null?request.contextPath.concat('/resources/images/noImagen.jpg'):empresa.imagen}"
+                             >
+            </p:graphicImage>
+
+           
+
+        </p:column>
+
+        <p:column headerText="Opciones" width="7%">
+
+
+
+
+            <p:commandButton icon="pi pi-pencil" process="@this"  style="font-size: 2rem"
+                                 class="ui-button ui-widget ui-state-default ui-corner-all
+                             ui-button-icon-only edit-button   ui-button-success ui-state-hover" 
+                             actionListener="#{empresaControlador.seleccionarEmpresa(empresa)}"
+                             onclick="PF('dlgEmpresa').show();" update="form:contenidoCrud"
+                             />
+
+
+
+
+            <p:commandButton  process="@this"  style="font-size: 2rem"
+                              icon="pi pi-trash" update="tablaPrincipal,mensaje"
+                              actionListener="#{empresaControlador.eliminar(empresa)}"
+       class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-button-warning   ui-state-hover"                              >
+                <p:confirm header="Confirmación" message="Esta seguro de eliminar el empresa?" icon="pi pi-info-circle"/>
+            </p:commandButton>
+
+
+        </p:column>
+
+    </p:dataTable>
+
+    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+        <p:commandButton value="NO " type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
+        <p:commandButton value="SI" type="button" styleClass="ui-confirmdialog-yes" />
+    </p:confirmDialog>
+
+</html>
+

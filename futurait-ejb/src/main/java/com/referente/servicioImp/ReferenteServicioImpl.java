@@ -46,7 +46,7 @@ public class ReferenteServicioImpl implements IReferenteServicio {
     }
 
     @Override
-    public void guardar(RefReferente referente) throws RegistroNoGuardado, Exception {
+    public void guardar(RefReferente referente) throws RegistroNoGuardado {
         if (referente.getId() == null) {
             referenteDao.crear(referente);
         } else {

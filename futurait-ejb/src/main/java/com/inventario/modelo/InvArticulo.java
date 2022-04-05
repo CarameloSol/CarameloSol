@@ -5,6 +5,7 @@
  */
 package com.inventario.modelo;
 
+import com.sistema.modelo.SisImpuesto;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import javax.persistence.Basic;
@@ -48,12 +49,19 @@ public class InvArticulo implements Serializable {
     @Column(name = "art_stock", nullable = false)
     private BigDecimal stock;
 
+    @Column(name = "art_estado", nullable = true)
+    private Boolean estado;
+
     @Column(name = "empresa", nullable = false)
     private Long empresa;
-    
-      @JoinColumn(name = "categoria", referencedColumnName = "cat_id")
+
+    @JoinColumn(name = "categoria", referencedColumnName = "cat_id")
     @ManyToOne
     private InvCategoria categoria;
+
+    @JoinColumn(name = "impuesto", referencedColumnName = "imp_id")
+    @ManyToOne
+    private SisImpuesto impuesto;
 
     @Transient
     private String validacionNombre;
@@ -128,6 +136,22 @@ public class InvArticulo implements Serializable {
 
     public void setCategoria(InvCategoria categoria) {
         this.categoria = categoria;
+    }
+
+    public SisImpuesto getImpuesto() {
+        return impuesto;
+    }
+
+    public void setImpuesto(SisImpuesto impuesto) {
+        this.impuesto = impuesto;
+    }
+
+    public Boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Boolean estado) {
+        this.estado = estado;
     }
 
 }

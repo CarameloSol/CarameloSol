@@ -40,9 +40,14 @@ public class AccUsuario implements Serializable {
     
       @Column(name = "usu_imagen")
     private byte[] imagen;
+      
+         @Column(name = "usu_estado", nullable = true)
+    private Boolean estado;
 
     @Column(name = "empresa", nullable = false)
     private Long empresa;
+    
+  
 
     @JoinColumn(name = "rol", referencedColumnName = "rol_id")
     @ManyToOne
@@ -169,6 +174,14 @@ public class AccUsuario implements Serializable {
 
     public void setImagen(byte[] imagen) {
         this.imagen = imagen;
+    }
+
+    public Boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Boolean estado) {
+        this.estado = estado;
     }
 
    

@@ -60,7 +60,7 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
     }
 
     @Override
-    public void guardar(AccUsuario usuario) throws RegistroNoGuardado, Exception {
+    public void guardar(AccUsuario usuario) throws RegistroNoGuardado,Exception {
         validacionUsuario(usuario);
         if (usuario.getClave().isEmpty()) {
             usuario.setClave(usuario.getValidacionClave());

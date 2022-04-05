@@ -45,7 +45,7 @@ public class ProveedorServicioImpl implements IProveedorServicio {
     }
 
     @Override
-    public void guardar(RefProveedor proveedor) throws RegistroNoGuardado, Exception {
+    public void guardar(RefProveedor proveedor) throws RegistroNoGuardado {
        referenteServicio.guardar(proveedor.getReferente());
         if (proveedor.getId()== null) {
             proveedorDao.crear(proveedor);

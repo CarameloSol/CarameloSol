@@ -5,7 +5,6 @@
  */
 package com.catalogo.modelo;
 
-import com.acceso.modelo.AccUsuario;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -40,6 +39,7 @@ public class CatCatalogo implements Serializable {
     
     @Column(name = "cat_codigo", nullable = false)
     private String codigo;
+    
     
        @OneToMany(mappedBy = "catalogo")
     private List<CatItem> listaItems;

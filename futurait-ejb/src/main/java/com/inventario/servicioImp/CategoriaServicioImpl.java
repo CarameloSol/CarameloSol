@@ -53,7 +53,7 @@ public class CategoriaServicioImpl implements ICategoriaServicio {
         }
     }
     @Override
-    public void guardar(InvCategoria categoria) throws RegistroNoGuardado, Exception {
+    public void guardar(InvCategoria categoria) throws RegistroNoGuardado {
         validacionCategoria(categoria);
         if (categoria.getId()==null) {
             categoriaDao.crear(categoria);

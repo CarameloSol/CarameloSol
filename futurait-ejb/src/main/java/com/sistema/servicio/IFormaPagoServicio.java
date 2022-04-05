@@ -33,7 +33,7 @@ public interface IFormaPagoServicio {
     public void eliminar(SisFormaPago formaPago)
             throws RegistroNoEliminado, RegistroNoLocalizado;
 
-    public void guardar(SisFormaPago formaPago) throws RegistroNoGuardado,Exception ;
+    public void guardar(SisFormaPago formaPago) throws RegistroNoGuardado ;
 
    
     public List<SisFormaPago> busquedaPorFiltros(SisFormaPago formaPago);

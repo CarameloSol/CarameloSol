@@ -35,7 +35,7 @@ public interface ITelefonoServicio {
     public void eliminar(RefTelefono telefono)
             throws RegistroNoEliminado, RegistroNoLocalizado;
 
-    public void guardar(RefTelefono telefono) throws RegistroNoGuardado,Exception ;
+    public void guardar(RefTelefono telefono) throws RegistroNoGuardado ;
 
    
     public List<RefTelefono> busquedaPorFiltros(RefTelefono telefono);

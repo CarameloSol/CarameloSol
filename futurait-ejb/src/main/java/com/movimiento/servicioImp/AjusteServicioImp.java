@@ -54,7 +54,7 @@ public class AjusteServicioImp implements IAjusteServicio {
     }
 
     @Override
-    public void guardar(MovAjuste ajuste) throws RegistroNoGuardado, Exception {
+    public void guardar(MovAjuste ajuste) throws RegistroNoGuardado {
         ajuste.setEmpresa(1l);
         if (ajuste.getId()==null) {
             ajusteDao.crear(ajuste);

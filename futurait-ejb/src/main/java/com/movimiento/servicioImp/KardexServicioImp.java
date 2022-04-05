@@ -52,7 +52,7 @@ public class KardexServicioImp implements IKardexServicio {
     }
 
     @Override
-    public void guardar(MovKardex kardex) throws RegistroNoGuardado, Exception {
+    public void guardar(MovKardex kardex) throws RegistroNoGuardado {
         if (kardex.getId()==null) {
             kardexDao.crear(kardex);
         } else {

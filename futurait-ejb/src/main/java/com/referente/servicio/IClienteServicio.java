@@ -33,7 +33,7 @@ public interface IClienteServicio {
     public void eliminar(RefCliente cliente)
             throws RegistroNoEliminado, RegistroNoLocalizado;
 
-    public void guardar(RefCliente cliente) throws RegistroNoGuardado,Exception ;
+    public void guardar(RefCliente cliente) throws RegistroNoGuardado ;
 
    
     public List<RefCliente> busquedaPorFiltros(RefCliente cliente);

@@ -53,7 +53,7 @@ public class ClienteServicioImpl implements IClienteServicio {
     }
     
     @Override
-    public void guardar(RefCliente cliente) throws RegistroNoGuardado, Exception {
+    public void guardar(RefCliente cliente) throws RegistroNoGuardado {
         cliente.setEstado(Boolean.TRUE);
        referenteServicio.guardar(cliente.getReferente());
         if (cliente.getId()== null) {

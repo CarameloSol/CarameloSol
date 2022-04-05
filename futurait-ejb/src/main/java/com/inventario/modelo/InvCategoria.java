@@ -39,10 +39,12 @@ public class InvCategoria implements Serializable {
     @Column(name = "cat_descripcion", nullable = false)
     private String descripcion;
 
+    @Column(name = "cat_estado", nullable = true)
+    private Boolean estado;
+
     @Column(name = "empresa", nullable = false)
     private Long empresa;
 
-   
     @Transient
     private String validacionNombre;
 
@@ -94,5 +96,12 @@ public class InvCategoria implements Serializable {
         this.validacionNombre = validacionNombre;
     }
 
+    public Boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Boolean estado) {
+        this.estado = estado;
+    }
 
 }

@@ -33,7 +33,7 @@ public interface IAjusteServicio {
     public void eliminar(MovAjuste ajuste)
             throws RegistroNoEliminado, RegistroNoLocalizado;
 
-    public void guardar(MovAjuste ajuste) throws RegistroNoGuardado,Exception ;
+    public void guardar(MovAjuste ajuste) throws RegistroNoGuardado ;
 
    
     public List<MovAjuste> busquedaPorFiltros(MovAjuste ajuste);

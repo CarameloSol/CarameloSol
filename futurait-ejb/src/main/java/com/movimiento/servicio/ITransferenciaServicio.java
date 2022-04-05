@@ -33,7 +33,7 @@ public interface ITransferenciaServicio {
     public void eliminar(MovTransferencia transferencia)
             throws RegistroNoEliminado, RegistroNoLocalizado;
 
-    public void guardar(MovTransferencia transferencia) throws RegistroNoGuardado,Exception ;
+    public void guardar(MovTransferencia transferencia) throws RegistroNoGuardado ;
 
    
     public List<MovTransferencia> busquedaPorFiltros(MovTransferencia transferencia);

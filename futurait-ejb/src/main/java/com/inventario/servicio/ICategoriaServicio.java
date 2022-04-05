@@ -32,7 +32,7 @@ public interface ICategoriaServicio {
     public void eliminar(InvCategoria categoria)
             throws RegistroNoEliminado, RegistroNoLocalizado;
 
-    public void guardar(InvCategoria categoria) throws RegistroNoGuardado,Exception ;
+    public void guardar(InvCategoria categoria) throws RegistroNoGuardado ;
 
     public List<InvCategoria> busquedaPorFiltros(InvCategoria categoria);
 

@@ -34,7 +34,7 @@ public interface IDetalleCierreCajaServicio {
     public void eliminar(CajDetalleCierreCaja detalleCierreCaja)
             throws RegistroNoEliminado, RegistroNoLocalizado;
 
-    public void guardar(CajDetalleCierreCaja detalleCierreCaja) throws RegistroNoGuardado,Exception ;
+    public void guardar(CajDetalleCierreCaja detalleCierreCaja) throws RegistroNoGuardado ;
 
    
     public List<CajDetalleCierreCaja> busquedaPorFiltros(CajDetalleCierreCaja detalleCierreCaja);

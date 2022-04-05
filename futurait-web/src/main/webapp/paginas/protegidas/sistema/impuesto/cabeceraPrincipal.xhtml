@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui">
+
+
+
+
+    <div >
+        <p:outputLabel     value="Nombre" /><br/>
+        <p:inputText   value="#{impuestoAD.impuestoBusqueda.nombre}"   
+                       onkeyup="if (event.keyCode === 13) {
+                                   onchange();
+                               }"
+                       class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all">
+            <p:ajax event="change"  process="@this,datosCabecera" listener="#{impuestoControlador.buscar()}" update="tablaPrincipal"/>
+        </p:inputText>
+    </div>
+    
+        <div >
+        <p:outputLabel     value="Descripción" /><br/>
+      
+    </div>
+ 
+
+
+
+    <p:commandButton id="btnBuscar" value="buscar"   process="@this,datosCabecera"
+                     actionListener="#{impuestoControlador.buscar()}" style="font-size: 1.5rem"
+                     icon="pi pi-search"   update="tablaPrincipal"
+                     class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only ui-button-info p-mr-2 p-mb-2 ui-state-hover" 
+                     />
+
+    <p:commandButton id="btnLimpiar" value="Limpiar"   process="@this,datosCabecera" style="font-size: 1.5rem"
+                     actionListener="#{impuestoControlador.limpiarBusqueda()}"
+                     icon="pi pi-refresh"   update="tablaPrincipal,datosCabecera"
+                     class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left ui-state-hover"
+                     />
+
+    <p:commandButton value="Nuevo"   process="@this" style="font-size: 1.5rem"
+                     actionListener="#{impuestoControlador.nuevo()}"
+                     icon="pi pi-plus"  onclick="PF('dlgImpuesto').show();" update="form:contenidoCrud"
+                     class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left ui-button-success "
+                     />
+
+
+
+</html>
+
