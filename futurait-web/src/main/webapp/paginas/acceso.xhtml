@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:p="http://primefaces.org/ui">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
-           <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -19,8 +20,10 @@
 
         <title>Inicio de sesión</title>
     </h:head>
-    
-      <h:body class="login-body">
+    <f:metadata>
+        <f:viewAction action="#{accesoControlador.inicio()}" />
+    </f:metadata>
+    <h:body class="login-body">
 
         <div class="login-wrapper">
 
@@ -28,42 +31,53 @@
                                                   src="#{request.contextPath}/resources/images/logo-siberia-white.png" alt="" class="logo" />
             </a>
 
-             
-                  <h:form id="fLogin" class="login-wrapper" prependId="false"
-                                    onsubmit="this.action = 'j_security_check';" 
-                              >
+
+            <h:form id="fLogin" class="login-wrapper" prependId="false"
+                    onsubmit="this.action = 'j_security_check';" 
+                    >
                 <div class="login-content">
                     <div class="content-text">
-                    
-                                        
-                         
+
+
+
                         <h1>FUTURA</h1>
                         <span>Bienvenido, utilice el formulario para iniciar sesión</span>
-                        
-                          
-                        
+
                         <div class="login-input">
-                       <p:inputText id="j_username" 
-                                             placeholder="Usuario"
-                                             required="true"
-                                             >
-                 
-                                </p:inputText>
-                            
+                            <p:inputText id="ruc" value="#{accesoAD.rucLogin}"
+                                         placeholder="RUC"
+                                         required="true"
+                                         >
+                                <p:ajax/>
+                            </p:inputText>
+                            <i class="pi pi-id-card"></i>
+                        </div>
+
+                        <div class="login-input">
+
+
+                            <p:inputText id="j_username" 
+                                         placeholder="Usuario"
+                                         required="true"
+                                         >
+                                <p:ajax/>
+                            </p:inputText>
+
                             <script id="j_idt9_s"
                                     type="text/javascript">$(function () {
                                             PrimeFaces.cw("InputText", "widget_j_idt9", {id: "j_idt9"});
                                         });</script>
-                            <i class="pi pi-envelope"></i>
+                            <i class="pi pi-user"></i>
                         </div>
                         <div class="login-input">
-                            
-                             <p:password id="j_password"  
-                                            placeholder="Contraseña"
-                                            required="true"  
-                                            >
-                                </p:password>
-                           
+
+                            <p:password id="j_password"  
+                                        placeholder="Contraseña"
+                                        required="true"  
+                                        >
+                                <p:ajax/>
+                            </p:password>
+
                             <script id="j_idt11_s"
                                     type="text/javascript">$(function () {
                                             PrimeFaces.cw("Password", "widget_j_idt11", {id: "j_idt11"});
@@ -71,24 +85,24 @@
                             <i class="pi pi-lock lock"></i>
                         </div>
                         <a href="#">Olvidó la Contraseña?</a>
-                        
-                       
-                          <p:commandButton  value="Ingresar" style="width: 100%"
-                                                      ajax="false"/>
-                                
+
+
+                        <p:commandButton  value="Ingresar" style="width: 100%"
+                                          ajax="false"/>
+
                         <script id="j_idt13_s"
                                 type="text/javascript">$(function () {
                                         PrimeFaces.cw("CommandButton", "widget_j_idt13", {id: "j_idt13"});
                                     });</script>
-                    
+
                     </div><img id="j_idt15" src="#{request.contextPath}/resources/images/exceptions/asset-login.png"
                                alt="" />
 
                 </div>
-                           </h:form>
-            </div>
+            </h:form>
+        </div>
     </h:body>
-    
 
- 
+
+
 </html>

@@ -7,6 +7,7 @@ package com.inventario.dao;
 
 
 
+import com.enumerador.TipoBusquedaVentasEnum;
 import com.generico.daoImp.IGenericoDao;
 import com.inventario.modelo.InvArticulo;
 import java.util.List;
@@ -24,4 +25,6 @@ public interface IArticuloDao extends IGenericoDao<InvArticulo, Long> {
     public InvArticulo obtenerValidacionNombre(String nombre);
 
     public List<InvArticulo> busquedaPorFiltros(InvArticulo articulo);
+
+    public List<InvArticulo> busquedaFiltroVentas(String campoBusqueda, TipoBusquedaVentasEnum tipoBusqueda);
 }

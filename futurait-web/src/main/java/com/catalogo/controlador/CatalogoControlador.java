@@ -13,7 +13,7 @@ import com.excepciones.registos.RegistroNoEliminado;
 import com.excepciones.registos.RegistroNoGuardado;
 import com.excepciones.registos.RegistroNoLocalizado;
 import com.catalogo.variables.CatalogoAD;
-import com.controladorAcceso.BaseControlador;
+import com.acceso.controlador.BaseControlador;
 import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.inject.Named;

@@ -3,15 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.controladorAcceso;
+package com.acceso.controlador;
 
 import com.acceso.modelo.AccRol;
- import com.acceso.servicio.IRolServicio;
+import com.acceso.servicio.IRolServicio;
 import com.excepciones.registos.RegistroNoEliminado;
 import com.excepciones.registos.RegistroNoGuardado;
 import com.excepciones.registos.RegistroNoLocalizado;
 import com.acceso.variables.RolAD;
-import com.catalogo.modelo.CatCatalogo;
 import com.google.gson.Gson;
 import java.io.Serializable;
 import javax.ejb.EJB;
@@ -35,8 +34,9 @@ public class RolControlador extends BaseControlador implements Serializable {
     IRolServicio rolServicio;
 
     public void inicio() {
-        validarAcceso();
-        rolAD.setListaRoles(rolServicio.buscar(new AccRol()));
+        if (validarAcceso()) {
+            rolAD.setListaRoles(rolServicio.buscar(new AccRol()));
+        }
 
     }
 
@@ -63,12 +63,10 @@ public class RolControlador extends BaseControlador implements Serializable {
 
     public void guardar() {
         try {
- Gson gson = new Gson();
+            Gson gson = new Gson();
             String JSON = gson.toJson(rolAD.getRol());
-            System.err.println("errr "+JSON);
-            
+
             AccRol cat = gson.fromJson(JSON, AccRol.class);
-            System.err.println("nommm "+cat.getNombre());
             rolAD.getRol().setEmpresa(1L);
             rolServicio.guardar(rolAD.getRol());
             rolAD.setListaRoles(rolServicio.buscar(new AccRol()));

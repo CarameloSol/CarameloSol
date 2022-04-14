@@ -7,6 +7,7 @@ package com.inventario.servicio;
 
 
 
+import com.enumerador.TipoBusquedaVentasEnum;
 import com.excepciones.registos.RegistroNoEliminado;
 import com.excepciones.registos.RegistroNoGuardado;
 import com.excepciones.registos.RegistroNoLocalizado;
@@ -36,5 +37,6 @@ public interface IArticuloServicio {
 
    
     public List<InvArticulo> busquedaPorFiltros(InvArticulo articulo);
+    public List<InvArticulo> busquedaFiltroVentas(String campoBusqueda, TipoBusquedaVentasEnum tipoBusqueda);
 
 }

@@ -9,7 +9,7 @@ import com.excepciones.registos.RegistroNoEliminado;
 import com.excepciones.registos.RegistroNoGuardado;
 import com.excepciones.registos.RegistroNoLocalizado;
 import com.referente.variables.ProveedorAD;
-import com.controladorAcceso.BaseControlador;
+import com.acceso.controlador.BaseControlador;
 import com.referente.modelo.RefProveedor;
 import com.referente.modelo.RefReferente;
 import com.referente.servicio.IProveedorServicio;

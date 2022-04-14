@@ -17,8 +17,11 @@ import java.io.Serializable;
 @Named(value = "accesoAD")
 @SessionScoped
 public class AccesoAD implements Serializable {
-    AccUsuario usuario= new AccUsuario();
-    Long empresa= null;
+
+    AccUsuario usuario = new AccUsuario();
+    Long empresa = null;
+    String rucLogin = null;
+
     /**
      * Creates a new instance of accesoAD
      */
@@ -33,8 +36,6 @@ public class AccesoAD implements Serializable {
         this.empresa = empresa;
     }
 
-   
-
     public AccUsuario getUsuario() {
         return usuario;
     }
@@ -43,6 +44,13 @@ public class AccesoAD implements Serializable {
         this.usuario = usuario;
     }
 
-    
-    
+    public String getRucLogin() {
+        return rucLogin;
+    }
+
+    public void setRucLogin(String rucLogin) {
+        this.rucLogin = rucLogin;
+    }
+
+ 
 }

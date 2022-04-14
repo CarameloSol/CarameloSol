@@ -15,29 +15,52 @@
         <ui:composition template="/WEB-INF/template.xhtml">
             <ui:define name="content">
                 <h:form id="form" >
+                    <p:importEnum type="com.enumerador.TipoBusquedaVentasEnum" var="tipoBusquedaVenta"
+                                  allSuffix="ALL_ENUM_VALUES"/>
 
 
                     <div class="card">
 
-                        <p:splitter style="height: 500px" styleClass="p-mb-7">
-                            <p:splitterPanel size="30" styleClass="p-d-flex p-ai-center p-jc-center">
+                        <p:splitter  style="height: 500px" styleClass="p-mb-7">
+                            <p:splitterPanel id="panelProductos" size="30" styleClass="p-d-flex p-ai-center p-jc-center">
 
 
                                 <p:splitter layout="vertical" style="height: 495px">
                                     <p:splitterPanel  size="150" styleClass="p-d-flex p-ai-center p-jc-center" >
 
-                                        <div id="Layer12" style="width:100%; height:100%; overflow: scroll;">
-                                           <p:dataTable id="tablaDetalleVenta" var="detalleVenta" value="#{ventaAD.listaDetalleVentaCreacion}" 
+                                        <p:outputPanel id="Layer12" style="width:100%; height:100%; overflow: scroll;">
+                                            <p:dataTable id="tablaDetalleVenta" var="detalleVenta" value="#{ventaAD.listaDetalleVentaCreacion}" 
                                                          rowKey="#{detalleVenta.id}"   >
-                                                <p:column headerText="Nombre" sortBy="#{detalleVenta.articulo.nombre}"
-                                                          filterBy="#{detalleVenta.articulo.nombre}" filterMatchMode="contains">
+                                                <p:column headerText="Producto" >
                                                     <h:outputText value="#{detalleVenta.articulo.nombre}" />
+                                                </p:column>
+                                                <p:column headerText="Cantidad">
+                                                    <p:spinner id="horizontal" style="width: 100px" stepFactor="0.25" value="#{detalleVenta.cantidad}" buttons="horizontal" >
+                                                        <p:ajax event="keyup" process="@this" 
+                                                                listener="#{ventaControlador.modificarCantidadArticulo(detalleVenta)}" update="precioTotal" />
+                                                        <p:ajax event="change" process="@this" 
+                                                                listener="#{ventaControlador.modificarCantidadArticulo(detalleVenta)}" update="precioTotal" />
+                                                        <p:ajax event="input" process="@this" 
+                                                                listener="#{ventaControlador.modificarCantidadArticulo(detalleVenta)}" update="precioTotal" />
+                                                    </p:spinner>
+                                                </p:column>
+                                                <p:column headerText="PU" >
+                                                    <p:inputNumber size="5" value="#{detalleVenta.precioUnitario}" >
+                                                        <p:ajax event="keyup" process="@this" 
+                                                                listener="#{ventaControlador.modificarCantidadArticulo(detalleVenta)}" update="precioTotal"/>
+                                                        <p:ajax event="change" process="@this" 
+                                                                listener="#{ventaControlador.modificarCantidadArticulo(detalleVenta)}" update="precioTotal"/>
+                                                        <p:ajax event="input" process="@this" 
+                                                                listener="#{ventaControlador.modificarCantidadArticulo(detalleVenta)}" update="precioTotal"/>
+                                                    </p:inputNumber>
+                                                </p:column>
+
+                                                <p:column headerText="PT" >
+                                                    <h:outputText id="precioTotal" value="#{detalleVenta.precioTotal}" />
                                                 </p:column>
 
 
-
-
-                                                <p:column headerText="Eliminar" width="7%">
+                                                <p:column width="7%">
 
 
                                                     <p:commandButton  process="@this"  style="font-size: 2rem"
@@ -49,9 +72,17 @@
 
                                                 </p:column>
 
+
+
                                             </p:dataTable>  
-                                        </div>
-                                           
+                                            <p:outputPanel id="totales"
+                                                           class="ui-toolbar ui-widget ui-widget-header ui-corner-all p-mb-12"  >
+                                                <h:outputText  value="#{ventaAD.subTotal}">
+                                                    <f:convertNumber type="currency" currencySymbol="$"/>
+                                                </h:outputText>
+                                            </p:outputPanel>
+                                        </p:outputPanel>
+
                                     </p:splitterPanel>
                                     <p:splitterPanel styleClass="p-d-flex p-ai-center p-jc-center" style="height: 550px">
                                         <p:button value="Volver" style="left: 0%; height: 30%; width: 20% " /> 
@@ -62,9 +93,19 @@
 
                             </p:splitterPanel>
                             <p:splitterPanel styleClass="p-d-flex p-ai-center p-jc-center">
-                                <div id="Layer1" style="width:100%; height:100%; overflow: scroll;">
-
-                                    <p:repeat value="#{ventaAD.listaArticulos}"  var="articulo">
+                                <p:outputPanel id="Layer1"  style="width:100%; height:100%; overflow: scroll;">
+                                    <p:outputPanel id="datosCabecera"
+                                                   class="ui-toolbar ui-widget ui-widget-header ui-corner-all p-mb-12"  >
+                                        <p:inputText value="#{ventaAD.campoBusquedaProductos}">
+                                            <p:ajax event="keyup" process="@this" 
+                                                    listener="#{ventaControlador.buscarProductos()}" update="Layer1"/>
+                                        </p:inputText>
+                                        <p:selectOneMenu id="group" value="#{ventaAD.tipoBusqueda}">
+                                            <f:selectItems value="#{tipoBusquedaVenta.ALL_ENUM_VALUES}"/>
+                                            <p:ajax/>
+                                        </p:selectOneMenu>
+                                    </p:outputPanel>
+                                    <p:repeat  value="#{ventaAD.listaArticulos}"  var="articulo">
                                         <div class="product">
                                             <div class="product-list-item border-1 p-p-5">
                                                 <p:commandLink process="@this" update="form" actionListener="#{ventaControlador.seleccionarProductoVenta(articulo)}">
@@ -94,7 +135,7 @@
                                     </p:repeat>
 
 
-                                </div>
+                                </p:outputPanel>
 
 
                             </p:splitterPanel>

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.controladorAcceso;
+package com.acceso.controlador;
 
 import com.acceso.modelo.AccRol;
 import com.acceso.modelo.AccUsuario;
@@ -12,20 +12,14 @@ import com.excepciones.registos.RegistroNoEliminado;
 import com.excepciones.registos.RegistroNoGuardado;
 import com.excepciones.registos.RegistroNoLocalizado;
 import com.acceso.variables.UsuarioAD;
-import com.ultil.Utilitarios;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.Serializable;
-import java.util.Base64;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.FileUploadEvent;
-import org.primefaces.model.DefaultStreamedContent;
-import org.primefaces.model.StreamedContent;
 import org.primefaces.shaded.commons.io.IOUtils;
 
 /**
@@ -42,9 +36,11 @@ public class UsuarioControlador extends BaseControlador implements Serializable 
     IRolServicio rolServicio;
 
     public void inicio() {
-        validarAcceso();
-        usuarioAD.setListaUsuarios(usuarioServicio.buscar(new AccUsuario()));
-        usuarioAD.setListaRoles(rolServicio.buscar(new AccRol()));
+        if (validarAcceso()) {
+            usuarioAD.setListaUsuarios(usuarioServicio.buscar(new AccUsuario()));
+            usuarioAD.setListaRoles(rolServicio.buscar(new AccRol()));
+        }
+
     }
 
     public void limpiarBusqueda() {
@@ -74,7 +70,7 @@ public class UsuarioControlador extends BaseControlador implements Serializable 
 
     public void guardar() {
         try {
-             usuarioAD.getUsuario().setEmpresa(1L);
+            usuarioAD.getUsuario().setEmpresa(1L);
             AccRol rolEncontrado = rolServicio.obtenerPorId(usuarioAD.getIdRol());
             usuarioAD.getUsuario().setRol(rolEncontrado);
             usuarioServicio.guardar(usuarioAD.getUsuario());
@@ -116,10 +112,6 @@ public class UsuarioControlador extends BaseControlador implements Serializable 
     public void setUsuarioAD(UsuarioAD usuarioAD) {
         this.usuarioAD = usuarioAD;
     }
-
-
-
-    
 
     public void cerrarCesion() {
         getSession().invalidate();

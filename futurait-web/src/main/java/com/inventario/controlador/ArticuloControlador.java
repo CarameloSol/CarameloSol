@@ -9,7 +9,7 @@ import com.excepciones.registos.RegistroNoEliminado;
 import com.excepciones.registos.RegistroNoGuardado;
 import com.excepciones.registos.RegistroNoLocalizado;
 import com.inventario.variables.ArticuloAD;
-import com.controladorAcceso.BaseControlador;
+import com.acceso.controlador.BaseControlador;
 import com.inventario.modelo.InvArticulo;
 import com.inventario.modelo.InvCategoria;
 import com.inventario.servicio.IArticuloServicio;

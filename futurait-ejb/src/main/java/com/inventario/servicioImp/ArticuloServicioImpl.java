@@ -5,9 +5,7 @@
  */
 package com.inventario.servicioImp;
 
-
-
-import com.acceso.modelo.AccUsuario;
+import com.enumerador.TipoBusquedaVentasEnum;
 import com.excepciones.registos.RegistroNoEliminado;
 import com.excepciones.registos.RegistroNoGuardado;
 import com.excepciones.registos.RegistroNoLocalizado;
@@ -17,7 +15,6 @@ import com.inventario.servicio.IArticuloServicio;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-
 
 /**
  *
@@ -41,9 +38,10 @@ public class ArticuloServicioImpl implements IArticuloServicio {
 
     @Override
     public void eliminar(InvArticulo articulo) throws RegistroNoEliminado, RegistroNoLocalizado {
-        InvArticulo articuloEliminar= articuloDao.recuperar(articulo.getId());
+        InvArticulo articuloEliminar = articuloDao.recuperar(articulo.getId());
         articuloDao.eliminar(articuloEliminar);
     }
+
     private void validacionUsuario(InvArticulo articulo) throws RegistroNoGuardado {
         if (!articulo.getNombre().equals(articulo.getValidacionNombre())) {
             InvArticulo articuloEncontrado = articuloDao.obtenerValidacionNombre(articulo.getNombre());
@@ -52,10 +50,11 @@ public class ArticuloServicioImpl implements IArticuloServicio {
             }
         }
     }
+
     @Override
     public void guardar(InvArticulo articulo) throws RegistroNoGuardado {
         validacionUsuario(articulo);
-       if (articulo.getId() == null) {
+        if (articulo.getId() == null) {
             articuloDao.crear(articulo);
         } else {
             articuloDao.actualizar(articulo);
@@ -70,6 +69,11 @@ public class ArticuloServicioImpl implements IArticuloServicio {
     @Override
     public InvArticulo obtenerPorId(Long id) throws RegistroNoLocalizado {
         return articuloDao.recuperar(id);
+    }
+
+    @Override
+    public List<InvArticulo> busquedaFiltroVentas(String campoBusqueda, TipoBusquedaVentasEnum tipoBusqueda) {
+        return articuloDao.busquedaFiltroVentas(campoBusqueda, tipoBusqueda);
     }
 
 }

@@ -9,7 +9,7 @@ package com.sistema.controlador;
  import com.excepciones.registos.RegistroNoEliminado;
 import com.excepciones.registos.RegistroNoGuardado;
 import com.excepciones.registos.RegistroNoLocalizado;
- import com.controladorAcceso.BaseControlador;
+ import com.acceso.controlador.BaseControlador;
 import com.sistema.modelo.SisFormaPago;
 import com.sistema.servicio.IFormaPagoServicio;
 import com.sistema.variables.FormaPagoAD;

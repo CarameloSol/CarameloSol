@@ -8,7 +8,7 @@ package com.sistema.controlador;
 import com.excepciones.registos.RegistroNoEliminado;
 import com.excepciones.registos.RegistroNoGuardado;
 import com.excepciones.registos.RegistroNoLocalizado;
- import com.controladorAcceso.BaseControlador;
+ import com.acceso.controlador.BaseControlador;
  import com.referente.modelo.RefReferente;
  import com.referente.servicio.IPersonaServicio;
 import com.referente.servicio.IReferenteServicio;

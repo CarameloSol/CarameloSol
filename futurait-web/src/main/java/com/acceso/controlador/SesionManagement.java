@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.controladorAcceso;
+package com.acceso.controlador;
 
 import com.acceso.variables.AccesoAD;
-import static com.controladorAcceso.UsuarioControlador.getFacesContext;
+import static com.acceso.controlador.UsuarioControlador.getFacesContext;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

@@ -5,7 +5,7 @@
  */
 package com.sistema.controlador;
 
-import com.controladorAcceso.*;
+import com.acceso.controlador.BaseControlador;
    import com.excepciones.registos.RegistroNoEliminado;
 import com.excepciones.registos.RegistroNoGuardado;
 import com.excepciones.registos.RegistroNoLocalizado;

@@ -3,16 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.controladorAcceso;
+package com.acceso.controlador;
 
+import com.acceso.modelo.AccUsuario;
 import com.acceso.servicio.IUsuarioServicio;
- import java.io.Serializable;
+import com.acceso.variables.AccesoAD;
+import com.acceso.variables.UsuarioAD;
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.primefaces.PrimeFaces;
 
 /**
  *
@@ -22,19 +30,37 @@ public abstract class BaseControlador implements Serializable {
 
     @EJB
     IUsuarioServicio usuarioServicio;
-  
+    @Inject
+    AccesoAD accesoAD;
 
+    public Boolean validarAcceso() {
+        try {
+            String loggedUsername = getServletRequest().getRemoteUser();
+            if (loggedUsername == null) {
+                return Boolean.FALSE;
+            }
+            if (accesoAD.getRucLogin() == null) {
 
-    public void validarAcceso() {
+                getSession().invalidate();
+                getServletResponse().sendRedirect("http://localhost:8080/paginas/protegidas/acceso/usuario/inicio.fut");
+                PrimeFaces.current().executeScript("location.reload();");
+                return Boolean.FALSE;
+            }
 
-      
+            AccUsuario usuarioLogeado = usuarioServicio.usuarioLogeado(accesoAD.getRucLogin(), loggedUsername);
+            if (usuarioLogeado == null) {
+                getSession().invalidate();
+                getServletResponse().sendRedirect("http://localhost:8080/paginas/protegidas/acceso/usuario/inicio.fut");
+                PrimeFaces.current().executeScript("location.reload();");
+                return Boolean.FALSE;
 
-//        String loggedUsername = getServletRequest().getRemoteUser();
-//        AccUsuario usuarioLogeado = usuarioServicio.usuarioLogeado(accesoAD.getEmpresa(), loggedUsername);
-//        if (usuarioLogeado == null) {
-//            getSession().invalidate();
-//        }
-//        accesoAD.setUsuario(usuarioLogeado);
+            }
+
+            accesoAD.setUsuario(usuarioLogeado);
+        } catch (IOException ex) {
+            Logger.getLogger(BaseControlador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return Boolean.TRUE;
     }
 
     public String urlBase() {
@@ -76,9 +102,8 @@ public abstract class BaseControlador implements Serializable {
     protected static FacesContext getFacesContext() {
         return FacesContext.getCurrentInstance();
     }
-    
-    
-     /**
+
+    /**
      * @param resumen
      */
     protected void addErrorMessage(final String resumen) {
@@ -132,5 +157,5 @@ public abstract class BaseControlador implements Serializable {
         message.setSeverity(FacesMessage.SEVERITY_WARN);
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
-    
+
 }

@@ -69,11 +69,13 @@ public class UsuarioDaoImp extends GenericDaoImp<AccUsuario, Long>
     }
 
     @Override
-    public AccUsuario usuarioLogeado(Long empresa, String usuario) {
+    public AccUsuario usuarioLogeado(String identificacion, String usuario) {
         StringBuilder sql = new StringBuilder();
         HashMap<Object, Object> parametros = new HashMap();
-        sql.append("Select t from AccUsuario t where t.empresa=:empresa and t.nombre=:usuario");
-        parametros.put("empresa", empresa);
+        sql.append("Select u from AccUsuario u inner join "
+                + " SisEmpresa e on u.empresa = e.id "
+                + " where e.referente.identificacion =:identificacion and u.nombre =:usuario");
+        parametros.put("identificacion", identificacion);
         parametros.put("usuario", usuario);
 
         Query q = this.em.createQuery(sql.toString());
@@ -83,7 +85,7 @@ public class UsuarioDaoImp extends GenericDaoImp<AccUsuario, Long>
         try {
             return (AccUsuario) q.getSingleResult();
         } catch (Exception e) {
-            return null;
+             return null;
         }
     }
 

@@ -92,8 +92,8 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
     }
 
     @Override
-    public AccUsuario usuarioLogeado(Long empresa, String usuario) {
-        return usuarioDao.usuarioLogeado(empresa, usuario);
+    public AccUsuario usuarioLogeado(String identificacion, String usuario) {
+        return usuarioDao.usuarioLogeado(identificacion, usuario);
     }
 
     @Override

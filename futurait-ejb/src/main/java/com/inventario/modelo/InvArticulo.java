@@ -66,6 +66,17 @@ public class InvArticulo implements Serializable {
     @Transient
     private String validacionNombre;
 
+    public InvArticulo(String nombre) {
+        this.nombre = nombre;
+    }
+
+  
+    public InvArticulo() {
+    }
+
+    
+    
+    
     public Long getId() {
         return id;
     }
