@@ -9,6 +9,7 @@
         <class>com.acceso.modelo.AccRolMenu</class>
         <class>com.inventario.modelo.InvArticulo</class>
         <class>com.inventario.modelo.InvCategoria</class>
+        <class>com.inventario.modelo.InvImpuestoArticulo</class>
         <class>com.referente.modelo.RefCliente</class>
         <class>com.referente.modelo.RefProveedor</class>
         <class>com.referente.modelo.RefReferente</class>
@@ -40,6 +41,7 @@
         <class>com.venta.modelo.VenNotaCredito</class>
         <class>com.venta.modelo.VenVenta</class>
         <class>com.venta.modelo.VenVentaImpuesto</class>
+        <class>com.venta.modelo.VenPedidoVenta</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
    <properties>
             <property name="hibernate.hbm2ddl.auto" value="update"/>

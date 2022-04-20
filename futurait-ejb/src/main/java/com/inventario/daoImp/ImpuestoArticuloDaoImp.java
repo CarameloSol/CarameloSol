@@ -7,8 +7,9 @@ package com.inventario.daoImp;
 
 import com.enumerador.TipoBusquedaVentasEnum;
 import com.genericos.dao.GenericDaoImp;
-import com.inventario.dao.IArticuloDao;
+import com.inventario.dao.IImpuestoArticuloDao;
 import com.inventario.modelo.InvArticulo;
+import com.inventario.modelo.InvImpuestoArticulo;
 import java.util.HashMap;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -19,21 +20,21 @@ import javax.persistence.Query;
  * @author Ricardo
  */
 @Stateless
-public class ArticuloDaoImp extends GenericDaoImp<InvArticulo, Long>
-        implements IArticuloDao {
+public class ImpuestoArticuloDaoImp extends GenericDaoImp<InvImpuestoArticulo, Long>
+        implements IImpuestoArticuloDao {
 
-    public ArticuloDaoImp() {
-        super(InvArticulo.class);
+    public ImpuestoArticuloDaoImp() {
+        super(InvImpuestoArticulo.class);
     }
 
     @Override
-    public List<InvArticulo> buscar(InvArticulo articulo) {
+    public List<InvImpuestoArticulo> buscar(InvImpuestoArticulo impuestoArticulo) {
         StringBuilder sql = new StringBuilder();
         HashMap<Object, Object> parametros = new HashMap();
-        sql.append("Select t from InvArticulo t where 1=1");
-        if (articulo.getId() != null) {
+        sql.append("Select t from InvImpuestoArticulo t where 1=1");
+        if (impuestoArticulo.getId() != null) {
             sql.append(" and t.id=:id");
-            parametros.put("id", articulo.getId());
+            parametros.put("id", impuestoArticulo.getId());
         }
         sql.append(" order by t.id  desc ");
         Query q = this.em.createQuery(sql.toString());
@@ -44,10 +45,10 @@ public class ArticuloDaoImp extends GenericDaoImp<InvArticulo, Long>
     }
 
     @Override
-    public InvArticulo obtenerValidacionNombre(String nombre) {
+    public InvImpuestoArticulo obtenerValidacionNombre(String nombre) {
         StringBuilder sql = new StringBuilder();
         HashMap<Object, Object> parametros = new HashMap();
-        sql.append("Select t from InvArticulo t where t.nombre=:nombre");
+        sql.append("Select t from InvImpuestoArticulo t where t.nombre=:nombre");
         parametros.put("nombre", nombre);
 
         Query q = this.em.createQuery(sql.toString());
@@ -55,28 +56,22 @@ public class ArticuloDaoImp extends GenericDaoImp<InvArticulo, Long>
             q.setParameter((String) key, parametros.get(key));
         });
         try {
-            return (InvArticulo) q.getSingleResult();
+            return (InvImpuestoArticulo) q.getSingleResult();
         } catch (Exception e) {
             return null;
         }
-
     }
 
     @Override
-    public List<InvArticulo> busquedaPorFiltros(InvArticulo articulo) {
+    public List<InvImpuestoArticulo> busquedaPorFiltros(InvImpuestoArticulo impuestoArticulo) {
         StringBuilder sql = new StringBuilder();
         HashMap<Object, Object> parametros = new HashMap();
-        sql.append("Select t from InvArticulo t where 1=1");
-        if (articulo.getId() != null) {
+        sql.append("Select t from InvImpuestoArticulo t where 1=1");
+        if (impuestoArticulo.getId() != null) {
             sql.append(" and t.id=:id");
-            parametros.put("id", articulo.getId());
+            parametros.put("id", impuestoArticulo.getId());
         }
 
-        if (articulo.getNombre() != null) {
-            String parametroBusqueda = articulo.getNombre().toLowerCase().replaceAll(" ", "%_%");
-            sql.append(" and LOWER(t.nombre) like :nombre");
-            parametros.put("nombre", "%" + parametroBusqueda + "%");
-        }
         sql.append(" order by t.id  desc ");
         System.err.println("SQL " + sql.toString());
         Query q = this.em.createQuery(sql.toString());
@@ -87,26 +82,13 @@ public class ArticuloDaoImp extends GenericDaoImp<InvArticulo, Long>
     }
 
     @Override
-    public List<InvArticulo> busquedaFiltroVentas(String campoBusqueda, TipoBusquedaVentasEnum tipoBusqueda) {
+    public List<InvImpuestoArticulo> busquedaFiltroVentas(String campoBusqueda, TipoBusquedaVentasEnum tipoBusqueda) {
         StringBuilder sql = new StringBuilder();
         HashMap<Object, Object> parametros = new HashMap();
-        sql.append("Select t from InvArticulo t where 1=1");
-
-        if (campoBusqueda != null && tipoBusqueda.equals(TipoBusquedaVentasEnum.NOMBRE)) {
-            String parametroBusqueda = campoBusqueda.toLowerCase().replaceAll(" ", "%_%");
-            sql.append(" and LOWER(t.nombre) like :nombre");
-            parametros.put("nombre", "%" + parametroBusqueda + "%");
-        }
-        if (campoBusqueda != null && tipoBusqueda.equals(TipoBusquedaVentasEnum.CATEGORIA)) {
-            String parametroBusqueda = campoBusqueda.toLowerCase().replaceAll(" ", "%_%");
-            sql.append(" and LOWER(t.categoria.nombre) like :nombre");
-            parametros.put("nombre", "%" + parametroBusqueda + "%");
-        }
-        if (campoBusqueda != null && tipoBusqueda.equals(TipoBusquedaVentasEnum.CODIGO)) {
-            sql.append(" and codigo =:codigo");
-            parametros.put("codigo", campoBusqueda);
-        }
-        System.err.println("conuslta "+sql.toString());
+        sql.append("Select t from InvImpuestoArticulo t where 1=1");
+        
+        
+        System.err.println("conuslta " + sql.toString());
         sql.append(" order by t.id  desc ");
         Query q = this.em.createQuery(sql.toString());
         parametros.keySet().forEach((key) -> {

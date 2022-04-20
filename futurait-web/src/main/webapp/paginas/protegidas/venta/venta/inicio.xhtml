@@ -35,7 +35,7 @@
                                                     <h:outputText value="#{detalleVenta.articulo.nombre}" />
                                                 </p:column>
                                                 <p:column headerText="Cantidad">
-                                                    <p:spinner id="horizontal" style="width: 100px" stepFactor="0.25" value="#{detalleVenta.cantidad}" buttons="horizontal" >
+                                                    <p:spinner id="horizontal" style="width: 100px"  value="#{detalleVenta.cantidad}" buttons="horizontal" >
                                                         <p:ajax event="keyup" process="@this" 
                                                                 listener="#{ventaControlador.modificarCantidadArticulo(detalleVenta)}" update="precioTotal" />
                                                         <p:ajax event="change" process="@this" 
@@ -120,9 +120,9 @@
 
                                                     <div class="product-list-detail">
                                                         <div class="product-name">#{articulo.nombre}</div>
+                                                    </div>
                                                         <i class="pi pi-tag product-category-icon"/><span
                                                             class="product-category">#{articulo.categoria.nombre}</span>
-                                                    </div>
                                                     <div class="product-list-action">
                                                         <h:outputText value="#{articulo.precio}" styleClass="product-price">
                                                             <f:convertNumber currencySymbol="$" type="currency"/>
